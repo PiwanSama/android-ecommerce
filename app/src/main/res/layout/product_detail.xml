@@ -19,7 +19,7 @@
             android:adjustViewBounds="true"
             android:contentDescription="@string/product_name_desc"
             android:maxHeight="0dp"
-            android:scaleType="centerCrop"
+            android:scaleType="center"
             android:src="@drawable/med1" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -35,7 +35,10 @@
                 android:layout_marginLeft="10sp"
                 android:layout_marginTop="10sp"
                 android:text="@string/product_sample_name"
-                android:textAppearance="@style/CustomProductName"
+                android:textSize="18sp"
+                android:textColor="@null"
+                android:textStyle="bold"
+                android:textAppearance="@style/CustomName"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -46,6 +49,7 @@
                 android:layout_marginStart="10sp"
                 android:layout_marginLeft="10sp"
                 android:text="@string/product_sample_manufacturer"
+                android:textColor="@null"
                 android:textAppearance="@style/TextMuted"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/single_product_name" />
@@ -58,7 +62,7 @@
                 android:padding="10sp"
                 android:background="@drawable/rounded_bg"
                 android:text="@string/product_sample_price"
-                android:textAppearance="@style/CustomPrice"
+                android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

@@ -17,7 +17,7 @@
             android:id="@+id/search_block"
             android:layout_width="match_parent"
             android:layout_height="260sp"
-            android:background="@color/colorAccent"
+            android:background="@color/colorPrimary"
             android:orientation="vertical"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/search_block">
@@ -64,7 +64,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight = "1"
                     app:cardUseCompatPadding="true"
-                    android:elevation="8dp"
+                    app:cardElevation="3dp"
                     app:cardCornerRadius="6dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -111,7 +111,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight = "1"
                     app:cardUseCompatPadding="true"
-                    android:elevation="8dp"
+                    app:cardElevation="3dp"
                     app:cardCornerRadius="6dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -158,7 +158,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight = "1"
                     app:cardUseCompatPadding="true"
-                    android:elevation="8dp"
+                    app:cardElevation="3dp"
                     app:cardCornerRadius="6dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -215,7 +215,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight = "1"
                     app:cardUseCompatPadding="true"
-                    android:elevation="8dp"
+                    app:cardElevation="3dp"
                     app:cardCornerRadius="6dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -262,7 +262,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight = "1"
                     app:cardUseCompatPadding="true"
-                    android:elevation="8dp"
+                    app:cardElevation="3dp"
                     app:cardCornerRadius="6dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -309,7 +309,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight = "1"
                     app:cardUseCompatPadding="true"
-                    android:elevation="8dp"
+                    app:cardElevation="3dp"
                     app:cardCornerRadius="6dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -367,7 +367,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight = "1"
                     app:cardUseCompatPadding="true"
-                    android:elevation="8dp"
+                    app:cardElevation="3dp"
                     app:cardCornerRadius="6dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -414,7 +414,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight = "1"
                     app:cardUseCompatPadding="true"
-                    android:elevation="8dp"
+                    app:cardElevation="3dp"
                     app:cardCornerRadius="6dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -461,7 +461,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight = "1"
                     app:cardUseCompatPadding="true"
-                    android:elevation="8dp"
+                    app:cardElevation="3dp"
                     app:cardCornerRadius="6dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout

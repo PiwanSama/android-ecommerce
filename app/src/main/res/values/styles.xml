@@ -3,14 +3,21 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorAccent</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorPrimary</item>
-        <item name="colorControlNormal">@color/skeleton</item>
-        <item name="android:colorBackground">@color/colorLightGray</item>
-        <item name="android:colorForeground">@color/colorAccent</item>
-        <item name="colorControlHighlight">@color/colorPrimaryRipple</item>
-        <item name="android:statusBarColor">@color/colorAccent</item>
+        <item name="colorControlNormal">@color/colorPrimary</item>
+        <item name="android:colorBackground">@color/white</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:textColor">@color/fontColor</item>
+        <item name="android:textColorPrimary">@color/colorPrimary</item>
+        <item name="android:textSize">14sp</item>
+        <item name="actionBarTheme">@style/AppTheme.AppBarOverlay</item>
+        <item name="android:statusBarColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">@color/white</item>
     </style>
 
     <style name="BottomNavigationTheme" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
@@ -19,18 +26,10 @@
 
     <style name="CustomTitle" parent="TextAppearance.AppCompat.Title">
         <item name="android:textAllCaps">true</item>
-        <item name="android:textColor">@color/fontColor</item>
-        <item name="android:textSize">12sp</item>
     </style>
 
-    <style name="CustomProductName" parent="TextAppearance.AppCompat.Title">
-        <item name="android:textColor">@color/colorAccent</item>
-        <item name="android:textSize">20sp</item>
-    </style>
-
-    <style name="CustomPrice" parent="TextAppearance.AppCompat.Headline">
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">14sp</item>
+    <style name="CustomName" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textColor">@color/colorPrimary</item>
     </style>
 
     <style name="TextMuted" parent="TextAppearance.AppCompat.Small">
