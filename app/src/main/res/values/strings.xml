@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">E-Pharm</string>
+    <string name="hint">Search Products</string>
+    <string name="shopping_cart_item">shopping_cart_item</string>
+    <string name="home">Home</string>
+    <string name="orders">Orders</string>
+    <string name="profile">Profile</string>
+    <string name="featured">Featured</string>
+    <string name="sample_name">Dummy Text</string>
+    <string name="orders_title">Your orders</string>
+    <string name="orders_blank">No orders yet</string>
+    <string name="long_sample_name">This is a really really really really long string</string>
+    <string name="product_sample_name">Azithromycin 400</string>
+    <string name="status">Pending</string>
+    <string name="product_name_desc">Product name</string>
+    <string name="med_qty">Quantity: 1 box</string>
+    <string name="order_date">Order Date: 12 July 2019</string>
+    <string name="med_price">Price: 21,000</string>
+    <string name="status_delivered">Delivered</string>
+    <string name="product_sample_manufacturer">Medipharm Labs</string>
+    <string name="product_sample_price">Price: 22,000/=</string>
+    <string name="info">Product Information</string>
+    <string name="avail">Availability</string>
+    <string name="lorem">Azithromycin is an antiobiotic used in the treatment of infections such as rain, showers and thunder.Azithromycin is an antiobiotic used in the treatment of infections such as rain, showers and thunder, the antiobiotic used in the treatment of infections such as rain, showers and thunder.</string>
+    <string name="delivery_info">This product can be shipped to your area</string>
+    <string name="add_to_cart">Add to Cart</string>
+    <string name="buy_now">Buy Now</string>
+    <string name="moti">Order medicine right to your doorstep...</string>
+</resources>
