@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@color/colorPrimary"/>
-    <corners android:radius="20dp"/>
-    <padding android:left="8dp" android:top="8dp" android:right="8dp" android:bottom="8dp" />
+    <solid android:color="@color/colorAccent"/>
+    <corners android:radius="4sp"/>
+    <padding android:left="3sp" android:top="3sp" android:right="3sp" android:bottom="3sp" />
+    <size android:height="8sp"/>
 </shape>

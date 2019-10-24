@@ -1,13 +1,16 @@
 package com.horlobyte.ctipharmacy.activities;
 
+import android.app.SearchManager;
+import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -16,7 +19,6 @@ import com.horlobyte.ctipharmacy.R;
 import com.horlobyte.ctipharmacy.fragments.HomeFragment;
 import com.horlobyte.ctipharmacy.fragments.OrdersFragment;
 import com.horlobyte.ctipharmacy.fragments.ProfileFragment;
-import com.horlobyte.ctipharmacy.utils.BottomNavigationBehavior;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
         toolbar = getSupportActionBar();
+        toolbar.setElevation(0);
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         loadFragment(new HomeFragment());
@@ -34,6 +37,10 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.app_bar_menu, menu);
+
+        //Associate searchable configuration with searchview
+        //SearchManager searchManager = (SearchManager)getSystemService(Context.SEARCH_SERVICE);
+        //SearchView searchView = (SearchView)menu.findItem(R.id.product_search).getActionView();
         return true;
     }
 

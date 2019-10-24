@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">E-Pharm</string>
+    <string name="app_name">LifeGo</string>
     <string name="hint">Search Products</string>
     <string name="shopping_cart_item">shopping_cart_item</string>
     <string name="home">Home</string>
@@ -26,4 +26,9 @@
     <string name="add_to_cart">Add to Cart</string>
     <string name="buy_now">Buy Now</string>
     <string name="moti">Order medicine right to your doorstep...</string>
+    <string name="username">Hello, John Doe!</string>
+    <string name="email">johndoe@ymail.com</string>
+    <string name="search_item">Search Item</string>
+    <string name="search">Search</string>
+    <string name="intro">Hello, what are you looking for today?</string>
 </resources>

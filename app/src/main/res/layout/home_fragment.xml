@@ -6,37 +6,42 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.HomeFragment">
+    tools:context=".fragments.HomeFragment"
+    android:background="@drawable/ic_wave">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/intro_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="@string/intro"
+            android:textAppearance="@style/Intro"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/search_block"/>
 
         <LinearLayout
             android:id="@+id/search_block"
             android:layout_width="match_parent"
-            android:layout_height="260sp"
-            android:background="@color/colorPrimary"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
             android:orientation="vertical"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/intro_text"
             app:layout_constraintBottom_toTopOf="@id/search_block">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="match_parent"
-                android:layout_height="200sp"
-                android:id="@+id/backdrop_image"
-                android:src="@drawable/pills_cup"
-                android:adjustViewBounds="true"
-                android:maxHeight="0dp"
-                android:scaleType="fitXY"/>
-
             <androidx.appcompat.widget.SearchView
-                app:iconifiedByDefault="true"
+                app:iconifiedByDefault="false"
                 android:id="@+id/product_search"
-                android:layout_width="400sp"
-                android:layout_height="40sp"
-                android:layout_margin="10sp"
+                android:layout_width="300dp"
+                android:layout_height="35dp"
+                android:layout_margin="10dp"
                 android:layout_gravity= "center"
                 android:background="@drawable/search_background"
                 app:queryHint="@string/hint"
@@ -49,23 +54,28 @@
             android:id="@+id/card_grid"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/search_block"
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <LinearLayout
                 android:id="@+id/cardrow_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="3"
-                android:layout_marginTop="20sp"
+                android:weightSum="2"
                 android:orientation="horizontal">
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="180dp"
                     android:layout_weight = "1"
                     app:cardUseCompatPadding="true"
-                    app:cardElevation="3dp"
-                    app:cardCornerRadius="6dp">
+                    app:cardElevation="6dp"
+                    app:cardCornerRadius="6dp"
+                    app:rippleColor="@color/colorPrimary"
+                    android:layout_margin="8sp"
+                    android:clickable="true"
+                    android:focusable="true">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -87,14 +97,9 @@
 
                         <TextView
                             android:id="@+id/category_name_1"
-                            android:layout_width="0dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginBottom="16dp"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                            android:textColor="#DE000000"
+                            android:layout_margin="16sp"
                             android:lineSpacingExtra="8dp"
                             app:layout_constraintTop_toBottomOf="@+id/category_image_1"
                             app:layout_constraintStart_toStartOf="parent"
@@ -108,11 +113,14 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="180dp"
                     android:layout_weight = "1"
                     app:cardUseCompatPadding="true"
-                    app:cardElevation="3dp"
-                    app:cardCornerRadius="6dp">
+                    app:cardElevation="6dp"
+                    app:cardCornerRadius="6dp"
+                    android:layout_margin="8sp"
+                    android:clickable="true"
+                    android:focusable="true">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -134,63 +142,11 @@
 
                         <TextView
                             android:id="@+id/category_name_2"
-                            android:layout_width="0dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginBottom="16dp"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                            android:textColor="#DE000000"
+                            android:layout_margin="16sp"
                             android:lineSpacingExtra="8dp"
                             app:layout_constraintTop_toBottomOf="@+id/category_image_2"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            android:text="@string/sample_name"/>
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight = "1"
-                    app:cardUseCompatPadding="true"
-                    app:cardElevation="3dp"
-                    app:cardCornerRadius="6dp">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <ImageView
-                            android:id="@+id/category_image_3"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:src="@drawable/ic_medicine"
-                            android:scaleType="centerCrop"
-                            app:layout_constraintDimensionRatio="H,16:9"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintBottom_toTopOf="@+id/category_name_3"
-                            app:layout_constraintVertical_chainStyle="packed"
-                            />
-
-                        <TextView
-                            android:id="@+id/category_name_3"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginBottom="16dp"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                            android:textColor="#DE000000"
-                            android:lineSpacingExtra="8dp"
-                            app:layout_constraintTop_toBottomOf="@+id/category_image_3"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -207,16 +163,19 @@
                 app:layout_constraintTop_toBottomOf="@+id/cardrow_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10sp"
+                android:weightSum="2"
                 android:orientation="horizontal">
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="180dp"
                     android:layout_weight = "1"
                     app:cardUseCompatPadding="true"
-                    app:cardElevation="3dp"
-                    app:cardCornerRadius="6dp">
+                    app:cardElevation="6dp"
+                    app:cardCornerRadius="6dp"
+                    app:rippleColor="@color/colorPrimary"
+                    android:layout_margin="8sp"
+                    >
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -226,32 +185,26 @@
                             android:id="@+id/category_image_4"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
-                            android:src="@drawable/ic_medicine"
                             android:scaleType="centerCrop"
-                            app:layout_constraintDimensionRatio="H,16:9"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
+                            android:src="@drawable/ic_medicine"
                             app:layout_constraintBottom_toTopOf="@+id/category_name_4"
-                            app:layout_constraintVertical_chainStyle="packed"
-                            />
+                            app:layout_constraintDimensionRatio="H,16:9"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_chainStyle="packed" />
 
                         <TextView
                             android:id="@+id/category_name_4"
-                            android:layout_width="0dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginBottom="16dp"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                            android:textColor="#DE000000"
+                            android:layout_margin="16sp"
                             android:lineSpacingExtra="8dp"
-                            app:layout_constraintTop_toBottomOf="@+id/category_image_4"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
+                            android:text="@string/sample_name"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            android:text="@string/sample_name"/>
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/category_image_4" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -259,11 +212,15 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="180dp"
                     android:layout_weight = "1"
                     app:cardUseCompatPadding="true"
-                    app:cardElevation="3dp"
-                    app:cardCornerRadius="6dp">
+                    app:cardElevation="6dp"
+                    app:cardCornerRadius="6dp"
+                    android:layout_margin="8sp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    >
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -285,63 +242,11 @@
 
                         <TextView
                             android:id="@+id/category_name_5"
-                            android:layout_width="0dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginBottom="16dp"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                            android:textColor="#DE000000"
+                            android:layout_margin="16sp"
                             android:lineSpacingExtra="8dp"
                             app:layout_constraintTop_toBottomOf="@+id/category_image_5"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            android:text="@string/sample_name"/>
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight = "1"
-                    app:cardUseCompatPadding="true"
-                    app:cardElevation="3dp"
-                    app:cardCornerRadius="6dp">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <ImageView
-                            android:id="@+id/category_image_6"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:src="@drawable/ic_medicine"
-                            android:scaleType="centerCrop"
-                            app:layout_constraintDimensionRatio="H,16:9"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintBottom_toTopOf="@+id/category_name_6"
-                            app:layout_constraintVertical_chainStyle="packed"
-                            />
-
-                        <TextView
-                            android:id="@+id/category_name_6"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginBottom="16dp"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                            android:textColor="#DE000000"
-                            android:lineSpacingExtra="8dp"
-                            app:layout_constraintTop_toBottomOf="@+id/category_image_6"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -359,16 +264,19 @@
                 app:layout_constraintBottom_toBottomOf="@id/card_grid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10sp"
+                android:weightSum="2"
                 android:orientation="horizontal">
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="180dp"
                     android:layout_weight = "1"
                     app:cardUseCompatPadding="true"
-                    app:cardElevation="3dp"
-                    app:cardCornerRadius="6dp">
+                    app:cardElevation="6dp"
+                    app:cardCornerRadius="6dp"
+                    android:layout_margin="8sp"
+                    android:clickable="true"
+                    android:focusable="true">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -390,14 +298,9 @@
 
                         <TextView
                             android:id="@+id/category_name_7"
-                            android:layout_width="0dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginBottom="16dp"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                            android:textColor="#DE000000"
+                            android:layout_margin="16sp"
                             android:lineSpacingExtra="8dp"
                             app:layout_constraintTop_toBottomOf="@+id/category_image_7"
                             app:layout_constraintStart_toStartOf="parent"
@@ -411,11 +314,14 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="180dp"
                     android:layout_weight = "1"
                     app:cardUseCompatPadding="true"
-                    app:cardElevation="3dp"
-                    app:cardCornerRadius="6dp">
+                    app:cardElevation="6dp"
+                    app:cardCornerRadius="6dp"
+                    android:layout_margin="8sp"
+                    android:clickable="true"
+                    android:focusable="true">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -437,63 +343,11 @@
 
                         <TextView
                             android:id="@+id/category_name_8"
-                            android:layout_width="0dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginBottom="16dp"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                            android:textColor="#DE000000"
+                            android:layout_margin="16sp"
                             android:lineSpacingExtra="8dp"
                             app:layout_constraintTop_toBottomOf="@+id/category_image_8"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            android:text="@string/sample_name"/>
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight = "1"
-                    app:cardUseCompatPadding="true"
-                    app:cardElevation="3dp"
-                    app:cardCornerRadius="6dp">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <ImageView
-                            android:id="@+id/category_image_9"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:src="@drawable/ic_medicine"
-                            android:scaleType="centerCrop"
-                            app:layout_constraintDimensionRatio="H,16:9"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintBottom_toTopOf="@+id/category_name_9"
-                            app:layout_constraintVertical_chainStyle="packed"
-                            />
-
-                        <TextView
-                            android:id="@+id/category_name_9"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginBottom="16dp"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                            android:textColor="#DE000000"
-                            android:lineSpacingExtra="8dp"
-                            app:layout_constraintTop_toBottomOf="@+id/category_image_9"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -507,7 +361,7 @@
 
         </LinearLayout>
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
 
