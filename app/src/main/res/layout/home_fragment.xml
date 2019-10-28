@@ -72,10 +72,11 @@
                     app:cardUseCompatPadding="true"
                     app:cardElevation="6dp"
                     app:cardCornerRadius="6dp"
-                    app:rippleColor="@color/colorPrimary"
+                    
                     android:layout_margin="8sp"
                     android:clickable="true"
-                    android:focusable="true">
+                    android:focusable="true"
+                    android:background="@drawable/custom_ripple">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -173,7 +174,7 @@
                     app:cardUseCompatPadding="true"
                     app:cardElevation="6dp"
                     app:cardCornerRadius="6dp"
-                    app:rippleColor="@color/colorPrimary"
+                    
                     android:layout_margin="8sp"
                     >
 

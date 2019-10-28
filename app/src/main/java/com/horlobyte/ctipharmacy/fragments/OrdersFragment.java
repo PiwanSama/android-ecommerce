@@ -12,7 +12,7 @@ import com.horlobyte.ctipharmacy.R;
 public class OrdersFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        View view = inflater.inflate(R.layout.orders_fragment, container, false);
+        View view = inflater.inflate(R.layout.cart_activity, container, false);
         return view;
     }
 }

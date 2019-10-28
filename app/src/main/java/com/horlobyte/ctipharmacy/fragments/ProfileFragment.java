@@ -16,7 +16,7 @@ public class ProfileFragment extends Fragment {
 
     Activity mActivity;
     ListView profileOptionsList;
-    String [] profileOptionsArray = {"Address", "Payment Options", "Account", "Help", "About", "Logout"};
+    String [] profileOptionsArray = {"Address", "Payment Options", "Account", "Help", "About"};
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
