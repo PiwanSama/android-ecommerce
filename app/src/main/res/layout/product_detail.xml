@@ -59,10 +59,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10sp"
-                android:padding="10sp"
-                android:background="@drawable/rounded_button_bg"
                 android:text="@string/product_sample_price"
-                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textColor="@null"
+                android:textStyle="bold"
+                android:textAppearance="@style/CustomName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

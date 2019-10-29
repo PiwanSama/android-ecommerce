@@ -15,7 +15,7 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        View view = inflater.inflate(R.layout.product_detail, container, false);
+        View view = inflater.inflate(R.layout.login_activity, container, false);
 
         return view;
     }

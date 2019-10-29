@@ -8,9 +8,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.horlobyte.ctipharmacy.R;
+import com.horlobyte.ctipharmacy.adapters.UserProfileAdapter;
 
 public class ProfileFragment extends Fragment {
 
@@ -18,13 +20,12 @@ public class ProfileFragment extends Fragment {
     ListView profileOptionsList;
     String [] profileOptionsArray = {"Address", "Payment Options", "Account", "Help", "About"};
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.profile_fragment, container, false);
-        mActivity=getActivity();
+        mActivity = getActivity();
         profileOptionsList = view.findViewById(R.id.profile_options);
-        ArrayAdapter adapter = new ArrayAdapter <String> (mActivity,R.layout.list_view_item,profileOptionsArray);
-        profileOptionsList.setAdapter(adapter);
+        profileOptionsList.setAdapter(new UserProfileAdapter(mActivity, profileOptionsArray));
         return view;
     }
 }

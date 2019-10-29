@@ -16,6 +16,19 @@
         <item name="android:fontFamily">@font/rubik_regular</item>
     </style>
 
+    <style name="AppThemeFullScreen" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="colorControlNormal">@color/colorPrimary</item>
+        <item name="android:colorBackground">@color/white</item>
+        <item name="android:textColor">@color/fontColor</item>
+        <item name="android:textColorPrimary">@color/colorPrimary</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/rubik_regular</item>
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:textColorPrimary">@color/white</item>
         <item name="android:windowContentOverlay">@null</item>
