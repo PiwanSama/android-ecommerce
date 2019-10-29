@@ -1,5 +1,6 @@
 package com.horlobyte.ctipharmacy.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -37,8 +38,12 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    public boolean onOptionsItemSelected(MenuItem item){
-        return true;
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.cart_item) {
+            startActivity(new Intent(MainActivity.this, CartActivity.class));
+            return true;
+        }
+        return false;
     }
 
     private void loadFragment(Fragment fragment){

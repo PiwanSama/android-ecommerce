@@ -26,7 +26,7 @@
     <string name="buy_now">Buy Now</string>
     <string name="moti">Order medicine right to your doorstep...</string>
     <string name="username">Hello, John Doe!</string>
-    <string name="email">johndoe@ymail.com</string>
+    <string name="sample_email">johndoe@ymail.com</string>
     <string name="search_item">Search Item</string>
     <string name="search">Search</string>
     <string name="intro">Hello, what are you looking for today?</string>
@@ -39,7 +39,7 @@
     <string name="qty">Quantity</string>
     <string name="proceed">Proceed</string>
     <string name="total">Cart Total: 44,000/=</string>
-    <string name="subtotal_price">86,780/=</string>
+    <string name="subtotal_price">92,780/=</string>
     <string name="num">5</string>
     <string name="num2">3</string>
     <string name="summary">Summary of goods</string>
@@ -57,5 +57,34 @@
     <string name="phone_number">0771123456</string>
     <string name="skip">Skip this step</string>
     <string name="no_internet">No Internet Access</string>
-    <string name="sample_product">Product</string>
+    <string name="sample_product">Lorem Ipsum Drug 500mg</string>
+    <string name="filter">Filter</string>
+    <string name="sort">Sort</string>
+    <string name="name">Full Name</string>
+    <string name="sample_username">John Doe</string>
+    <string name="email">Email</string>
+    <string name="address">Address</string>
+    <string name="sample_address">Plot 18 Musa Rd, Kampala</string>
+    <string name="save">Save</string>
+    <string name="change_photo">Change Photo</string>
+    <string name="your_details">Personal Details</string>
+    <string name="phone">Phone Number</string>
+    <string name="sample_region">Central</string>
+    <string name="region">Region</string>
+    <string name="suburb">Suburb</string>
+    <string name="sample_suburb">Ntinda</string>
+    <string name="contact1">Mobile Phone Number</string>
+    <string name="contact2">Other Phone Number</string>
+    <string name="phone_number2">0782 987654</string>
+    <string name="set_default_address">Default Delivery Address</string>
+    <string name="female">Female</string>
+    <string name="male">Male</string>
+    <string name="gender">Gender</string>
+    <string name="payment_options">Choose Payment Option</string>
+    <string name="mtnmomo">MTN Mobile Money</string>
+    <string name="airtel_money">Airtel Money</string>
+    <string name="paypal">PayPal</string>
+    <string name="fee_total">Delivery Fee</string>
+    <string name="product_sample_fee">6000/=</string>
+    <string name="intro_text">You order, we\'ll deliver</string>
 </resources>

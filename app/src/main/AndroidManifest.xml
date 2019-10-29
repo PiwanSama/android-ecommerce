@@ -28,6 +28,21 @@
         </activity>
 
         <activity android:name=".activities.MainActivity">
+
+        </activity>
+
+        <activity android:name=".activities.SignUpActivity"/>
+
+        <activity android:name=".activities.Browse"/>
+
+        <activity android:name=".activities.SingleProduct"/>
+
+        <activity android:name=".activities.Address"/>
+        <activity android:name=".activities.CartActivity"/>
+        <activity android:name=".activities.Checkout"/>
+        <activity android:name=".activities.Profile"/>
+
+        <activity android:name=".activities.SignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

@@ -1,6 +1,7 @@
 package com.horlobyte.ctipharmacy.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.horlobyte.ctipharmacy.R;
+import com.horlobyte.ctipharmacy.activities.Address;
+import com.horlobyte.ctipharmacy.activities.Browse;
+import com.horlobyte.ctipharmacy.activities.Profile;
 
 public class UserProfileAdapter extends ArrayAdapter<String> {
     private final Context context;
@@ -29,7 +33,7 @@ public class UserProfileAdapter extends ArrayAdapter<String> {
 
     @NonNull
     @Override
-    public View getView(int position, View rowItemView, @NonNull ViewGroup parent) {
+    public View getView(final int position, View rowItemView, @NonNull ViewGroup parent) {
         ViewHolder mViewHolder = null;
 
         if (rowItemView == null){
@@ -48,9 +52,6 @@ public class UserProfileAdapter extends ArrayAdapter<String> {
                 case "Address":
                     mViewHolder.item_image.setImageResource(R.drawable.ic_location);
                     break;
-                case "Payment Options":
-                    mViewHolder.item_image.setImageResource(R.drawable.ic_credit_card);
-                    break;
                 case "Account":
                     mViewHolder.item_image.setImageResource(R.drawable.ic_account);
                     break;
@@ -65,7 +66,23 @@ public class UserProfileAdapter extends ArrayAdapter<String> {
         else {
             mViewHolder = (ViewHolder) rowItemView.getTag();
         }
+
+        rowItemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String s = values[position];
+                switch (s) {
+                    case "Address":
+                        context.startActivity(new Intent(context, Address.class));
+                        break;
+                    case "Account":
+                        context.startActivity(new Intent(context, Profile.class));
+                        break;
+                }
+            }
+        });
         
         return rowItemView;
     }
+
 }

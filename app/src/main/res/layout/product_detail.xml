@@ -125,6 +125,7 @@
                 style="?buttonBarStyle">
 
                 <Button
+                    android:id="@+id/add_to_cart"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10sp"
@@ -133,6 +134,7 @@
                     style="?buttonBarButtonStyle"/>
 
                 <Button
+                    android:id="@+id/buy_now"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10sp"
