@@ -14,14 +14,15 @@
         android:background="@color/white">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/single_product_image"
+            android:id="@+id/m_image_1"
             android:layout_width="match_parent"
             android:layout_height="300sp"
             android:adjustViewBounds="true"
             android:contentDescription="@string/product_name_desc"
             android:maxHeight="0dp"
             android:scaleType="center"
-            android:src="@drawable/med1" />
+            android:src="@drawable/med1"
+            android:transitionName="product_image_trans"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -29,31 +30,32 @@
             android:padding="10sp">
 
             <TextView
-                android:id="@+id/single_product_name"
+                android:id="@+id/m_name_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10sp"
-                android:layout_marginLeft="10sp"
+                
                 android:layout_marginTop="10sp"
-                android:text="@string/product_sample_name"
+                android:text="@string/sample_product"
                 android:textSize="18sp"
                 android:textColor="@null"
                 android:textStyle="bold"
                 android:textAppearance="@style/CustomName"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:transitionName="product_name_trans"/>
 
             <TextView
                 android:id="@+id/single_product_manufacturer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10sp"
-                android:layout_marginLeft="10sp"
+                
                 android:text="@string/product_sample_manufacturer"
                 android:textColor="@null"
                 android:textAppearance="@style/TextMuted"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/single_product_name" />
+                app:layout_constraintTop_toBottomOf="@id/m_name_1" />
 
             <TextView
                 android:id="@+id/single_product_price"
@@ -78,7 +80,7 @@
                 android:textAppearance="@style/CustomTitle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/single_product_manufacturer"
-                android:layout_marginLeft="10sp" />
+                 />
 
             <TextView
                 android:id="@+id/product_info"
@@ -102,7 +104,7 @@
                 android:textAppearance="@style/CustomTitle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/product_info"
-                android:layout_marginLeft="10sp" />
+                 />
 
             <TextView
                 android:id="@+id/delivery_info"

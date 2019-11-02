@@ -42,8 +42,8 @@ public class UserProfileAdapter extends ArrayAdapter<String> {
 
             rowItemView = inflater.inflate(R.layout.list_view_item, parent, false);
 
-            mViewHolder.item_name = (TextView) rowItemView.findViewById(R.id.label);
-            mViewHolder.item_image = (ImageView) rowItemView.findViewById(R.id.list_image);
+            mViewHolder.item_name = rowItemView.findViewById(R.id.label);
+            mViewHolder.item_image = rowItemView.findViewById(R.id.list_image);
             
             mViewHolder.item_name.setText(values[position]);
 

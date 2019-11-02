@@ -67,7 +67,6 @@ public class SignUpActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task task) {
                                 if (task.isSuccessful()) {
                                     Log.d("APP", "SAVE: OK");
-                                    return;
                                 }
                             }
                         });

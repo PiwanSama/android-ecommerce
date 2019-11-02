@@ -1,10 +1,10 @@
-package com.horlobyte.ctipharmacy.ctipharmacy.utils;
+package com.horlobyte.ctipharmacy.utils;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import com.horlobyte.ctipharmacy.ctipharmacy.App;
+import com.horlobyte.ctipharmacy.App;
 
 public class Utils {
     private boolean isNetworkAvailable() {

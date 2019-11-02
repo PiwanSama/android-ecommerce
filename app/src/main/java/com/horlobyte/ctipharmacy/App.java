@@ -1,11 +1,8 @@
-package com.horlobyte.ctipharmacy.ctipharmacy;
+package com.horlobyte.ctipharmacy;
 
 import android.app.Application;
 import android.content.Context;
 
-/**
- * Created by arka on 4/28/16.
- */
 public class App extends Application {
 
 
