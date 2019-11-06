@@ -53,7 +53,7 @@ public class UserProfileAdapter extends ArrayAdapter<String> {
                     mViewHolder.item_image.setImageResource(R.drawable.ic_location);
                     break;
                 case "Account":
-                    mViewHolder.item_image.setImageResource(R.drawable.ic_account);
+                    mViewHolder.item_image.setImageResource(R.drawable.ic_user);
                     break;
                 case "Help":
                     mViewHolder.item_image.setImageResource(R.drawable.ic_help);
