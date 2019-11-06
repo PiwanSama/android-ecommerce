@@ -36,21 +36,18 @@
         <item name="android:textColor">@color/fontColor</item>
     </style>
 
-    <style name="CustomTitle" parent="TextAppearance.AppCompat.Title">
+    <style name="AllCapsTitle" parent="TextAppearance.AppCompat.Title">
         <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/mutedText</item>
     </style>
 
-    <style name="CustomName" parent="TextAppearance.AppCompat.Title">
+    <style name="ColoredTitle" parent="TextAppearance.AppCompat.Title">
         <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
-    <style name="Intro" parent="TextAppearance.AppCompat.Title">
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textAllCaps">false</item>
-    </style>
-
-    <style name="TextMuted" parent="TextAppearance.AppCompat.Small">
+    <style name="MutedText" parent="TextAppearance.AppCompat.Small">
         <item name="android:textColor">@color/mutedText</item>
         <item name="android:textSize">12sp</item>
     </style>

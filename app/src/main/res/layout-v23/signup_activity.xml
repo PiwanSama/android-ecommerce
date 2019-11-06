@@ -54,31 +54,28 @@
         android:id="@+id/email_button"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:text="@string/reg_email"
+        android:text="@string/fui_sign_in_with_email"
         android:layout_margin="10dp"
-        android:textAllCaps="false"
-        android:background="@color/email_red"
-        app:cornerRadius="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         style="?android:attr/buttonBarButtonStyle"
-        app:icon="@drawable/ic_email_24px"/>
+        android:drawableEnd="@drawable/ic_email_24px"
+        android:textAllCaps="false"
+        />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/phone_button"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:text="@string/reg_phone"
+        android:text="@string/fui_sign_in_with_phone_number"
         android:layout_margin="10dp"
-        android:textAllCaps="false"
-        android:background="@color/phone_green"
-        app:cornerRadius="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         style="?android:attr/buttonBarButtonStyle"
-        app:icon="@drawable/ic_phone_24px"
+        android:drawableEnd="@drawable/ic_phone_24px"
+        android:textAllCaps="false"
         />
 
 </LinearLayout>

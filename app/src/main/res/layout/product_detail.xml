@@ -39,7 +39,7 @@
                 android:textSize="18sp"
                 android:textColor="@null"
                 android:textStyle="bold"
-                android:textAppearance="@style/CustomName"
+                android:textAppearance="@style/ColoredTitle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -51,7 +51,7 @@
                 android:layout_marginLeft="10sp"
                 android:text="@string/product_sample_manufacturer"
                 android:textColor="@null"
-                android:textAppearance="@style/TextMuted"
+                android:textAppearance="@style/MutedText"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/single_product_name" />
 
@@ -64,9 +64,20 @@
                 android:textSize="18sp"
                 android:textColor="@null"
                 android:textStyle="bold"
-                android:textAppearance="@style/CustomName"
+                android:textAppearance="@style/ColoredTitle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/single_product_prescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10sp"
+                android:layout_marginLeft="10sp"
+                android:text="@string/product_sample_prescription"
+                android:background="@drawable/green_rounded_bg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/single_product_price" />
 
             <TextView
                 android:id="@+id/product_info_title"
@@ -75,7 +86,7 @@
                 android:layout_marginTop="25sp"
                 android:layout_marginStart="10sp"
                 android:text="@string/info"
-                android:textAppearance="@style/CustomTitle"
+                android:textAppearance="@style/AllCapsTitle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/single_product_manufacturer"
                 android:layout_marginLeft="10sp" />
@@ -99,7 +110,7 @@
                 android:layout_marginTop="25sp"
                 android:layout_marginStart="10sp"
                 android:text="@string/avail"
-                android:textAppearance="@style/CustomTitle"
+                android:textAppearance="@style/AllCapsTitle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/product_info"
                 android:layout_marginLeft="10sp" />
@@ -109,7 +120,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10sp"
-                android:text="@string/delivery_info"
+                android:text="@string/prescription_info"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/delivery_info_title"
                 app:layout_constraintBottom_toTopOf="@id/card_row"/>
@@ -132,7 +143,8 @@
                     android:layout_margin="10sp"
                     android:layout_weight="1"
                     android:text="@string/add_to_cart"
-                    style="?buttonBarButtonStyle"/>
+                    style="?buttonBarButtonStyle"
+                    android:background="@color/colorAccent"/>
 
                 <Button
                     android:id="@+id/buy_now"
@@ -142,7 +154,7 @@
                     android:layout_weight="1"
                     android:text="@string/buy_now"
                     style="?buttonBarButtonStyle"
-                    />
+                    android:background="@color/colorAccent" />
 
             </LinearLayout>
 

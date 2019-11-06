@@ -1,8 +1,6 @@
 package com.horlobyte.ctipharmacy.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 import androidx.annotation.Nullable;
@@ -16,6 +14,6 @@ public class Checkout extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.checkout_activity);
+        setContentView(R.layout.checkout_summary);
     }
 }

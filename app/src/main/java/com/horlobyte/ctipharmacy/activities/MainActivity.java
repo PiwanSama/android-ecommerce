@@ -8,16 +8,18 @@ import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+
+import androidx.navigation.Navigation.findNavController;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.horlobyte.ctipharmacy.R;
 import com.horlobyte.ctipharmacy.fragments.HomeFragment;
 import com.horlobyte.ctipharmacy.fragments.OrdersFragment;
 import com.horlobyte.ctipharmacy.fragments.ProfileFragment;
-import com.horlobyte.ctipharmacy.utils.BottomNavigationBehavior;
+
+import static androidx.navigation.Navigation.findNavController;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,6 +46,11 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        return findNavController(this, R.id.navHostFragment).navigateUp();
     }
 
     private void loadFragment(Fragment fragment){

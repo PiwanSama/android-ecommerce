@@ -39,20 +39,20 @@
     <string name="female">Female</string>
     <string name="male">Male</string>
     <string name="gender">Gender</string>
-    <string name="payment_options">Choose Payment Option</string>
+    <string name="payment_options">Select your payment option</string>
     <string name="mtnmomo">MTN Mobile Money</string>
     <string name="airtel_money">Airtel Money</string>
     <string name="paypal">PayPal</string>
     <string name="fee_total">Delivery Fee</string>
-    <string name="delivery_info">This product can be shipped to your area</string>
+    <string name="prescription_info">This product can be delivered to your area</string>
     <string name="set_default_address">Default Delivery Address</string>
     <string name="save">Save</string>
     <string name="change_photo">Change Photo</string>
     <string name="your_details">Personal Details</string>
     <string name="phone">Phone Number</string>
-    <string name="intro_text">You order, we\'ll deliver</string>
-    <string name="filter">Filter</string>
-    <string name="sort">Sort</string>
+    <string name="intro_text">Hello, what are you looking for today?</string>
+    <string name="filter">Filter by</string>
+    <string name="sort">Sort by</string>
     <string name="qty">Quantity</string>
     <string name="proceed">Proceed</string>
     <string name="summary">Summary of goods</string>
@@ -106,9 +106,33 @@
         <item>Help</item>
         <item>About</item>
     </string-array>
+
+    <string-array name="order_confirm_array">
+        <item>Delivery Information</item>
+        <item>Payment</item>
+        <item>Confirm Order</item>
+    </string-array>
+
     <!--Model Binding Strings-->
     <string name="user_greeting">Hello, %s!</string>
     <string name="order_date_info">Ordered on %s</string>
     <string name="product_sample_random">Some Information</string>
+    <string name="newest">Newest First</string>
+    <string name="sample_random">Bonus Information</string>
+    <string name="product_sample_store">AB Clinic Bukoto</string>
+    <string name="proceed_pay">Proceed to payments</string>
+    <string name="proceed_confirm">Proceed to confirmation</string>
+    <string name="order_confirm">Your order has been confirmed!</string>
+    <string name="payment_option">Payment</string>
+    <string name="delivery">Delivery Information</string>
+    <string name="confirm">Confirm Order</string>
+    <string name="delivery_address">Delivery Address</string>
+    <string name="category_desc">Medical supplies on the go</string>
+    <string name="product_sample_prescription">Requires Prescription</string>
+    <string name="store_search">Search for  a store</string>
+    <string name="store_adress">Store Address</string>
+    <string name="reg_email">Register with email address</string>
+    <string name="reg_phone">Register with phone number</string>
+    <string name="delivery_fee">Delivery fee</string>
 
 </resources>
