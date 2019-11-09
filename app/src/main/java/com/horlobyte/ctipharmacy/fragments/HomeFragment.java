@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.transition.Slide;
 import androidx.transition.TransitionInflater;
 import android.view.LayoutInflater;
@@ -21,14 +23,14 @@ import com.horlobyte.ctipharmacy.activities.Browse;
 public class HomeFragment extends Fragment {
 
     Activity mActivity;
-    MaterialCardView card;
+    ConstraintLayout card;
     Intent i;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.home_fragment, container, false);
         mActivity = getActivity();
-        card = view.findViewById(R.id.card1);
+        card = view.findViewById(R.id.cardy);
         i = new Intent(mActivity, Browse.class);
         card.setOnClickListener(new View.OnClickListener() {
             @Override

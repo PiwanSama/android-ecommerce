@@ -16,7 +16,7 @@
     <string name="shopping_cart_menu_item">shopping_cart_item</string>
 
     <!--Hints-->
-    <string name="search_hint">Search Products</string>
+    <string name="search_hint">Search products</string>
 
     <!--Blank Screens-->
     <string name="orders_blank">No orders yet</string>
@@ -80,7 +80,7 @@
     <string name="product_sample_name">Azithromycin 400</string>
     <string name="product_name_desc">Product name</string>
     <string name="med_qty">1 box</string>
-    <string name="product_sample_manufacturer">Medipharm Labs</string>
+    <string name="product_sample_manufacturer">Vendor: Medipharm Labs</string>
     <string name="product_sample_price">22,000/=</string>
     <string name="sample_email">johndoe@ymail.com</string>
     <string name="product_sample_name2">Albendazone</string>
@@ -91,7 +91,7 @@
     <string name="product_sample_tax">2780/=</string>
     <string name="cart_total_price">44,000/=</string>
     <string name="phone_number">0771123456</string>
-    <string name="sample_product">Lorem Ipsum Drug 500mg</string>
+    <string name="sample_product">Lorem Drug 500mg</string>
     <string name="sample_username">John Doe</string>
     <string name="sample_address">Plot 18 Musa Rd, Kampala</string>
     <string name="sample_region">Central</string>
@@ -134,5 +134,9 @@
     <string name="reg_email">Register with email address</string>
     <string name="reg_phone">Register with phone number</string>
     <string name="delivery_fee">Delivery fee</string>
+    <string name="rating">4.2</string>
+    <string name="groceries">Groceries</string>
+    <string name="category_details">Food, Utilities and More</string>
+    <string name="product_rating_title">Product Rating</string>
 
 </resources>

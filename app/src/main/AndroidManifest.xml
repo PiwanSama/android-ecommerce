@@ -38,7 +38,8 @@
 
         <activity android:name=".activities.Browse"/>
 
-        <activity android:name=".activities.SingleProduct"/>
+        <activity android:name=".activities.SingleProduct"
+            android:theme="@style/AppThemeFullScreen"/>
 
         <activity android:name=".activities.Address"/>
         <activity android:name=".activities.CartActivity"/>
