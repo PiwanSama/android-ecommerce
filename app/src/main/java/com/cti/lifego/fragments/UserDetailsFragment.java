@@ -11,6 +11,6 @@ public class UserDetailsFragment extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.account_details);
+        setContentView(R.layout.user_profile);
     }
 }

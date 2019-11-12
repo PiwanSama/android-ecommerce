@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/history">
+        <menu>
+            <group android:checkableBehavior="single">
+
+            <item
+                android:id="@+id/prescriptions"
+                android:icon="@drawable/ic_prescription"
+                android:title="@string/prescriptions" />
+
+                <item
+                    android:id="@+id/orders"
+                    android:icon="@drawable/ic_shopping_bag"
+                    android:title="@string/orders" />
+
+            </group>
+        </menu>
+    </item>
+
+    <item android:title="@string/settings">
+        <menu>
+            <group android:checkableBehavior="single">
+
+                <item
+                    android:id="@+id/user_profile"
+                    android:icon="@drawable/ic_settings"
+                    android:title="@string/profile" />
+
+                <item
+                    android:id="@+id/user_address"
+                    android:icon="@drawable/ic_address"
+                    android:title="@string/address" />
+
+                <item
+                    android:id="@+id/logout"
+                    android:icon="@drawable/ic_power_button_off"
+                    android:title="@string/logout" />
+
+            </group>
+        </menu>
+    </item>
+
+
+</menu>

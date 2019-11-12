@@ -3,30 +3,24 @@
     <string name="app_name">LifeGo</string>
 
     <!--Fragments-->
-    <string name="home">Home</string>
     <string name="orders">Orders</string>
     <string name="profile">Profile</string>
 
     <!--AppBar Headings-->
-    <string name="category_title">Category</string>
     <string name="orders_title">Orders</string>
     <string name="cart_title">Cart</string>
 
     <!--Menu Items-->
-    <string name="shopping_cart_menu_item">Cart</string>
 
     <!--Hints-->
     <string name="search_hint">Search products</string>
 
     <!--Blank Screens-->
     <string name="orders_blank">No orders yet</string>
-    <string name="cart_blank">Your cart is empty</string>
 
     <!--Buttons-->
     <string name="status">Pending</string>
     <string name="add_to_cart">Add to Cart</string>
-    <string name="buy_now">Buy Now</string>
-    <string name="checkout_proceed">Proceed to Checkout</string>
     <string name="checkout">Checkout</string>
     <string name="logout">Logout</string>
 
@@ -34,7 +28,6 @@
     <string name="welcome">Welcome to LifeGo!</string>
     <string name="status_delivered">Delivered</string>
     <string name="info">Product Details</string>
-    <string name="avail">Availability</string>
     <string name="lorem">Azithromycin is an antiobiotic used in the treatment of infections such as rain, showers and thunder.Azithromycin is an antiobiotic used in the treatment of infections such as rain, showers and thunder, the antiobiotic used in the treatment of infections such as rain, showers and thunder.</string>
     <string name="female">Female</string>
     <string name="male">Male</string>
@@ -44,26 +37,15 @@
     <string name="airtel_money">Airtel Money</string>
     <string name="paypal">PayPal</string>
     <string name="fee_total">Delivery Fee</string>
-    <string name="prescription_info">This product can be delivered to your area</string>
     <string name="set_default_address">Default Delivery Address</string>
     <string name="save">Save</string>
     <string name="change_photo">Change Photo</string>
-    <string name="your_details">Personal Details</string>
-    <string name="phone">Phone Number</string>
-    <string name="intro_text">Hello, what are you looking for today?</string>
-    <string name="filter">Filter by</string>
-    <string name="sort">Sort by</string>
-    <string name="qty">Quantity</string>
-    <string name="proceed">Proceed</string>
     <string name="summary">Summary of goods</string>
     <string name="pricing">Pricing</string>
     <string name="cart_total">Cart Total</string>
     <string name="tax_total">Tax</string>
-    <string name="region">Region</string>
-    <string name="suburb">Suburb</string>
     <string name="or">OR</string>
     <string name="skip">Skip this step</string>
-    <string name="no_internet">No Internet Access</string>
     <string name="subtotal">Sub Total</string>
     <string name="sign_in">Sign In</string>
     <string name="password">Password</string>
@@ -71,79 +53,52 @@
     <string name="name">Full Name</string>
     <string name="email">Email</string>
     <string name="address">Address</string>
-    <string name="contact1">Mobile Phone Number</string>
+    <string name="contact1">Phone Number</string>
     <string name="contact2">Other Phone Number</string>
-    <string name="settings">Settings</string>
 
     <!--Samples-->
-    <string name="long_sample_name">This is a really really really really long string</string>
     <string name="product_sample_name">Azithromycin 400</string>
     <string name="product_name_desc">Product name</string>
     <string name="med_qty">1 box</string>
     <string name="product_sample_manufacturer">Medipharm Labs</string>
     <string name="product_sample_price">22,000/=</string>
-    <string name="sample_email">johndoe@ymail.com</string>
-    <string name="product_sample_name2">Albendazone</string>
     <string name="total">Cart Total: 44,000/=</string>
     <string name="subtotal_price">92,780/=</string>
     <string name="num">5</string>
-    <string name="num2">3</string>
     <string name="product_sample_tax">2780/=</string>
     <string name="cart_total_price">44,000/=</string>
     <string name="phone_number">0771123456</string>
     <string name="sample_product">Lorem Drug 500mg</string>
     <string name="sample_username">John Doe</string>
     <string name="sample_address">Plot 18 Musa Rd, Kampala</string>
-    <string name="sample_region">Central</string>
-    <string name="sample_suburb">Ntinda</string>
-    <string name="phone_number2">0782 987654</string>
     <string name="product_sample_fee">6000/=</string>
 
     <!--User Profile Array-->
-    <string-array name="user_profile_array">
-        <item>Profile</item>
-        <item>Address</item>
-        <item>Help</item>
-        <item>About</item>
-    </string-array>
-
-    <string-array name="order_confirm_array">
-        <item>Delivery Information</item>
-        <item>Payment</item>
-        <item>Confirm Order</item>
-    </string-array>
 
     <!--Model Binding Strings-->
-    <string name="user_greeting">Hello, John Doe!</string>
-    <string name="order_date_info">Ordered on %s</string>
-    <string name="product_sample_random">Some Information</string>
-    <string name="newest">Newest First</string>
-    <string name="sample_random">Bonus Information</string>
     <string name="product_sample_store">AB Clinic Bukoto</string>
-    <string name="proceed_pay">Proceed to payments</string>
     <string name="proceed_confirm">Proceed to confirmation</string>
     <string name="order_confirm">Your order has been confirmed!</string>
     <string name="payment_option">Payment</string>
-    <string name="delivery">Delivery Information</string>
-    <string name="confirm">Confirm Order</string>
     <string name="delivery_address">Delivery Address</string>
-    <string name="category_desc">Medical supplies on the go</string>
-    <string name="product_sample_prescription">Requires Prescription</string>
-    <string name="store_search">Search for  a store</string>
-    <string name="store_adress">Store Address</string>
     <string name="reg_email">Register with email address</string>
     <string name="reg_phone">Register with phone number</string>
-    <string name="delivery_fee">Delivery fee</string>
     <string name="rating">4.2</string>
     <string name="groceries">Groceries</string>
     <string name="category_details">Food, Utilities and More</string>
-    <string name="product_rating_title">Product Rating</string>
     <string name="delete">Delete this item</string>
     <string name="order_id">Order ID : 123DFT</string>
     <string name="order_date">Ordered on : 12/06/2019</string>
     <string name="vendor">Vendor</string>
     <string name="product_status">Product Status</string>
     <string name="product_status_info">In Stock</string>
-    <string name="make_payment">Make Payment</string>
+    <string name="make_payment">Proceed to payment</string>
+    <string name="prescriptions">Prescriptions</string>
+    <string name="history">History</string>
+    <string name="settings">Account Settings</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="email_address">Email Address</string>
+    <string name="quantity">Quantity</string>
 
 </resources>

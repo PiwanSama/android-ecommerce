@@ -19,15 +19,7 @@
         tools:layout="@layout/orders_fragment"/>
 
     <fragment
-        android:id="@+id/profile_fragment"
-        android:name="com.cti.lifego.fragments.ProfileFragment"
-        android:label="Profile"
-        tools:layout="@layout/profile_fragment">
-
-    </fragment>
-
-    <fragment
-        android:id="@+id/singleProduct_fragment"
+        android:id="@+id/single_product_fragment"
         android:name="com.cti.lifego.fragments.ProductDetailFragment"
         android:label="Product"
         tools:layout="@layout/product_detail" >
@@ -35,52 +27,52 @@
     </fragment>
 
     <fragment
-        android:id="@+id/browseCategory"
+        android:id="@+id/browse_category"
         android:name="com.cti.lifego.fragments.BrowseCategory"
         android:label="BrowseCategory"
         tools:layout="@layout/browse_category" >
     </fragment>
     
     <fragment
-        android:id="@+id/signInFragment"
+        android:id="@+id/sign_in_fragment"
         android:name="com.cti.lifego.fragments.SignInFragment"
         android:label="signin_fragment"
         tools:layout="@layout/signin_fragment" />
     
     <fragment
-        android:id="@+id/signUpFragment"
+        android:id="@+id/sign_up_fragment"
         android:name="com.cti.lifego.fragments.RegisterFragment"
         android:label="signup_fragment"
         tools:layout="@layout/register_fragment" />
 
     <fragment
-        android:id="@+id/addressFragment"
+        android:id="@+id/user_address_fragment"
         android:name="com.cti.lifego.fragments.AddressFragment"
         android:label="address_details"
-        tools:layout="@layout/address_details" />
+        tools:layout="@layout/user_address" />
 
     <fragment
-        android:id="@+id/userDetailsFragment"
+        android:id="@+id/user_profile_fragment"
         android:name="com.cti.lifego.fragments.UserDetailsFragment"
         android:label="user_details"
-        tools:layout="@layout/account_details" />
+        tools:layout="@layout/user_profile" />
 
     <fragment
-        android:id="@+id/checkoutSummaryFragment"
+        android:id="@+id/checkout_summary_fragment"
         android:name="com.cti.lifego.fragments.CheckoutSummaryFragment"
         android:label="checkout_summary"
         tools:layout="@layout/checkout_summary" >
     </fragment>
 
     <fragment
-        android:id="@+id/checkoutPricingFragment"
+        android:id="@+id/checkout_pricing_fragment"
         android:name="com.cti.lifego.fragments.CheckoutPricingFragment"
         android:label="checkout_payment"
         tools:layout="@layout/checkout_payment" >
 
     </fragment>
     <fragment
-        android:id="@+id/checkoutConfirmFragment"
+        android:id="@+id/checkout_confirm_fragment"
         android:name="com.cti.lifego.fragments.CheckoutConfirmFragment"
         android:label="checkout_confirm"
         tools:layout="@layout/checkout_confirm" >
@@ -88,7 +80,7 @@
     </fragment>
 
     <fragment
-        android:id="@+id/checkoutSuccess"
+        android:id="@+id/checkout_success"
         android:name="com.cti.lifego.fragments.CheckoutSuccess"
         android:label="checkout_success"
         tools:layout="@layout/checkout_success" />

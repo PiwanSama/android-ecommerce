@@ -30,7 +30,7 @@ public class BrowseCategory extends Fragment {
                 Fragment frag = new ProductDetailFragment();
                 assert getFragmentManager() != null;
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.mainNavHostFragment, frag);
+                ft.replace(R.id.nav_host_fragment, frag);
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                 ft.addToBackStack(null);
                 ft.commit();

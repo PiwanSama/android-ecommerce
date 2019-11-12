@@ -13,7 +13,7 @@ public class AddressFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        View view = inflater.inflate(R.layout.address_details, container, false);
+        View view = inflater.inflate(R.layout.user_address, container, false);
         return view;
     }
 }

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
     android:fillViewport="true"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,183 +13,172 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:weightSum="4">
 
-        <LinearLayout
-            android:orientation="vertical"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cardy"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="4">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:rippleColor="@color/lightGrey">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cardy"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                
-                app:rippleColor="@color/lightGrey">
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/groceries"
+                android:foreground="@drawable/image_gradient" />
 
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="180dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/groceries"
-                    android:foreground="@drawable/image_gradient" />
-                
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/groceries"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"
-                    android:layout_marginLeft="10dp"
-                    app:layout_constraintStart_toStartOf="@id/imageView"
-                    app:layout_constraintBottom_toTopOf="@id/cat_desc"
-                    android:layout_marginStart="@dimen/margin_start" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/groceries"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:layout_marginLeft="10dp"
+                app:layout_constraintStart_toStartOf="@id/imageView"
+                app:layout_constraintBottom_toTopOf="@id/cat_desc"
+                android:layout_marginStart="@dimen/margin_start" />
 
-                <TextView
-                    android:id="@+id/cat_desc"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/category_details"
-                    android:textColor="@color/white"
-                    android:layout_marginLeft="10dp"
-                    app:layout_constraintStart_toStartOf="@id/imageView"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    android:layout_marginStart="@dimen/margin_start"
-                    android:layout_marginBottom="10sp"/>
+            <TextView
+                android:id="@+id/cat_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/category_details"
+                android:textColor="@color/white"
+                android:layout_marginLeft="10dp"
+                app:layout_constraintStart_toStartOf="@id/imageView"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="@dimen/margin_start"
+                android:layout_marginBottom="10sp"/>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:rippleColor="@color/lightGrey">
 
-                app:rippleColor="@color/lightGrey">
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/pills"
+                android:foreground="@drawable/image_gradient" />
 
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="180dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/pills"
-                    android:foreground="@drawable/image_gradient" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/groceries"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:layout_marginLeft="10dp"
+                app:layout_constraintStart_toStartOf="@id/imageView"
+                app:layout_constraintBottom_toTopOf="@id/cat_desc"
+                android:layout_marginStart="@dimen/margin_start" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/groceries"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"
-                    android:layout_marginLeft="10dp"
-                    app:layout_constraintStart_toStartOf="@id/imageView"
-                    app:layout_constraintBottom_toTopOf="@id/cat_desc"
-                    android:layout_marginStart="@dimen/margin_start" />
+            <TextView
+                android:id="@+id/cat_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/category_details"
+                android:textColor="@color/white"
+                android:layout_marginLeft="10dp"
+                app:layout_constraintStart_toStartOf="@id/imageView"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="@dimen/margin_start"
+                android:layout_marginBottom="10sp"/>
 
-                <TextView
-                    android:id="@+id/cat_desc"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/category_details"
-                    android:textColor="@color/white"
-                    android:layout_marginLeft="10dp"
-                    app:layout_constraintStart_toStartOf="@id/imageView"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    android:layout_marginStart="@dimen/margin_start"
-                    android:layout_marginBottom="10sp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:rippleColor="@color/lightGrey">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/farm"
+                android:foreground="@drawable/image_gradient" />
 
-                app:rippleColor="@color/lightGrey">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/groceries"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:layout_marginLeft="10dp"
+                app:layout_constraintStart_toStartOf="@id/imageView"
+                app:layout_constraintBottom_toTopOf="@id/cat_desc"
+                android:layout_marginStart="@dimen/margin_start" />
 
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="180dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/farm"
-                    android:foreground="@drawable/image_gradient" />
+            <TextView
+                android:id="@+id/cat_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/category_details"
+                android:textColor="@color/white"
+                android:layout_marginLeft="10dp"
+                app:layout_constraintStart_toStartOf="@id/imageView"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="@dimen/margin_start"
+                android:layout_marginBottom="10sp"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/groceries"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"
-                    android:layout_marginLeft="10dp"
-                    app:layout_constraintStart_toStartOf="@id/imageView"
-                    app:layout_constraintBottom_toTopOf="@id/cat_desc"
-                    android:layout_marginStart="@dimen/margin_start" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <TextView
-                    android:id="@+id/cat_desc"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/category_details"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cardy"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:rippleColor="@color/lightGrey">
 
-                    android:textColor="@color/white"
-                    android:layout_marginLeft="10dp"
-                    app:layout_constraintStart_toStartOf="@id/imageView"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    android:layout_marginStart="@dimen/margin_start"
-                    android:layout_marginBottom="10sp"/>
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/appliances"
+                android:foreground="@drawable/image_gradient" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/groceries"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:layout_marginLeft="10dp"
+                app:layout_constraintStart_toStartOf="@id/imageView"
+                app:layout_constraintBottom_toTopOf="@id/cat_desc"
+                android:layout_marginStart="@dimen/margin_start" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cardy"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+            <TextView
+                android:id="@+id/cat_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/category_details"
+                android:textColor="@color/white"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintStart_toStartOf="@id/imageView"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="@dimen/margin_start"/>
 
-                app:rippleColor="@color/lightGrey">
-
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="180dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/appliances"
-                    android:foreground="@drawable/image_gradient" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/groceries"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"
-                    android:layout_marginLeft="10dp"
-                    app:layout_constraintStart_toStartOf="@id/imageView"
-                    app:layout_constraintBottom_toTopOf="@id/cat_desc"
-                    android:layout_marginStart="@dimen/margin_start" />
-
-                <TextView
-                    android:id="@+id/cat_desc"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/category_details"
-
-                    android:textColor="@color/white"
-                    android:layout_marginLeft="10dp"
-                    app:layout_constraintStart_toStartOf="@id/imageView"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    android:layout_marginStart="@dimen/margin_start"/>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-            
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 
-</ScrollView>
+
+</LinearLayout>

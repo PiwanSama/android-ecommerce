@@ -10,19 +10,15 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/your_details"
-            android:textSize="18sp"
-            android:layout_gravity="center"/>
 
-        <ImageView
-            android:layout_width="160dp"
-            android:layout_height="160dp"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/nav_user_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="10dp"
+            android:layout_margin="20dp"
             android:layout_gravity="center"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_profile" />
+            android:src="@drawable/man"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -33,7 +29,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:ems="10"
             android:layout_margin="20dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -43,13 +39,29 @@
                 android:layout_height="match_parent"
                 android:inputType="textPersonName"
                 android:textColor="@color/fontColor"
-                android:hint="@string/name"/>
+                android:hint="@string/first_name"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
+            android:ems="10"
+            android:layout_margin="20dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPersonName"
+                android:textColor="@color/fontColor"
+                android:hint="@string/last_name"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+        
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:ems="10"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -64,34 +76,15 @@
                 android:layout_height="match_parent"
                 android:inputType="textEmailAddress"
                 android:textColor="@color/fontColor"
-                android:hint="@string/email"/>
+                android:hint="@string/email_address"/>
 
         </com.google.android.material.textfield.TextInputLayout>
+        
+        <!--TODO Add date picker -->
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:ems="10"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_margin="20dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            >
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="textPostalAddress"
-                android:textColor="@color/fontColor"
-                android:hint="@string/address"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:ems="10"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -113,14 +106,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_margin="20dp"
             android:text="@string/gender"
-            android:textSize="18sp"
-            android:textAppearance="@style/ColoredTitle"
-            android:textColor="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -130,7 +117,10 @@
         <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp">
+            
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -140,6 +130,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/male"/>
+            
         </RadioGroup>
 
         <LinearLayout
@@ -154,12 +145,15 @@
             android:weightSum="1"
             >
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
+                android:elevation="4dp"
                 android:text="@string/save"
                 android:layout_margin="10dp"
+                android:textAllCaps="false"
+                app:cornerRadius="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"

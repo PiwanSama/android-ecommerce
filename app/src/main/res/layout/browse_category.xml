@@ -100,7 +100,7 @@
                             android:padding="2dp"
                             android:text="@string/sample_product"
                             android:textStyle="bold"
-                            android:textSize="14sp"
+                            
                             android:layout_marginStart="5dp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintBottom_toTopOf="@id/category_price"
@@ -113,7 +113,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/product_sample_price"
                             android:textColor="@color/mutedText"
-                            android:textSize="14sp"
+                            
                             android:layout_marginStart="5dp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintBottom_toTopOf="@id/add"
@@ -126,7 +126,7 @@
                             android:drawableEnd="@drawable/ic_star_24px"
                             android:gravity="center"
                             android:layout_marginEnd="5dp"
-                            android:textSize="14sp"
+                            
                             app:layout_constraintBottom_toTopOf="@id/add"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintLeft_toRightOf="@id/category_price"
@@ -141,7 +141,7 @@
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
                             android:textAllCaps="false"
-                            android:textSize="14sp"
+                            
                             android:text="@string/add_to_cart"
                             app:layout_constraintTop_toTopOf="@id/category_price"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -186,7 +186,7 @@
                             android:padding="2dp"
                             android:text="@string/sample_product"
                             android:textStyle="bold"
-                            android:textSize="14sp"
+
                             android:layout_marginStart="5dp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintBottom_toTopOf="@id/category_price"
@@ -199,7 +199,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/product_sample_price"
                             android:textColor="@color/mutedText"
-                            android:textSize="14sp"
+
                             android:layout_marginStart="5dp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintBottom_toTopOf="@id/add"
@@ -212,7 +212,7 @@
                             android:drawableEnd="@drawable/ic_star_24px"
                             android:gravity="center"
                             android:layout_marginEnd="5dp"
-                            android:textSize="14sp"
+
                             app:layout_constraintBottom_toTopOf="@id/add"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintLeft_toRightOf="@id/category_price"
@@ -227,7 +227,7 @@
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
                             android:textAllCaps="false"
-                            android:textSize="14sp"
+
                             android:text="@string/add_to_cart"
                             app:layout_constraintTop_toTopOf="@id/category_price"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -279,7 +279,7 @@
                             android:padding="2dp"
                             android:text="@string/sample_product"
                             android:textStyle="bold"
-                            android:textSize="14sp"
+
                             android:layout_marginStart="5dp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintBottom_toTopOf="@id/category_price"
@@ -292,7 +292,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/product_sample_price"
                             android:textColor="@color/mutedText"
-                            android:textSize="14sp"
+
                             android:layout_marginStart="5dp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintBottom_toTopOf="@id/add"
@@ -305,7 +305,7 @@
                             android:drawableEnd="@drawable/ic_star_24px"
                             android:gravity="center"
                             android:layout_marginEnd="5dp"
-                            android:textSize="14sp"
+
                             app:layout_constraintBottom_toTopOf="@id/add"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintLeft_toRightOf="@id/category_price"
@@ -320,7 +320,7 @@
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
                             android:textAllCaps="false"
-                            android:textSize="14sp"
+
                             android:text="@string/add_to_cart"
                             app:layout_constraintTop_toTopOf="@id/category_price"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -364,7 +364,7 @@
                             android:padding="2dp"
                             android:text="@string/sample_product"
                             android:textStyle="bold"
-                            android:textSize="14sp"
+
                             android:layout_marginStart="5dp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintBottom_toTopOf="@id/category_price"
@@ -377,7 +377,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/product_sample_price"
                             android:textColor="@color/mutedText"
-                            android:textSize="14sp"
+
                             android:layout_marginStart="5dp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintBottom_toTopOf="@id/add"
@@ -390,7 +390,7 @@
                             android:drawableEnd="@drawable/ic_star_24px"
                             android:gravity="center"
                             android:layout_marginEnd="5dp"
-                            android:textSize="14sp"
+
                             app:layout_constraintBottom_toTopOf="@id/add"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintLeft_toRightOf="@id/category_price"
@@ -405,7 +405,7 @@
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
                             android:textAllCaps="false"
-                            android:textSize="14sp"
+
                             android:text="@string/add_to_cart"
                             app:layout_constraintTop_toTopOf="@id/category_price"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -457,7 +457,7 @@
                             android:padding="2dp"
                             android:text="@string/sample_product"
                             android:textStyle="bold"
-                            android:textSize="14sp"
+
                             android:layout_marginStart="5dp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintBottom_toTopOf="@id/category_price"
@@ -470,7 +470,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/product_sample_price"
                             android:textColor="@color/mutedText"
-                            android:textSize="14sp"
+
                             android:layout_marginStart="5dp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintBottom_toTopOf="@id/add"
@@ -483,7 +483,7 @@
                             android:drawableEnd="@drawable/ic_star_24px"
                             android:gravity="center"
                             android:layout_marginEnd="5dp"
-                            android:textSize="14sp"
+
                             app:layout_constraintBottom_toTopOf="@id/add"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintLeft_toRightOf="@id/category_price"
@@ -498,7 +498,7 @@
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
                             android:textAllCaps="false"
-                            android:textSize="14sp"
+
                             android:text="@string/add_to_cart"
                             app:layout_constraintTop_toTopOf="@id/category_price"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -542,7 +542,7 @@
                             android:padding="2dp"
                             android:text="@string/sample_product"
                             android:textStyle="bold"
-                            android:textSize="14sp"
+
                             android:layout_marginStart="5dp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintBottom_toTopOf="@id/category_price"
@@ -555,7 +555,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/product_sample_price"
                             android:textColor="@color/mutedText"
-                            android:textSize="14sp"
+
                             android:layout_marginStart="5dp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintBottom_toTopOf="@id/add"
@@ -568,7 +568,7 @@
                             android:drawableEnd="@drawable/ic_star_24px"
                             android:gravity="center"
                             android:layout_marginEnd="5dp"
-                            android:textSize="14sp"
+
                             app:layout_constraintBottom_toTopOf="@id/add"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintLeft_toRightOf="@id/category_price"
@@ -583,7 +583,7 @@
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
                             android:textAllCaps="false"
-                            android:textSize="14sp"
+
                             android:text="@string/add_to_cart"
                             app:layout_constraintTop_toTopOf="@id/category_price"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -635,7 +635,7 @@
                             android:padding="2dp"
                             android:text="@string/sample_product"
                             android:textStyle="bold"
-                            android:textSize="14sp"
+
                             android:layout_marginStart="5dp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintBottom_toTopOf="@id/category_price"
@@ -648,7 +648,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/product_sample_price"
                             android:textColor="@color/mutedText"
-                            android:textSize="14sp"
+
                             android:layout_marginStart="5dp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintBottom_toTopOf="@id/add"
@@ -661,7 +661,7 @@
                             android:drawableEnd="@drawable/ic_star_24px"
                             android:gravity="center"
                             android:layout_marginEnd="5dp"
-                            android:textSize="14sp"
+
                             app:layout_constraintBottom_toTopOf="@id/add"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintLeft_toRightOf="@id/category_price"
@@ -676,7 +676,7 @@
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
                             android:textAllCaps="false"
-                            android:textSize="14sp"
+
                             android:text="@string/add_to_cart"
                             app:layout_constraintTop_toTopOf="@id/category_price"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -720,7 +720,7 @@
                             android:padding="2dp"
                             android:text="@string/sample_product"
                             android:textStyle="bold"
-                            android:textSize="14sp"
+
                             android:layout_marginStart="5dp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintBottom_toTopOf="@id/category_price"
@@ -733,7 +733,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/product_sample_price"
                             android:textColor="@color/mutedText"
-                            android:textSize="14sp"
+
                             android:layout_marginStart="5dp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintBottom_toTopOf="@id/add"
@@ -746,7 +746,7 @@
                             android:drawableEnd="@drawable/ic_star_24px"
                             android:gravity="center"
                             android:layout_marginEnd="5dp"
-                            android:textSize="14sp"
+
                             app:layout_constraintBottom_toTopOf="@id/add"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintLeft_toRightOf="@id/category_price"
@@ -761,7 +761,7 @@
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
                             android:textAllCaps="false"
-                            android:textSize="14sp"
+
                             android:text="@string/add_to_cart"
                             app:layout_constraintTop_toTopOf="@id/category_price"
                             app:layout_constraintBottom_toBottomOf="parent"

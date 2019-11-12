@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text="@string/order_confirm"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             android:gravity="center" />
 
