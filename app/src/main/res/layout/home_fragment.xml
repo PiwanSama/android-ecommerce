@@ -14,18 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:textAppearance="@style/ColoredTitle"
-            android:textColor="@null"
-            android:text="@string/intro_text"
-            />
-
         <LinearLayout
-            android:id="@+id/card_grid"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,7 +37,6 @@
                     android:foreground="@drawable/image_gradient" />
                 
                 <TextView
-                    android:id="@+id/cat_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/groceries"
@@ -90,7 +78,6 @@
                     android:foreground="@drawable/image_gradient" />
 
                 <TextView
-                    android:id="@+id/cat_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/groceries"
@@ -132,7 +119,6 @@
                     android:foreground="@drawable/image_gradient" />
 
                 <TextView
-                    android:id="@+id/cat_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/groceries"
@@ -176,7 +162,6 @@
                     android:foreground="@drawable/image_gradient" />
 
                 <TextView
-                    android:id="@+id/cat_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/groceries"

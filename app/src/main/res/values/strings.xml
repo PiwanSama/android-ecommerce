@@ -13,7 +13,7 @@
     <string name="cart_title">Cart</string>
 
     <!--Menu Items-->
-    <string name="shopping_cart_menu_item">shopping_cart_item</string>
+    <string name="shopping_cart_menu_item">Cart</string>
 
     <!--Hints-->
     <string name="search_hint">Search products</string>
@@ -33,7 +33,7 @@
     <!--General-->
     <string name="welcome">Welcome to LifeGo!</string>
     <string name="status_delivered">Delivered</string>
-    <string name="info">Product Information</string>
+    <string name="info">Product Details</string>
     <string name="avail">Availability</string>
     <string name="lorem">Azithromycin is an antiobiotic used in the treatment of infections such as rain, showers and thunder.Azithromycin is an antiobiotic used in the treatment of infections such as rain, showers and thunder, the antiobiotic used in the treatment of infections such as rain, showers and thunder.</string>
     <string name="female">Female</string>
@@ -80,7 +80,7 @@
     <string name="product_sample_name">Azithromycin 400</string>
     <string name="product_name_desc">Product name</string>
     <string name="med_qty">1 box</string>
-    <string name="product_sample_manufacturer">Vendor: Medipharm Labs</string>
+    <string name="product_sample_manufacturer">Medipharm Labs</string>
     <string name="product_sample_price">22,000/=</string>
     <string name="sample_email">johndoe@ymail.com</string>
     <string name="product_sample_name2">Albendazone</string>
@@ -101,7 +101,7 @@
 
     <!--User Profile Array-->
     <string-array name="user_profile_array">
-        <item>Account</item>
+        <item>Profile</item>
         <item>Address</item>
         <item>Help</item>
         <item>About</item>
@@ -114,7 +114,7 @@
     </string-array>
 
     <!--Model Binding Strings-->
-    <string name="user_greeting">Hello, %s!</string>
+    <string name="user_greeting">Hello, John Doe!</string>
     <string name="order_date_info">Ordered on %s</string>
     <string name="product_sample_random">Some Information</string>
     <string name="newest">Newest First</string>
@@ -138,5 +138,12 @@
     <string name="groceries">Groceries</string>
     <string name="category_details">Food, Utilities and More</string>
     <string name="product_rating_title">Product Rating</string>
+    <string name="delete">Delete this item</string>
+    <string name="order_id">Order ID : 123DFT</string>
+    <string name="order_date">Ordered on : 12/06/2019</string>
+    <string name="vendor">Vendor</string>
+    <string name="product_status">Product Status</string>
+    <string name="product_status_info">In Stock</string>
+    <string name="make_payment">Make Payment</string>
 
 </resources>

@@ -14,42 +14,42 @@
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp">
 
-    <com.kofigyan.stateprogressbar.StateProgressBar
-        android:id="@+id/state_progress_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:spb_currentStateNumber="two"
-        app:spb_maxStateNumber="three"
-        app:spb_stateBackgroundColor="@color/blueGrey"
-        app:spb_stateForegroundColor="@color/colorAccent"
-        app:spb_stateNumberBackgroundColor="@color/lightGrey"
-        app:spb_stateNumberForegroundColor="@color/lightGrey"
-        app:spb_animateToCurrentProgressState="true"
-        app:spb_checkStateCompleted="true"/>
+        <com.kofigyan.stateprogressbar.StateProgressBar
+            android:id="@+id/state_progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:spb_currentStateNumber="two"
+            app:spb_maxStateNumber="three"
+            app:spb_stateBackgroundColor="@color/blueGrey"
+            app:spb_stateForegroundColor="@color/colorAccent"
+            app:spb_stateNumberBackgroundColor="@color/lightGrey"
+            app:spb_stateNumberForegroundColor="@color/lightGrey"
+            app:spb_animateToCurrentProgressState="true"
+            app:spb_checkStateCompleted="true"/>
 
-    <TextView
-        android:id="@+id/checkout_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="@string/payment_option"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/pricing"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/state_progress_bar" />
+        <TextView
+            android:id="@+id/checkout_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/payment_option"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/pricing"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/state_progress_bar" />
 
         <TextView
             android:id="@+id/pricing"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            
-            
+
+
             android:layout_marginTop="40dp"
             android:text="@string/pricing"
             android:textAppearance="@style/AllCapsTitle"
@@ -61,8 +61,8 @@
             android:id="@+id/price_row"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            
-            
+
+
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
@@ -94,8 +94,8 @@
             android:id="@+id/tax_row"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            
-            
+
+
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
@@ -127,8 +127,8 @@
             android:id="@+id/fee_row"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            
-            
+
+
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
@@ -160,7 +160,7 @@
             android:id="@+id/divider"
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            
+
             android:layout_marginTop="4dp"
             android:layout_marginRight="10dp"
             android:background="@color/colorAccent"
@@ -171,8 +171,8 @@
             android:id="@+id/total_row"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            
-            
+
+
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
@@ -204,61 +204,61 @@
 
         </LinearLayout>
 
-    <TextView
-        android:id="@+id/payment_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        
-        
-        android:layout_marginTop="20dp"
-        android:text="@string/payment_options"
-        android:textAppearance="@style/AllCapsTitle"
-        app:layout_constraintTop_toBottomOf="@id/total_row"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/payment_options"/>
-
-    <RadioGroup
-        android:id="@+id/payment_options"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/payment_text"
-        android:layout_marginTop="10dp"
-        
-        >
-
-        <RadioButton
-            android:id="@+id/mtn_mob_money"
+        <TextView
+            android:id="@+id/payment_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/mtnmomo" />
 
-        <RadioButton
-            android:id="@+id/airtel_money"
+
+            android:layout_marginTop="20dp"
+            android:text="@string/payment_options"
+            android:textAppearance="@style/AllCapsTitle"
+            app:layout_constraintTop_toBottomOf="@id/total_row"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/payment_options"/>
+
+        <RadioGroup
+            android:id="@+id/payment_options"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/payment_text"
+            android:layout_marginTop="10dp"
+
+            >
+
+            <RadioButton
+                android:id="@+id/mtn_mob_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mtnmomo" />
+
+            <RadioButton
+                android:id="@+id/airtel_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/airtel_money"/>
+
+            <RadioButton
+                android:id="@+id/paypal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/paypal"/>
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/checkout_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/airtel_money"/>
-
-        <RadioButton
-            android:id="@+id/paypal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/paypal"/>
-
-    </RadioGroup>
-
-    <Button
-        android:id="@+id/checkout_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/proceed_confirm"
-        android:textAllCaps="false"
-        android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@id/payment_options"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+            android:text="@string/proceed_confirm"
+            android:textAllCaps="false"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/payment_options"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

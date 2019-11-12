@@ -67,7 +67,6 @@
             app:layout_constraintTop_toBottomOf="@id/summary">
 
             <ImageView
-                android:id="@+id/product_image"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/product_name_desc"
@@ -104,7 +103,6 @@
                     app:layout_constraintTop_toBottomOf="@id/product_name" />
 
                 <TextView
-                    android:id="@+id/product_quantity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="6dp"
@@ -138,6 +136,8 @@
             app:layout_constraintTop_toBottomOf="@id/delivery_address"
             app:layout_constraintBottom_toTopOf="@id/store_address"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <!--TODO Confirm the need for store address -->
 
         <TextView
             android:id="@+id/store_address"
@@ -199,7 +199,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="@string/proceed_pay"
+            android:text="@string/make_payment"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

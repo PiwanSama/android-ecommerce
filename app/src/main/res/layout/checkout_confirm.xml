@@ -20,7 +20,8 @@
         app:spb_stateForegroundColor="@color/colorAccent"
         app:spb_stateNumberBackgroundColor="@color/lightGrey"
         app:spb_stateNumberForegroundColor="@color/lightGrey"
-        app:spb_enableAllStatesCompleted="true"/>
+        app:spb_animateToCurrentProgressState="true"
+        app:spb_checkStateCompleted="true"/>
 
     <LinearLayout
         xmlns:tools="http://schemas.android.com/tools"

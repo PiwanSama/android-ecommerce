@@ -2,25 +2,95 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
     app:startDestination="@id/home_fragment">
 
     <fragment
         android:id="@+id/home_fragment"
-        android:name="com.horlobyte.ctipharmacy.fragments.HomeFragment"
+        android:name="com.cti.lifego.fragments.HomeFragment"
         android:label="Home"
-        tools:layout="@layout/home_fragment"/>
+        tools:layout="@layout/home_fragment">
+
+    </fragment>
 
     <fragment
         android:id="@+id/orders_fragment"
-        android:name="com.horlobyte.ctipharmacy.fragments.OrdersFragment"
+        android:name="com.cti.lifego.fragments.OrdersFragment"
         android:label="Orders"
         tools:layout="@layout/orders_fragment"/>
 
     <fragment
         android:id="@+id/profile_fragment"
-        android:name="com.horlobyte.ctipharmacy.fragments.ProfileFragment"
+        android:name="com.cti.lifego.fragments.ProfileFragment"
         android:label="Profile"
-        tools:layout="@layout/profile_fragment"/>
+        tools:layout="@layout/profile_fragment">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/singleProduct_fragment"
+        android:name="com.cti.lifego.fragments.ProductDetailFragment"
+        android:label="Product"
+        tools:layout="@layout/product_detail" >
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/browseCategory"
+        android:name="com.cti.lifego.fragments.BrowseCategory"
+        android:label="BrowseCategory"
+        tools:layout="@layout/browse_category" >
+    </fragment>
+    
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.cti.lifego.fragments.SignInFragment"
+        android:label="signin_fragment"
+        tools:layout="@layout/signin_fragment" />
+    
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.cti.lifego.fragments.RegisterFragment"
+        android:label="signup_fragment"
+        tools:layout="@layout/register_fragment" />
+
+    <fragment
+        android:id="@+id/addressFragment"
+        android:name="com.cti.lifego.fragments.AddressFragment"
+        android:label="address_details"
+        tools:layout="@layout/address_details" />
+
+    <fragment
+        android:id="@+id/userDetailsFragment"
+        android:name="com.cti.lifego.fragments.UserDetailsFragment"
+        android:label="user_details"
+        tools:layout="@layout/account_details" />
+
+    <fragment
+        android:id="@+id/checkoutSummaryFragment"
+        android:name="com.cti.lifego.fragments.CheckoutSummaryFragment"
+        android:label="checkout_summary"
+        tools:layout="@layout/checkout_summary" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/checkoutPricingFragment"
+        android:name="com.cti.lifego.fragments.CheckoutPricingFragment"
+        android:label="checkout_payment"
+        tools:layout="@layout/checkout_payment" >
+
+    </fragment>
+    <fragment
+        android:id="@+id/checkoutConfirmFragment"
+        android:name="com.cti.lifego.fragments.CheckoutConfirmFragment"
+        android:label="checkout_confirm"
+        tools:layout="@layout/checkout_confirm" >
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/checkoutSuccess"
+        android:name="com.cti.lifego.fragments.CheckoutSuccess"
+        android:label="checkout_success"
+        tools:layout="@layout/checkout_success" />
 
 </navigation>

@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.horlobyte.lifego"
+        applicationId "com.cti.lifego"
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
@@ -35,8 +35,6 @@ dependencies {
 
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-beta-3'
 
-    implementation 'com.google.firebase:firebase-auth:19.1.0'
-    implementation 'com.firebaseui:firebase-ui-auth:4.3.1'
     implementation "androidx.navigation:navigation-fragment:2.1.0"
     implementation "androidx.navigation:navigation-ui:2.1.0"
 }

@@ -29,7 +29,6 @@
 
     <!-- Rightend Arrow -->
     <ImageView
-        android:id="@+id/arrow"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:scaleType="centerCrop"
