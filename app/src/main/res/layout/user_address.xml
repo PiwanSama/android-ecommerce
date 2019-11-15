@@ -7,102 +7,54 @@
     android:layout_margin="10dp"
     android:animateLayoutChanges="true">
 
-    <com.google.android.material.textfield.TextInputLayout
+    <EditText
+        android:id="@+id/text_location"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:ems="10"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_margin="20dp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        >
+        android:layout_margin="8dp"
+        android:inputType="text"
+        android:textColor="@color/fontColor"
+        android:enabled="false"
+        android:text="@string/enter_location"/>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="textPersonName"
-            android:textColor="@color/fontColor"
-            android:hint="@string/name"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/user_address"
+    <EditText
+        android:id="@+id/receiver_name"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:ems="10"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_margin="20dp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        >
+        android:layout_margin="8dp"
+        android:inputType="textPersonName"
+        android:textColor="@color/fontColor"
+        android:enabled="false"
+        android:text="@string/receiver_name" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="textPersonName"
-            android:textColor="@color/fontColor"
-            android:hint="@string/address"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
+    <EditText
+        android:id="@+id/receiver_address"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:ems="10"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_margin="20dp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        >
+        android:layout_margin="8dp"
+        android:inputType="text"
+        android:textColor="@color/fontColor"
+        android:enabled="false"
+        android:text="@string/address"/>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="textPersonName"
-            android:textColor="@color/fontColor"
-            android:hint="@string/contact1"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
+    <EditText
+        android:id="@+id/deliivery_instructions"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:ems="10"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_margin="20dp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        >
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="textPersonName"
-            android:textColor="@color/fontColor"
-            android:hint="@string/contact2"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
-    
-    <CheckBox
-        android:id="@+id/checkbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:text="@string/set_default_address"/>
+        android:layout_margin="8dp"
+        android:inputType="text"
+        android:textColor="@color/fontColor"
+        android:enabled="false"
+        android:text="@string/delivery_instructions"/>
 
     <com.google.android.material.button.MaterialButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/save"
+        android:text="@string/save_address"
         android:layout_margin="10dp"
         android:layout_gravity="center"
         />

@@ -36,11 +36,11 @@
 
         <activity android:name="com.cti.lifego.fragments.RegisterFragment"/>
 
-        <activity android:name="com.cti.lifego.fragments.BrowseCategory"/>
+        <activity android:name="com.cti.lifego.fragments.BrowseStoreFragment"/>
 
         <activity android:name="com.cti.lifego.fragments.ProductDetailFragment" />
 
-        <activity android:name="com.cti.lifego.fragments.AddressFragment"/>
+        <activity android:name="com.cti.lifego.fragments.UserAddressFragment"/>
         <activity android:name="com.cti.lifego.fragments.CartFragment"/>
         <activity android:name="com.cti.lifego.fragments.CheckoutSummaryFragment"/>
         <activity android:name="com.cti.lifego.fragments.UserDetailsFragment"/>

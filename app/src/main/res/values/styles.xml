@@ -9,8 +9,8 @@
         <item name="android:colorBackground">@color/white</item>
         <item name="android:textColor">@color/fontColor</item>
         <item name="android:textColorPrimary">@color/colorPrimary</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:fontFamily">@font/rubik_regular</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:fontFamily">@font/colfax_regular</item>
         <item name="actionBarTheme">@style/AppTheme.AppBarOverlay</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -26,7 +26,7 @@
         <item name="android:textColor">@color/fontColor</item>
         <item name="android:textColorPrimary">@color/colorPrimary</item>
         <item name="android:textSize">14sp</item>
-        <item name="android:fontFamily">@font/rubik_regular</item>
+        <item name="android:fontFamily">@font/colfax_regular</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
@@ -45,7 +45,7 @@
 
 
     <style name="AllCapsTitle" parent="TextAppearance.AppCompat.Title">
-        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/mutedText</item>
     </style>
 

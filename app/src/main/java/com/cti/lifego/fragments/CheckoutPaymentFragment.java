@@ -12,24 +12,22 @@ import com.cti.lifego.R;
 import com.google.android.material.button.MaterialButton;
 import com.kofigyan.stateprogressbar.StateProgressBar;
 
-public class CheckoutSummaryFragment extends Fragment {
-
-    private StateProgressBar progressBar;
+public class CheckoutPaymentFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final View view = inflater.inflate(R.layout.checkout_summary, container, false);
-
-        progressBar = view.findViewById(R.id.state_progress_bar);
+        final View view = inflater.inflate(R.layout.checkout_payment, container, false);
+        StateProgressBar progressBar = view.findViewById(R.id.state_progress_bar);
         progressBar.setStateDescriptionData(getResources().getStringArray(R.array.progress_statebar_array));
 
-        MaterialButton button = view.findViewById(R.id.summary_proceed_button);
+        MaterialButton button = view.findViewById(R.id.make_payment_button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_checkout_summary_fragment_to_checkout_pricing_fragment);
+                Navigation.findNavController(view).navigate(R.id.action_checkout_pricing_fragment_to_checkout_success_fragment);
             }
         });
+
         return view;
     }
 }

@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="30dp">
+        android:layout_margin="10dp">
 
         <com.kofigyan.stateprogressbar.StateProgressBar
             android:id="@+id/state_progress_bar"
@@ -19,7 +19,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:spb_animateToCurrentProgressState="true"
+            app:spb_currentStateDescriptionColor="@color/fontColor"
             app:spb_checkStateCompleted="true"
             app:spb_currentStateNumber="one"
             app:spb_maxStateNumber="three"
@@ -42,15 +42,15 @@
         <LinearLayout
             android:id="@+id/lin"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_margin="10dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@id/quantity_title"
+            app:layout_constraintBottom_toTopOf="@id/delivery_address"
             app:layout_constraintTop_toBottomOf="@id/summary">
 
             <ImageView
                 android:id="@+id/imageView2"
-                android:layout_width="100dp"
+                android:layout_width="80dp"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/product_name_desc"
                 android:scaleType="centerCrop"
@@ -61,10 +61,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="6dp"
+                android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/imageView2">
 
                 <TextView
@@ -78,13 +76,12 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/product_price"
+                    android:id="@+id/product_vendor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="6dp"
-                    android:text="@string/product_sample_price"
+                    android:text="@string/sample_vendor"
                     android:textAppearance="@style/MutedText"
-                    android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/product_name" />
 
@@ -93,49 +90,28 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/quantity_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/quantity"
-            android:textAppearance="@style/AllCapsTitle"
-            app:layout_constraintBottom_toTopOf="@id/product_quantity"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/lin" />
-
-        <TextView
-            android:id="@+id/product_quantity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/med_qty"
-            app:layout_constraintBottom_toTopOf="@id/delivery_address"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/quantity_title" />
-
-        <TextView
             android:id="@+id/delivery_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:text="@string/delivery_address"
             android:textAppearance="@style/AllCapsTitle"
             app:layout_constraintBottom_toTopOf="@id/user_delivery_address"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/product_quantity" />
+            app:layout_constraintTop_toBottomOf="@id/lin" />
 
         <TextView
             android:id="@+id/user_delivery_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:text="@string/sample_address"
-            app:layout_constraintBottom_toTopOf="@id/checkout_button"
+            app:layout_constraintBottom_toTopOf="@id/summary_proceed_button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/delivery_address" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/checkout_button"
+            android:id="@+id/summary_proceed_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"

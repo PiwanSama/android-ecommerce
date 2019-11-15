@@ -20,7 +20,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/sample_username"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        />
+
+    <TextView
+        android:id="@+id/nav_user_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/sample_email_address"
         android:textColor="@color/white"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         />

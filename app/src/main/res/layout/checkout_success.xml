@@ -17,6 +17,7 @@
         app:layout_constraintBottom_toTopOf="@id/icon_text"
         app:spb_currentStateNumber="three"
         app:spb_maxStateNumber="three"
+        app:spb_currentStateDescriptionColor="@color/fontColor"
         app:spb_stateBackgroundColor="@color/blueGrey"
         app:spb_stateForegroundColor="@color/colorAccent"
         app:spb_stateNumberBackgroundColor="@color/lightGrey"
@@ -36,8 +37,8 @@
 
         <ImageView
             android:id="@+id/confirm_img"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:src="@drawable/ic_order"
             android:layout_marginTop="30dp"
             />

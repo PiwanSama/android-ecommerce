@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,8 +14,9 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.cti.lifego.R;
+import com.google.android.material.card.MaterialCardView;
 
-public class HomeFragment extends Fragment {
+public class BrowseStoreFragment extends Fragment {
 
     @Override
     public void onAttach(@NonNull Context context){
@@ -27,13 +27,14 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final View view = inflater.inflate(R.layout.home_fragment, container, false);
+        final View view = inflater.inflate(R.layout.browse_store, container, false);
 
-        ConstraintLayout card = view.findViewById(R.id.cardy);
+        MaterialCardView card = view.findViewById(R.id.card_click);
+
         card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_home_fragment_to_browse_category);
+                Navigation.findNavController(view).navigate(R.id.action_browse_category_to_single_product_fragment);
             }
         });
         return view;

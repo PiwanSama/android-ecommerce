@@ -10,7 +10,18 @@
     <string name="orders_title">Orders</string>
     <string name="cart_title">Cart</string>
 
-    <!--Menu Items-->
+    <!--String Arrays-->
+    <string-array name="progress_statebar_array">
+        <item>Summary</item>
+        <item>Payment</item>
+        <item>Success</item>
+    </string-array>
+
+    <string-array name="country_code_array">
+        <item>+254</item>
+        <item>+255</item>
+        <item>+256</item>
+    </string-array>
 
     <!--Hints-->
     <string name="search_hint">Search products</string>
@@ -27,13 +38,13 @@
     <!--General-->
     <string name="welcome">Welcome to LifeGo!</string>
     <string name="status_delivered">Delivered</string>
-    <string name="info">Product Details</string>
+    <string name="info">Description</string>
     <string name="lorem">Azithromycin is an antiobiotic used in the treatment of infections such as rain, showers and thunder.Azithromycin is an antiobiotic used in the treatment of infections such as rain, showers and thunder, the antiobiotic used in the treatment of infections such as rain, showers and thunder.</string>
     <string name="female">Female</string>
     <string name="male">Male</string>
     <string name="gender">Gender</string>
     <string name="payment_options">Select your payment option</string>
-    <string name="mtnmomo">MTN Mobile Money</string>
+    <string name="mtnmomo">MTN MoMo</string>
     <string name="airtel_money">Airtel Money</string>
     <string name="paypal">PayPal</string>
     <string name="fee_total">Delivery Fee</string>
@@ -67,18 +78,16 @@
     <string name="num">5</string>
     <string name="product_sample_tax">2780/=</string>
     <string name="cart_total_price">44,000/=</string>
-    <string name="phone_number">0771123456</string>
+    <string name="phone_number">e.g 701123456</string>
     <string name="sample_product">Lorem Drug 500mg</string>
     <string name="sample_username">John Doe</string>
     <string name="sample_address">Plot 18 Musa Rd, Kampala</string>
     <string name="product_sample_fee">6000/=</string>
 
-    <!--User Profile Array-->
-
     <!--Model Binding Strings-->
     <string name="product_sample_store">AB Clinic Bukoto</string>
     <string name="proceed_confirm">Proceed to confirmation</string>
-    <string name="order_confirm">Your order has been confirmed!</string>
+    <string name="order_confirm">Your order has been placed!</string>
     <string name="payment_option">Payment</string>
     <string name="delivery_address">Delivery Address</string>
     <string name="reg_email">Register with email address</string>
@@ -90,9 +99,8 @@
     <string name="order_id">Order ID : 123DFT</string>
     <string name="order_date">Ordered on : 12/06/2019</string>
     <string name="vendor">Vendor</string>
-    <string name="product_status">Product Status</string>
-    <string name="product_status_info">In Stock</string>
-    <string name="make_payment">Proceed to payment</string>
+    <string name="product_status_info">Status : In Stock</string>
+    <string name="make_payment">Make payment</string>
     <string name="prescriptions">Prescriptions</string>
     <string name="history">History</string>
     <string name="settings">Account Settings</string>
@@ -100,5 +108,19 @@
     <string name="last_name">Last Name</string>
     <string name="email_address">Email Address</string>
     <string name="quantity">Quantity</string>
+    <string name="sample_vendor">AB Clinic Bukoto</string>
+    <string name="order_date2">Ordered on : 14/07/2019</string>
+    <string name="order_id2">Order ID : 763BTX</string>
+    <string name="shopping_cart">Cart</string>
+    <string name="item_added">This item has been added to your cart</string>
+    <string name="sample_email_address">johndoe@gmail.com</string>
+    <string name="rating_review">Ratings and Reviews</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="receiver_name">Receiver name</string>
+    <string name="region">Region</string>
+    <string name="area">Area</string>
+    <string name="delivery_instructions">Delivery Instructions</string>
+    <string name="save_address">Save Address</string>
+    <string name="enter_location">Delivery Location</string>
 
 </resources>
