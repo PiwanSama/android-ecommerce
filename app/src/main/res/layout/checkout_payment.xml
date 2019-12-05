@@ -219,8 +219,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|bottom"
         android:layout_marginTop="20dp"
-        android:elevation="4dp"
-        android:text="@string/make_payment"
-        app:cornerRadius="0dp" />
+        android:text="@string/make_payment" />
 
 </LinearLayout>

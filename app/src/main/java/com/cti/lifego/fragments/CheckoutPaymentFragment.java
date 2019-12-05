@@ -24,7 +24,7 @@ public class CheckoutPaymentFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_checkout_pricing_fragment_to_checkout_success_fragment);
+                Navigation.findNavController(view).navigate(R.id.action_checkout_pricing_fragment_to_checkout_confirm_fragment);
             }
         });
 

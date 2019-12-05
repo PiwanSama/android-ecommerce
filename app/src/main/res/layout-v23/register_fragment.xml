@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@drawable/reg_bg"
     android:animateLayoutChanges="true">
 
     <!--TODO Get all icons for textviews -->

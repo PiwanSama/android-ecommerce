@@ -27,8 +27,12 @@ public class BrowseStoreFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final View view = inflater.inflate(R.layout.browse_store, container, false);
+        return inflater.inflate(R.layout.browse_store, container, false);
+    }
 
+    @Override
+    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         MaterialCardView card = view.findViewById(R.id.card_click);
 
         card.setOnClickListener(new View.OnClickListener() {
@@ -37,6 +41,5 @@ public class BrowseStoreFragment extends Fragment {
                 Navigation.findNavController(view).navigate(R.id.action_browse_category_to_single_product_fragment);
             }
         });
-        return view;
     }
 }

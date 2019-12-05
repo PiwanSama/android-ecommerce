@@ -11,6 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
@@ -30,6 +32,12 @@ public class SignInFragment extends Fragment implements AdapterView.OnItemSelect
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         final View view = inflater.inflate(R.layout.signin_fragment, container, false);
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         skip = view.findViewById(R.id.skip);
         country_spinner = view.findViewById(R.id.country_code);
 
@@ -41,15 +49,12 @@ public class SignInFragment extends Fragment implements AdapterView.OnItemSelect
         });
 
         setUpCountrySpinner();
-
-        return view;
     }
 
     private void setUpCountrySpinner() {
         country_spinner.setOnItemSelectedListener(this);
-
         ArrayAdapter<String> countryCodeAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, getResources().getStringArray(country_code_array));
-        countryCodeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        countryCodeAdapter.setDropDownViewResource(R.layout.custom_spinner_item);
         country_spinner.setAdapter(countryCodeAdapter);
     }
 

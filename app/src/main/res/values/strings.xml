@@ -7,8 +7,6 @@
     <string name="profile">Profile</string>
 
     <!--AppBar Headings-->
-    <string name="orders_title">Orders</string>
-    <string name="cart_title">Cart</string>
 
     <!--String Arrays-->
     <string-array name="progress_statebar_array">
@@ -23,35 +21,45 @@
         <item>+256</item>
     </string-array>
 
+    <string-array name="region_array">
+        <item>Central</item>
+        <item>West</item>
+        <item>East</item>
+        <item>North</item>
+    </string-array>
+
+    <string-array name="central_region_array">
+        <item>Kampala</item>
+        <item>Ntinda</item>
+        <item>Gayaza</item>
+        <item>Kawempe</item>
+    </string-array>
+
     <!--Hints-->
-    <string name="search_hint">Search products</string>
+    <string name="search_hint">Search products and stores</string>
 
     <!--Blank Screens-->
     <string name="orders_blank">No orders yet</string>
 
     <!--Buttons-->
-    <string name="status">Pending</string>
     <string name="add_to_cart">Add to Cart</string>
     <string name="checkout">Checkout</string>
     <string name="logout">Logout</string>
 
     <!--General-->
     <string name="welcome">Welcome to LifeGo!</string>
-    <string name="status_delivered">Delivered</string>
     <string name="info">Description</string>
     <string name="lorem">Azithromycin is an antiobiotic used in the treatment of infections such as rain, showers and thunder.Azithromycin is an antiobiotic used in the treatment of infections such as rain, showers and thunder, the antiobiotic used in the treatment of infections such as rain, showers and thunder.</string>
     <string name="female">Female</string>
     <string name="male">Male</string>
     <string name="gender">Gender</string>
-    <string name="payment_options">Select your payment option</string>
     <string name="mtnmomo">MTN MoMo</string>
     <string name="airtel_money">Airtel Money</string>
     <string name="paypal">PayPal</string>
     <string name="fee_total">Delivery Fee</string>
-    <string name="set_default_address">Default Delivery Address</string>
     <string name="save">Save</string>
     <string name="change_photo">Change Photo</string>
-    <string name="summary">Summary of goods</string>
+    <string name="summary">Summary</string>
     <string name="pricing">Pricing</string>
     <string name="cart_total">Cart Total</string>
     <string name="tax_total">Tax</string>
@@ -61,16 +69,13 @@
     <string name="sign_in">Sign In</string>
     <string name="password">Password</string>
     <string name="register">Register</string>
-    <string name="name">Full Name</string>
     <string name="email">Email</string>
     <string name="address">Address</string>
     <string name="contact1">Phone Number</string>
-    <string name="contact2">Other Phone Number</string>
 
     <!--Samples-->
     <string name="product_sample_name">Azithromycin 400</string>
     <string name="product_name_desc">Product name</string>
-    <string name="med_qty">1 box</string>
     <string name="product_sample_manufacturer">Medipharm Labs</string>
     <string name="product_sample_price">22,000/=</string>
     <string name="total">Cart Total: 44,000/=</string>
@@ -85,21 +90,15 @@
     <string name="product_sample_fee">6000/=</string>
 
     <!--Model Binding Strings-->
-    <string name="product_sample_store">AB Clinic Bukoto</string>
-    <string name="proceed_confirm">Proceed to confirmation</string>
     <string name="order_confirm">Your order has been placed!</string>
-    <string name="payment_option">Payment</string>
     <string name="delivery_address">Delivery Address</string>
     <string name="reg_email">Register with email address</string>
     <string name="reg_phone">Register with phone number</string>
-    <string name="rating">4.2</string>
     <string name="groceries">Groceries</string>
     <string name="category_details">Food, Utilities and More</string>
-    <string name="delete">Delete this item</string>
     <string name="order_id">Order ID : 123DFT</string>
     <string name="order_date">Ordered on : 12/06/2019</string>
     <string name="vendor">Vendor</string>
-    <string name="product_status_info">Status : In Stock</string>
     <string name="make_payment">Make payment</string>
     <string name="prescriptions">Prescriptions</string>
     <string name="history">History</string>
@@ -107,7 +106,6 @@
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
     <string name="email_address">Email Address</string>
-    <string name="quantity">Quantity</string>
     <string name="sample_vendor">AB Clinic Bukoto</string>
     <string name="order_date2">Ordered on : 14/07/2019</string>
     <string name="order_id2">Order ID : 763BTX</string>
@@ -122,5 +120,21 @@
     <string name="delivery_instructions">Delivery Instructions</string>
     <string name="save_address">Save Address</string>
     <string name="enter_location">Delivery Location</string>
+    <string name="sle">Select Your Region</string>
+    <string name="payment_options">Select your payment option</string>
+    <string name="confirm_order">Confirm Order</string>
+    <string name="sample_store_location">Some Rd, Bugolobi</string>
+    <string name="sample_rating">(4.2)</string>
+    <string name="sort_filter">Filter Search Results</string>
+    <string name="summary_goods">Summary of Goods</string>
+    <string name="select_delivery_address">Select your delivery address</string>
+    <string name="delivery_location">Delivery Location</string>
+    <string name="confirm_location">Confirm Location</string>
+    <string name="payment">Payment</string>
+    <string name="payment_made">Payment Made</string>
+    <string name="order_details">Your order number is EXT536</string>
+    <string name="upload">Upload Prescription</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
 
 </resources>

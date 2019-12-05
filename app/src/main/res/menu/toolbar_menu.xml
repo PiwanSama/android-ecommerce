@@ -3,9 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/sort_filter"
+        android:icon="@drawable/ic_sliders"
+        android:title="@string/sort_filter"
+        android:visible="false"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/search"
+        android:icon="@drawable/ic_action_action_search"
+        android:title="@string/search_hint"
+        app:showAsAction="always"/>
+
+    <item
         android:id="@+id/cart"
         android:icon="@drawable/ic_shopping_cart"
         android:title="@string/shopping_cart"
+        app:actionLayout="@layout/custom_cart_layout"
         app:showAsAction="always"/>
 
 </menu>

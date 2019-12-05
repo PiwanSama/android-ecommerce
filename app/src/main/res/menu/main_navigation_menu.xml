@@ -3,7 +3,7 @@
 
     <item android:title="@string/history">
         <menu>
-            <group android:checkableBehavior="single">
+            <group>
 
             <item
                 android:id="@+id/prescriptions"
@@ -21,7 +21,7 @@
 
     <item android:title="@string/settings">
         <menu>
-            <group android:checkableBehavior="single">
+            <group>
 
                 <item
                     android:id="@+id/user_profile"
@@ -35,7 +35,7 @@
 
                 <item
                     android:id="@+id/logout"
-                    android:icon="@drawable/ic_power_button_off"
+                    android:icon="@drawable/ic_power"
                     android:title="@string/logout" />
 
             </group>

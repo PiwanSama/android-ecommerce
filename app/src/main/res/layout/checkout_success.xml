@@ -53,6 +53,14 @@
             android:textStyle="bold"
             android:gravity="center" />
 
+        <TextView
+            android:id="@+id/checkout_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/order_details"
+            android:gravity="center" />
+
     </LinearLayout>
 
 

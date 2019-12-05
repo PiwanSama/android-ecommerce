@@ -22,12 +22,13 @@ public class CheckoutSummaryFragment extends Fragment {
 
         progressBar = view.findViewById(R.id.state_progress_bar);
         progressBar.setStateDescriptionData(getResources().getStringArray(R.array.progress_statebar_array));
+        progressBar.setStateDescriptionTypeface("fonts/quicksand_medium.ttf");
 
         MaterialButton button = view.findViewById(R.id.summary_proceed_button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_checkout_summary_fragment_to_checkout_pricing_fragment);
+                Navigation.findNavController(view).navigate(R.id.action_checkout_summary_fragment_to_checkout_Location);
             }
         });
         return view;

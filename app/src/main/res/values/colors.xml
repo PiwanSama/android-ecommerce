@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#0071BC</color>
-    <color name="colorPrimaryDark">#1f669f</color>
-    <color name="colorAccent">#F8A300</color>
+    <color name="colorPrimaryDark">#09263E</color>
+    <color name="colorAccent">#52A1D3</color>
     <color name="fontColor">#212529</color>
     <color name="mutedText">#6c757d</color>
+    <color name="green">#4CAF50</color>
     <color name="blueGrey">#e7eff5</color>
     <color name="colorGrey">#EDF0F2</color>
     <color name="white">#FFFFFF</color>
     <color name="lightGrey">#f9f9fa</color>
-    <color name="gold">#FFBF00</color>
-    <color name="green">#7AB532</color>
+    <color name="gold">#FFBC00</color>
     <color name="email_red">#B92725</color>
     <color name="phone_green">#43C5A5</color>
 </resources>

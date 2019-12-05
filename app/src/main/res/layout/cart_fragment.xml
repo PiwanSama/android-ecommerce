@@ -245,12 +245,74 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/upload_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/upload_bar"
+                app:layout_constraintTop_toBottomOf="@id/lin2"
+                android:text="@string/upload"
+                android:layout_marginTop="30dp"/>
+
+            <LinearLayout
+                android:id="@+id/upload_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/upload_title">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/camera_button"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:text="@string/camera"
+                    android:layout_margin="30dp"
+                    app:backgroundTint="@color/colorPrimary"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/cart_total_title"
+                    android:clickable="true"
+                    android:focusable="true" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/upload_button"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:text="@string/gallery"
+                    android:layout_margin="30dp"
+                    app:backgroundTint="@color/colorPrimary"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/cart_total_title"
+                    android:clickable="true"
+                    android:focusable="true" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/prescription_img"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:background="@color/colorGrey"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/cart_total_title"
+                app:layout_constraintTop_toBottomOf="@id/upload_bar"
+                android:scaleType="fitCenter"/>
+
+            <TextView
+                android:id="@+id/cart_total_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/total"
                 android:layout_margin="20dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/prescription_img"
                 app:layout_constraintBottom_toTopOf="@id/checkout_button"/>
 
             <com.google.android.material.button.MaterialButton
@@ -258,6 +320,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:text="@string/checkout"
+                app:backgroundTint="@color/gold"
                 app:cornerRadius="0dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"

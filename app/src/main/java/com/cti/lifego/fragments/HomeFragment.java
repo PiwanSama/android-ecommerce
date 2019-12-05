@@ -27,15 +27,18 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final View view = inflater.inflate(R.layout.home_fragment, container, false);
+        return inflater.inflate(R.layout.home_fragment, container, false);
+    }
 
+    @Override
+    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         ConstraintLayout card = view.findViewById(R.id.cardy);
         card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_home_fragment_to_browse_category);
+                Navigation.findNavController(view).navigate(R.id.action_home_fragment_to_list_stores);
             }
         });
-        return view;
     }
 }
