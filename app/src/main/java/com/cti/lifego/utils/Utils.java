@@ -13,4 +13,10 @@ public class Utils {
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
+
+    public String getPhoneNumber(int countryCode, int phoneNumber){
+        String str1 = Integer.toString(countryCode);
+        String str2 = Integer.toString(phoneNumber);
+        return str1.concat(str2);
+    }
 }

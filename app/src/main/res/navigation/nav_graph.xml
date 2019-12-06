@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/home_fragment">
+    app:startDestination="@id/sign_up_fragment">
 
     <fragment
         android:id="@+id/home_fragment"
@@ -71,7 +71,11 @@
         android:id="@+id/sign_up_fragment"
         android:name="com.cti.lifego.fragments.RegisterFragment"
         android:label="Register"
-        tools:layout="@layout/register_fragment" />
+        tools:layout="@layout/register_fragment" >
+        <action
+            android:id="@+id/action_sign_up_fragment_to_registrationDetails"
+            app:destination="@id/registration_fragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/user_address_fragment"
@@ -191,5 +195,14 @@
         app:enterAnim="@anim/fade_in"
         app:popUpTo="@+id/home_fragment"
         app:popUpToInclusive="false" />
+    <fragment
+        android:id="@+id/registration_fragment"
+        android:name="com.cti.lifego.fragments.RegistrationDetails"
+        android:label="@string/register_title"
+        tools:layout="@layout/registration_details" />
+
+    <dialog
+        android:id="@+id/datepicker"
+        android:name="com.cti.lifego.dialogs.DatePickerFragment"/>
 
 </navigation>

@@ -68,7 +68,7 @@
     <string name="subtotal">Sub Total</string>
     <string name="sign_in">Sign In</string>
     <string name="password">Password</string>
-    <string name="register">Register</string>
+    <string name="register">Register to get started</string>
     <string name="email">Email</string>
     <string name="address">Address</string>
     <string name="contact1">Phone Number</string>
@@ -103,8 +103,8 @@
     <string name="prescriptions">Prescriptions</string>
     <string name="history">History</string>
     <string name="settings">Account Settings</string>
-    <string name="first_name">First Name</string>
-    <string name="last_name">Last Name</string>
+    <string name="given_name">Given Name</string>
+    <string name="surname">Surname</string>
     <string name="email_address">Email Address</string>
     <string name="sample_vendor">AB Clinic Bukoto</string>
     <string name="order_date2">Ordered on : 14/07/2019</string>
@@ -136,5 +136,17 @@
     <string name="upload">Upload Prescription</string>
     <string name="camera">Camera</string>
     <string name="gallery">Gallery</string>
+    <string name="lets_go">Let\'s Go!</string>
+    <string name="personal_details">Your Personal Details</string>
+    <string name="proceed">Proceed</string>
+    <string name="opt_in">Opt In</string>
+    <string name="next_of_kin_name">Next of Kin Name</string>
+    <string name="next_of_kin_r_type">Next of Kin Relationship Type</string>
+    <string name="phone_contact">Phone Contact</string>
+    <string name="next_of_kin_phone_contact">Next of Kin Phone Contact</string>
+    <string name="nok_details">Your Next of Kin Details</string>
+    <string name="register_title">Register</string>
+    <string name="dob">Date of Birth</string>
+    <string name="select">Select</string>
 
 </resources>

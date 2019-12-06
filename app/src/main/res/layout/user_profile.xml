@@ -48,7 +48,7 @@
             android:inputType="textPersonName"
             android:textColor="@color/fontColor"
             android:enabled="false"
-            android:text="@string/first_name"/>
+            android:text="@string/given_name"/>
 
         <EditText
             android:layout_width="match_parent"
@@ -58,7 +58,7 @@
             android:inputType="textPersonName"
             android:textColor="@color/fontColor"
             android:enabled="false"
-            android:text="@string/last_name"/>
+            android:text="@string/surname"/>
 
         <EditText
             android:layout_width="match_parent"

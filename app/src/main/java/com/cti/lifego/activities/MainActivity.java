@@ -108,6 +108,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         topLevelDest.add(R.id.orders_fragment);
         topLevelDest.add(R.id.user_profile_fragment);
         topLevelDest.add(R.id.user_address_fragment);
+        topLevelDest.add(R.id.sign_in_fragment);
+        topLevelDest.add(R.id.sign_up_fragment);
+        topLevelDest.add(R.id.registration_fragment);
 
         appBarConfiguration = new AppBarConfiguration.Builder(topLevelDest)
                         .setDrawerLayout(drawerLayout)

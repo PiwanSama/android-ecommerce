@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:animateLayoutChanges="true">
+    android:animateLayoutChanges="true"
+    android:theme="@style/FullScreen">
 
     <!--TODO Get all icons for textviews -->
 
@@ -25,7 +26,6 @@
         android:layout_marginBottom="8dp"
         android:text="@string/welcome"
         android:textSize="20sp"
-        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,7 +40,6 @@
         android:layout_marginBottom="8dp"
         android:text="@string/register"
         android:textSize="16sp"
-        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,32 +47,13 @@
         />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/email_button"
-        android:layout_width="300dp"
+        android:id="@+id/register_go"
+        android:layout_width="200dp"
         android:layout_height="50dp"
-        android:text="@string/reg_email"
+        android:text="@string/lets_go"
         android:layout_margin="10dp"
-        android:background="@color/email_red"
-        app:cornerRadius="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        style="?android:attr/buttonBarButtonStyle"
-        app:icon="@drawable/ic_email_24px"/>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/phone_button"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:text="@string/reg_phone"
-        android:layout_margin="10dp"
-        android:background="@color/phone_green"
-        app:cornerRadius="2dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        style="?android:attr/buttonBarButtonStyle"
-        app:icon="@drawable/ic_phone_24px"
-        />
+        app:layout_constraintRight_toRightOf="parent" />
 
 </LinearLayout>
