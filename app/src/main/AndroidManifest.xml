@@ -39,7 +39,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.cti.lifego.fragments.RegisterFragment"/>
+        <activity android:name="com.cti.lifego.fragments.SignUpFragment"/>
 
         <activity android:name="com.cti.lifego.fragments.BrowseStoreFragment"/>
 

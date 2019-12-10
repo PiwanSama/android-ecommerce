@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -21,21 +22,25 @@ import androidx.core.view.GravityCompat;
 import androidx.core.view.MenuItemCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.cti.lifego.R;
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.navigation.NavigationView;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     Toolbar toolbar;
+    AppBarLayout appBarLayout;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     NavController navController;
@@ -55,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         isLocationEnabled();
 
         toolbar = findViewById(R.id.toolbar);
+        appBarLayout = findViewById(R.id.appBar);
         searchView = findViewById(R.id.search_view);
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navigationView);
@@ -95,6 +101,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void setUpNavigation() {
+
         setSupportActionBar(toolbar);
 
         ActionBar actionBar = getSupportActionBar();
@@ -103,14 +110,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
 
+        navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
+            if (destination.getId() == R.id.registration_fragment){
+                makeFullScreen();
+            }
+            else if (destination.getId() == R.id.sign_in_fragment){
+                makeFullScreen();
+            }
+            else if (destination.getId() == R.id.sign_up_fragment){
+                makeFullScreen();
+            }
+            else{
+                appBarLayout.setVisibility(View.VISIBLE);
+                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+            }
+        });
+
         Set<Integer> topLevelDest = new HashSet<>();
         topLevelDest.add(R.id.home_fragment);
         topLevelDest.add(R.id.orders_fragment);
         topLevelDest.add(R.id.user_profile_fragment);
         topLevelDest.add(R.id.user_address_fragment);
-        topLevelDest.add(R.id.sign_in_fragment);
-        topLevelDest.add(R.id.sign_up_fragment);
-        topLevelDest.add(R.id.registration_fragment);
 
         appBarConfiguration = new AppBarConfiguration.Builder(topLevelDest)
                         .setDrawerLayout(drawerLayout)
@@ -120,6 +140,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
 
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private void makeFullScreen(){
+        appBarLayout.setVisibility(View.GONE);
+        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
     }
 
     @Override

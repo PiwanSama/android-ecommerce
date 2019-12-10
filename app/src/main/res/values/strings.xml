@@ -67,7 +67,7 @@
     <string name="skip">Skip this step</string>
     <string name="subtotal">Sub Total</string>
     <string name="sign_in">Sign In</string>
-    <string name="password">Password</string>
+    <string name="password">Password (must be longer than 8 characters)</string>
     <string name="register">Register to get started</string>
     <string name="email">Email</string>
     <string name="address">Address</string>
@@ -148,5 +148,8 @@
     <string name="register_title">Register</string>
     <string name="dob">Date of Birth</string>
     <string name="select">Select</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="ddmmyy">dd/mm/yy</string>
 
 </resources>

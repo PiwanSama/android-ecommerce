@@ -12,7 +12,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
 public interface UserService {
-
-    @POST("/register")
+    @FormUrlEncoded
+    @POST("register")
     Call<User> createUser(@Body User user);
 }

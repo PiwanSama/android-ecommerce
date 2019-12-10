@@ -1,44 +1,45 @@
 package com.cti.lifego.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.cti.lifego.R;
+import com.cti.lifego.adapters.CategoryAdapter;
+import com.cti.lifego.content.Categories;
+import com.cti.lifego.databinding.HomeFragmentBinding;
+import com.cti.lifego.models.Category;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class HomeFragment extends Fragment {
 
     @Override
-    public void onAttach(@NonNull Context context){
-        super.onAttach(context);
-    }
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        return inflater.inflate(R.layout.home_fragment, container, false);
-    }
+        HomeFragmentBinding homeFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.home_fragment, container, false);
 
-    @Override
-    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        ConstraintLayout card = view.findViewById(R.id.cardy);
-        card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_home_fragment_to_list_stores);
-            }
-        });
+        Categories categories = new Categories();
+
+        ArrayList<Category> categoryArrayList = new ArrayList<>(Arrays.asList(categories.CATEGORIES));
+
+        CategoryAdapter categoryAdapter = new CategoryAdapter(categoryArrayList);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+
+
+        homeFragmentBinding.categoryRecyclerView.setLayoutManager(linearLayoutManager);
+        homeFragmentBinding.categoryRecyclerView.setAdapter(categoryAdapter);
+
+        return homeFragmentBinding.getRoot();
     }
 }

@@ -7,6 +7,7 @@ import android.net.NetworkInfo;
 import com.cti.lifego.App;
 
 public class Utils {
+
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) App.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -14,9 +15,16 @@ public class Utils {
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
-    public String getPhoneNumber(int countryCode, int phoneNumber){
-        String str1 = Integer.toString(countryCode);
-        String str2 = Integer.toString(phoneNumber);
+    public String getPhoneNumber(String str1, String str2){
         return str1.concat(str2);
     }
+
+    public static String getQuantityString(int quantity){
+        return ("Qty: " + String.valueOf(quantity));
+    }
+
+    public static String convertIntToString(int value){
+        return (String.valueOf(value));
+    }
+
 }
