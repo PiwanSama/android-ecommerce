@@ -42,7 +42,6 @@
     <string name="orders_blank">No orders yet</string>
 
     <!--Buttons-->
-    <string name="add_to_cart">Add to Cart</string>
     <string name="checkout">Checkout</string>
     <string name="logout">Logout</string>
 
@@ -80,11 +79,9 @@
     <string name="product_sample_price">22,000/=</string>
     <string name="total">Cart Total: 44,000/=</string>
     <string name="subtotal_price">92,780/=</string>
-    <string name="num">5</string>
     <string name="product_sample_tax">2780/=</string>
     <string name="cart_total_price">44,000/=</string>
     <string name="phone_number">e.g 701123456</string>
-    <string name="sample_product">Lorem Drug 500mg</string>
     <string name="sample_username">John Doe</string>
     <string name="sample_address">Plot 18 Musa Rd, Kampala</string>
     <string name="product_sample_fee">6000/=</string>
@@ -92,10 +89,6 @@
     <!--Model Binding Strings-->
     <string name="order_confirm">Your order has been placed!</string>
     <string name="delivery_address">Delivery Address</string>
-    <string name="reg_email">Register with email address</string>
-    <string name="reg_phone">Register with phone number</string>
-    <string name="groceries">Groceries</string>
-    <string name="category_details">Food, Utilities and More</string>
     <string name="order_id">Order ID : 123DFT</string>
     <string name="order_date">Ordered on : 12/06/2019</string>
     <string name="vendor">Vendor</string>
@@ -115,22 +108,13 @@
     <string name="rating_review">Ratings and Reviews</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="receiver_name">Receiver name</string>
-    <string name="region">Region</string>
-    <string name="area">Area</string>
     <string name="delivery_instructions">Delivery Instructions</string>
     <string name="save_address">Save Address</string>
-    <string name="enter_location">Delivery Location</string>
-    <string name="sle">Select Your Region</string>
-    <string name="payment_options">Select your payment option</string>
     <string name="confirm_order">Confirm Order</string>
-    <string name="sample_store_location">Some Rd, Bugolobi</string>
-    <string name="sample_rating">(4.2)</string>
     <string name="sort_filter">Filter Search Results</string>
-    <string name="summary_goods">Summary of Goods</string>
-    <string name="select_delivery_address">Select your delivery address</string>
+    <string name="select_delivery_address">Where should we deliver to?</string>
     <string name="delivery_location">Delivery Location</string>
     <string name="confirm_location">Confirm Location</string>
-    <string name="payment">Payment</string>
     <string name="payment_made">Payment Made</string>
     <string name="order_details">Your order number is EXT536</string>
     <string name="upload">Upload Prescription</string>
@@ -138,7 +122,6 @@
     <string name="gallery">Gallery</string>
     <string name="lets_go">Let\'s Go!</string>
     <string name="personal_details">Your Personal Details</string>
-    <string name="proceed">Proceed</string>
     <string name="opt_in">Opt In</string>
     <string name="next_of_kin_name">Next of Kin Name</string>
     <string name="next_of_kin_r_type">Next of Kin Relationship Type</string>
@@ -147,9 +130,6 @@
     <string name="nok_details">Your Next of Kin Details</string>
     <string name="register_title">Register</string>
     <string name="dob">Date of Birth</string>
-    <string name="select">Select</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="ddmmyy">dd/mm/yy</string>
+    <string name="cart_empty">Your cart is empty!</string>
 
 </resources>

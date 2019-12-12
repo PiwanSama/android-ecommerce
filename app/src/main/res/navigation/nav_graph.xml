@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/registration_fragment">
+    app:startDestination="@id/home_fragment">
 
     <fragment
         android:id="@+id/home_fragment"
@@ -14,7 +14,6 @@
         tools:layout="@layout/home_fragment">
 
         <action
-            android:id="@+id/action_home_fragment_to_list_stores"
             app:destination="@id/list_stores_fragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
@@ -103,7 +102,7 @@
 
     <fragment
         android:id="@+id/checkout_Location"
-        android:name="com.cti.lifego.fragments.Checkout_Location"
+        android:name="com.cti.lifego.fragments.CheckoutLocation"
         android:label="@string/delivery_location"
         tools:layout="@layout/checkout_location" >
         <action
@@ -148,7 +147,6 @@
         android:label="Success"
         tools:layout="@layout/checkout_success">
         <action
-            android:id="@+id/action_checkout_success_fragment_to_home_fragment"
             app:enterAnim="@anim/fade_in"
             app:popUpTo="@+id/home_fragment"
             app:popUpToInclusive="true"/>

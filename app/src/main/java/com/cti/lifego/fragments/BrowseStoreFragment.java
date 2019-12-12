@@ -33,13 +33,6 @@ public class BrowseStoreFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        MaterialCardView card = view.findViewById(R.id.card_click);
 
-        card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_browse_category_to_single_product_fragment);
-            }
-        });
     }
 }

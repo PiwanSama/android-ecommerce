@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. Written by Samalie Piwan
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/upload"
+        android:layout_marginTop="30dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:text="@string/camera"
+            android:layout_margin="30dp"
+            app:backgroundTint="@color/colorPrimary"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:text="@string/gallery"
+            android:layout_margin="30dp"
+            app:backgroundTint="@color/colorPrimary"
+            android:clickable="true"
+            android:focusable="true" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:background="@color/colorGrey"
+        android:scaleType="fitCenter"/>
+
+</LinearLayout>

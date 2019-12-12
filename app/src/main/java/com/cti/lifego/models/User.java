@@ -6,13 +6,13 @@ public class User {
 
     @SerializedName("surname")
     public String surname;
-    @SerializedName("givenName")
+    @SerializedName("given_name")
     public String givenName;
     @SerializedName("email")
     public String email;
-    @SerializedName("phone")
+    @SerializedName("phone_number")
     public String phone;
-    @SerializedName("dob")
+    @SerializedName("date_of_birth")
     public String dob;
     @SerializedName("gender")
     public String gender;
@@ -26,5 +26,93 @@ public class User {
     public String kin_phone_number;
     @SerializedName("relationship_type")
     public String relationship_type;
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getGivenName() {
+        return givenName;
+    }
+
+    public void setGivenName(String givenName) {
+        this.givenName = givenName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getDob() {
+        return dob;
+    }
+
+    public void setDob(String dob) {
+        this.dob = dob;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getOpt_in() {
+        return opt_in;
+    }
+
+    public void setOpt_in(String opt_in) {
+        this.opt_in = opt_in;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getNext_of_kin_name() {
+        return next_of_kin_name;
+    }
+
+    public void setNext_of_kin_name(String next_of_kin_name) {
+        this.next_of_kin_name = next_of_kin_name;
+    }
+
+    public String getKin_phone_number() {
+        return kin_phone_number;
+    }
+
+    public void setKin_phone_number(String kin_phone_number) {
+        this.kin_phone_number = kin_phone_number;
+    }
+
+    public String getRelationship_type() {
+        return relationship_type;
+    }
+
+    public void setRelationship_type(String relationship_type) {
+        this.relationship_type = relationship_type;
+    }
     
 }

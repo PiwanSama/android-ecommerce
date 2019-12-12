@@ -1,10 +1,16 @@
 package com.cti.lifego.models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Category {
-    private int id;
-    private String name;
-    private String description;
-    private int image;
+    @SerializedName("id")
+    public int id;
+    @SerializedName("name")
+    public String name;
+    @SerializedName("description")
+    public String description;
+    @SerializedName("image")
+    public int image;
 
     public Category(int id, String name, String description, int image) {
         this.id = id;

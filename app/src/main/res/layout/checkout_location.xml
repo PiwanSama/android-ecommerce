@@ -5,9 +5,10 @@
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:map="http://schemas.android.com/tools">
 
     <TextView
         android:id="@+id/delivery_location_text"
@@ -20,6 +21,21 @@
         app:layout_constraintBottom_toTopOf="@id/map_holder"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="12dp"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/select_location"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/delivery_location_text"
+        app:layout_constraintBottom_toTopOf="@id/map_holder">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        
+    </com.google.android.material.textfield.TextInputLayout>
 
     <FrameLayout
         android:id="@+id/map_holder"
@@ -35,7 +51,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="12dp"
-            android:name="com.google.android.gms.maps.SupportMapFragment"/>
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            map:cameraBearing="112.5"
+            map:cameraTargetLat = "1.3733"
+            map:cameraTargetLong = "32.2903"
+            map:cameraTilt = "30"
+            map:cameraZoom = "50" />
+
     </FrameLayout>
 
     <com.google.android.material.button.MaterialButton

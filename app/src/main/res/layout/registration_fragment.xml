@@ -25,10 +25,9 @@
                 android:id="@+id/user_given_name"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:ems="10"
-                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                android:ems="10" android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
                 android:layout_margin="8dp"
-                android:inputType="textPersonName"
+                android:inputType="textPersonName|textCapWords"
                 android:textColor="@color/fontColor"
                 android:textColorHint="@color/mutedText"
                 android:hint="@string/given_name"/>
@@ -40,7 +39,7 @@
                 android:ems="10"
                 android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
                 android:layout_margin="8dp"
-                android:inputType="textPersonName"
+                android:inputType="textPersonName|textCapWords"
                 android:textColor="@color/fontColor"
                 android:textColorHint="@color/mutedText"
                 android:hint="@string/surname"/>
@@ -110,7 +109,8 @@
                     android:layout_marginBottom="8dp"
                     android:maxLength="9"
                     android:digits="0123456789"
-                    android:inputType="textFilter"
+                    android:inputType="phone"
+                    android:importantForAutofill="no"
                     android:singleLine="true"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -173,13 +173,13 @@
                     android:id="@+id/yes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/yes"/>
+                    android:text="1"/>
 
                 <RadioButton
                     android:id="@+id/no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/no"/>
+                    android:text="0"/>
 
             </RadioGroup>
 
@@ -200,7 +200,7 @@
                 android:ems="10"
                 android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
                 android:layout_margin="8dp"
-                android:inputType="text"
+                android:inputType="textPersonName|textCapWords"
                 android:textColor="@color/fontColor"
                 android:textColorHint="@color/mutedText"
                 android:hint="@string/next_of_kin_name"/>
@@ -235,7 +235,8 @@
                     android:layout_marginBottom="8dp"
                     android:maxLength="9"
                     android:digits="0123456789"
-                    android:inputType="textFilter"
+                    android:inputType="phone"
+                    android:importantForAutofill="no"
                     android:singleLine="true"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

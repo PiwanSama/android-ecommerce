@@ -29,10 +29,6 @@ import static android.app.Activity.RESULT_OK;
 
 public class CartFragment extends Fragment {
 
-    public int CAMERA_REQUEST_CODE = 552;
-    public int GALLERY_REQUEST_CODE = 553;
-    ImageView prescription;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,61 +38,6 @@ public class CartFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        MaterialButton checkout = view.findViewById(R.id.checkout_button);
-        prescription = view.findViewById(R.id.prescription_img);
-        checkout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_cartFragment_to_checkout_summary_fragment);
-            }
-        });
-
-        MaterialButton camera = view.findViewById(R.id.camera_button);
-        camera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openCamera();
-            }
-        });
-
-        MaterialButton upload = view.findViewById(R.id.upload_button);
-        upload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openGallery();
-            }
-        });
-    }
-
-    private void openCamera() {
-        ImagePicker.cameraOnly().start(this);
-    }
-
-    private void openGallery() {
-        ImagePicker.create(this)
-                .returnMode(ReturnMode.ALL)
-                .single()
-                .toolbarFolderTitle("Select image(s)")
-                .toolbarImageTitle("Tap to select")
-                .showCamera(false)
-                .includeVideo(false)
-                .start(GALLERY_REQUEST_CODE);
-    }
-
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (ImagePicker.shouldHandle(requestCode, resultCode, data)) {
-            //try {
-            if ((requestCode == GALLERY_REQUEST_CODE) || (requestCode == CAMERA_REQUEST_CODE)){
-                if ((resultCode == RESULT_OK)){
-                    Image image = ImagePicker.getFirstImageOrNull(data);
-                    String filePath = image.getPath();
-                    Glide.with(this).load(filePath).into(prescription);
-                }
-            }
-        }
     }
 
 }

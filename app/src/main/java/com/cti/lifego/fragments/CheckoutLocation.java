@@ -27,7 +27,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 
-public class Checkout_Location extends Fragment implements OnMapReadyCallback {
+public class CheckoutLocation extends Fragment implements OnMapReadyCallback {
 
     private FusedLocationProviderClient mfusedLocationProviderClient;
     private Location currentLocation;
@@ -80,8 +80,8 @@ public class Checkout_Location extends Fragment implements OnMapReadyCallback {
     private void mapInit() {
         LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
         MarkerOptions markerOptions = new MarkerOptions().position(latLng);
-        mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,5));
+        //mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,16.0f));
         mMap.addMarker(markerOptions);
     }
 

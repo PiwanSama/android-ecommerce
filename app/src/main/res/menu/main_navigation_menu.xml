@@ -6,7 +6,6 @@
             <group>
 
             <item
-                android:id="@+id/prescriptions"
                 android:icon="@drawable/ic_prescription"
                 android:title="@string/prescriptions" />
 
@@ -34,7 +33,6 @@
                     android:title="@string/address" />
 
                 <item
-                    android:id="@+id/logout"
                     android:icon="@drawable/ic_power"
                     android:title="@string/logout" />
 

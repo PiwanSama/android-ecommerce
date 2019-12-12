@@ -40,26 +40,26 @@
             app:layout_constraintStart_toStartOf="parent">
             
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/mtn_button"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="@string/mtnmomo"
+                android:textAllCaps="false"
                 android:layout_weight="1"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/airtel_button"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="@string/airtel_money"
+                android:textAllCaps="false"
                 android:layout_weight="1"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/paypal_button"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="@string/paypal"
+                android:textAllCaps="false"
                 android:layout_weight="1"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
             
@@ -87,7 +87,6 @@
             app:layout_constraintTop_toBottomOf="@id/pricing">
 
             <TextView
-                android:id="@+id/cart_total"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
@@ -96,7 +95,6 @@
                 android:textAppearance="@style/MutedText" />
 
             <TextView
-                android:id="@+id/cart_total_price"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="end"
@@ -116,7 +114,6 @@
             app:layout_constraintTop_toBottomOf="@id/price_row">
 
             <TextView
-                android:id="@+id/tax_total"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
@@ -125,7 +122,6 @@
                 android:textAppearance="@style/MutedText" />
 
             <TextView
-                android:id="@+id/tax_total_price"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="end"
@@ -149,7 +145,6 @@
             app:layout_constraintTop_toBottomOf="@id/tax_row">
 
             <TextView
-                android:id="@+id/fee_total"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
@@ -158,7 +153,6 @@
                 android:textAppearance="@style/MutedText" />
 
             <TextView
-                android:id="@+id/fee_total_price"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="end"
@@ -187,7 +181,6 @@
             app:layout_constraintTop_toBottomOf="@id/divider">
 
             <TextView
-                android:id="@+id/total"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
@@ -198,7 +191,6 @@
                 app:layout_constraintTop_toBottomOf="@id/card2" />
 
             <TextView
-                android:id="@+id/total_price"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="end"
@@ -219,6 +211,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|bottom"
         android:layout_marginTop="20dp"
+        app:cornerRadius="0dp"
         android:text="@string/make_payment" />
 
 </LinearLayout>

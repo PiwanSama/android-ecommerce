@@ -6,6 +6,7 @@ package com.cti.lifego.viewmodels;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 
 import com.cti.lifego.api.RetrofitInstance;
@@ -26,12 +27,17 @@ public class UserRegistrationViewModel extends ViewModel {
 
         call.enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                Log.e("API", "Insert Success");
+            public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
+                if (response.isSuccessful()){
+                    Log.e("API", "Insert Success"+response.body()+"XXX"+response.message());
+                }
+                else{
+                    Log.e("API", "Insert Failed"+response.body()+"XXX"+response.message());
+                }
             }
 
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
+            public void onFailure(@NonNull Call<User> call, Throwable t) {
                 Log.e("API", "Insert Failed");
 
             }

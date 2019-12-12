@@ -3,7 +3,6 @@ package com.cti.lifego.fragments;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +23,6 @@ import com.cti.lifego.databinding.RegistrationFragmentBinding;
 import com.cti.lifego.models.User;
 import com.cti.lifego.utils.Utils;
 import com.cti.lifego.viewmodels.UserRegistrationViewModel;
-import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -154,10 +152,7 @@ public class RegistrationFragment extends Fragment{
                     user.gender = genderRadioButton.getText().toString();
                     user.opt_in = genderRadioButton.getText().toString();
                     user.relationship_type = r_type;
-                    Gson gson = new Gson();
-                    String mine = gson.toJson(user);
-                    Log.i("Registering", "User is:" + mine);
-                    // viewModel.createUser(user)
+                    viewModel.createUser(user);
                 }
             }
         });

@@ -36,7 +36,6 @@
         tools:ignore="UseCompoundDrawables">
 
         <ImageView
-            android:id="@+id/confirm_img"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:src="@drawable/ic_order"
@@ -44,7 +43,6 @@
             />
 
         <TextView
-            android:id="@+id/checkout_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -54,7 +52,6 @@
             android:gravity="center" />
 
         <TextView
-            android:id="@+id/checkout_details"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
