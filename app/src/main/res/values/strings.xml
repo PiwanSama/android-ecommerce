@@ -131,5 +131,6 @@
     <string name="register_title">Register</string>
     <string name="dob">Date of Birth</string>
     <string name="cart_empty">Your cart is empty!</string>
+    <string name="key_shopping_cart">shopping_cart</string>
 
 </resources>

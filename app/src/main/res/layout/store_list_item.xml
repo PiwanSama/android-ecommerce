@@ -10,15 +10,27 @@
             name="storeView"
             type="com.cti.lifego.viewmodels.StoreViewModel" />
 
+        <variable
+            name="imageVisibility"
+            type="boolean" />
+
         <import type="com.cti.lifego.utils.Utils"/>
     </data>
+
+    <ProgressBar
+        android:id="@+id/loading_progress"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="@{storeView.imageVisibility ? View.GONE : View.VISIBLE}"
+        />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/store"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_margin="10dp"
-        app:cardCornerRadius="4dp">
+        app:cardCornerRadius="4dp"
+        android:visibility="@{storeView.imageVisibility ? View.VISIBLE : View.INVISIBLE}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -30,6 +42,7 @@
                 android:layout_height="200dp"
                 android:scaleType="centerCrop"
                 imageResource="@{storeView.store.image}"
+                requestListener="@{storeView.customRequestListener()}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/store_name"/>

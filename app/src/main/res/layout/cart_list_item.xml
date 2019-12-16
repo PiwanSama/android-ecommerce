@@ -6,8 +6,10 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
-            name="product"
-            type="com.cti.lifego.models.Product" />
+            name="cartItemView"
+            type="com.cti.lifego.viewmodels.CartItemViewModel" />
+
+        <import type="com.cti.lifego.intefaces.ICartFragment"/>
     </data>
 
     <LinearLayout
@@ -24,7 +26,7 @@
             android:layout_height="match_parent"
             android:contentDescription="@string/product_name_desc"
             android:scaleType="fitCenter"
-            imageResource="@{product.image}"
+            imageResource="@{cartItemView.cartItem.product.image}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -39,7 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:text="@{product.name}"
+                android:text="@{cartItemView.cartItem.product.name}"
                 android:textStyle="bold"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:text="@{product.vendor}"
+                android:text="@{cartItemView.cartItem.product.vendor}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/product_name"
                 android:textAppearance="@style/MutedText"
@@ -63,7 +65,7 @@
                 android:layout_margin="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
-                android:text="@{product.price}"
+                android:text="@{cartItemView.cartItem.product.price}"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/product_vendor"
@@ -86,13 +88,15 @@
                     android:layout_width="0dp"
                     android:layout_height="20dp"
                     android:src="@drawable/ic_minus"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:onClick="@{()-> cartItemView.increaseQuantity(context)}"/>
 
                 <TextView
                     android:id="@+id/product_quantity"
+                    android:layout_height="wrap_content"
                     android:layout_width="0dp"
                     android:gravity="center"
-                    android:text="@={product.quantity}"
+                    android:text="@={cartItemView.cartItem.product.quantity}"
                     android:layout_weight="1"/>
 
                 <ImageView
@@ -100,7 +104,8 @@
                     android:layout_width="0dp"
                     android:layout_height="20dp"
                     android:src="@drawable/ic_plus"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:onClick="@{()-> cartItemView.decreaseQuantity(context)}"/>
 
             </LinearLayout>
 

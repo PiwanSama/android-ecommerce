@@ -11,16 +11,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cti.lifego.databinding.CartListItemBinding;
-import com.cti.lifego.models.Product;
+import com.cti.lifego.models.CartItem;
 
 import java.util.List;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
-    private List<Product> cartList;
+    private List<CartItem> cartItems;
 
-    public CartAdapter(List<Product> cartList){
-        this.cartList = cartList;
+    public CartAdapter(List<CartItem> cartItems){
+        this.cartItems = cartItems;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
@@ -30,8 +30,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             super(binding.getRoot());
             this.binding = binding;
         }
-        void bind(Product product){
-            binding.setProduct(product);
+        void bind(CartItem cartItem){
+            binding.setCartItem(cartItem);
             binding.executePendingBindings();
         }
     }
@@ -45,14 +45,20 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Product product = cartList.get(position);
-        holder.bind(product);
+        CartItem cartItem = cartItems.get(position);
+        holder.bind(cartItem);
     }
 
     @Override
     public int getItemCount() {
-        if (cartList!=null){
-            return cartList.size();
+        if (cartItems !=null){
+            return cartItems.size();
         }return 0;
+    }
+
+    public void updateCartList(List<CartItem> cartItems){
+        this.cartItems.clear();
+        this.cartItems.addAll(cartItems);
+        notifyDataSetChanged();
     }
 }

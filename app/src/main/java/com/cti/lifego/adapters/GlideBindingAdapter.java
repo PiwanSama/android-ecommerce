@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import androidx.databinding.BindingAdapter;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.RequestListener;
 
 public class GlideBindingAdapter {
 
@@ -20,6 +20,16 @@ public class GlideBindingAdapter {
 
         Glide.with(context)
                 .load(imageURL)
+                .into(imageView);
+    }
+
+    @BindingAdapter({"requestListener", "imageResource"})
+    public static void bindRequestListener(ImageView imageView, RequestListener requestListener, int imageResource){
+        Context context = imageView.getContext();
+
+        Glide.with(context)
+                .addDefaultRequestListener(requestListener)
+                .load(imageResource)
                 .into(imageView);
     }
 }

@@ -12,12 +12,6 @@
         android:label="LifeGo"
         app:enterAnim="@anim/fade_in"
         tools:layout="@layout/home_fragment">
-
-        <action
-            app:destination="@id/list_stores_fragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim" />
-
     </fragment>
 
     <fragment
@@ -77,28 +71,10 @@
     </fragment>
 
     <fragment
-        android:id="@+id/user_address_fragment"
-        android:name="com.cti.lifego.fragments.UserAddressFragment"
-        android:label="My Address"
-        tools:layout="@layout/user_address" />
-
-    <fragment
         android:id="@+id/user_profile_fragment"
         android:name="com.cti.lifego.fragments.UserDetailsFragment"
         android:label="My Profile"
         tools:layout="@layout/user_profile" />
-
-    <fragment
-        android:id="@+id/checkout_summary_fragment"
-        android:name="com.cti.lifego.fragments.CheckoutSummaryFragment"
-        android:label="Order Summary"
-        tools:layout="@layout/checkout_summary" >
-        <action
-            android:id="@+id/action_checkout_summary_fragment_to_checkout_Location"
-            app:destination="@id/checkout_Location"
-            app:popUpTo="@+id/cartFragment"
-            app:popUpToInclusive="false"/>
-    </fragment>
 
     <fragment
         android:id="@+id/checkout_Location"
@@ -117,28 +93,6 @@
         android:name="com.cti.lifego.fragments.CheckoutPaymentFragment"
         android:label="Make Payment"
         tools:layout="@layout/checkout_payment" >
-        <action
-            android:id="@+id/action_checkout_pricing_fragment_to_checkout_confirm_fragment"
-            app:destination="@id/checkout_confirm_fragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popUpTo="@+id/cartFragment"
-            app:popUpToInclusive="false"/>
-
-    </fragment>
-
-    <fragment
-        android:id="@+id/checkout_confirm_fragment"
-        android:name="com.cti.lifego.fragments.CheckoutConfirmFragment"
-        android:label="Confirm Order"
-        tools:layout="@layout/checkout_confirm">
-        <action
-            android:id="@+id/action_checkout_confirm_fragment_to_success_fragment"
-            app:destination="@id/checkout_success_fragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:popUpTo="@+id/cartFragment"
-            app:popUpToInclusive="false"/>
-
     </fragment>
 
     <fragment
@@ -146,10 +100,6 @@
         android:name="com.cti.lifego.fragments.CheckoutSuccess"
         android:label="Success"
         tools:layout="@layout/checkout_success">
-        <action
-            app:enterAnim="@anim/fade_in"
-            app:popUpTo="@+id/home_fragment"
-            app:popUpToInclusive="true"/>
     </fragment>
 
     <fragment
@@ -158,13 +108,6 @@
         tools:layout="@layout/cart_fragment"
         android:label="Cart" >
 
-        <action
-            android:id="@+id/action_cartFragment_to_checkout_summary_fragment"
-            app:destination="@id/checkout_summary_fragment"
-            app:enterAnim="@anim/fade_in"
-            app:exitAnim="@anim/fade_out"
-            />
-
     </fragment>
 
     <action
@@ -172,13 +115,6 @@
         app:destination="@id/cartFragment"
         app:enterAnim="@anim/fade_in"
         app:exitAnim="@anim/fade_out" />
-
-    <action
-        android:id="@+id/action_homeFragment_to_addressFragment"
-        app:destination="@id/user_address_fragment"
-        app:enterAnim="@anim/fade_in"
-        app:popUpTo="@+id/home_fragment"
-        app:popUpToInclusive="false" />
 
     <action
         android:id="@+id/action_homeFragment_to_ordersFragment"

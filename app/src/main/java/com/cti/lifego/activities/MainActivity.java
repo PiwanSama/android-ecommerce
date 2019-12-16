@@ -1,14 +1,17 @@
 package com.cti.lifego.activities;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,6 +23,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.core.view.MenuItemCompat;
+import androidx.databinding.DataBindingUtil;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
@@ -29,6 +33,9 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.cti.lifego.R;
+import com.cti.lifego.content.PreferenceKeys;
+import com.cti.lifego.databinding.MainActivityBinding;
+import com.cti.lifego.intefaces.IMainActivity;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.navigation.NavigationView;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
@@ -37,35 +44,30 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, IMainActivity {
 
-    Toolbar toolbar;
-    AppBarLayout appBarLayout;
-    DrawerLayout drawerLayout;
-    NavigationView navigationView;
     NavController navController;
-    AppBarConfiguration appBarConfiguration;
+    NavigationView navigationView;
+    MainActivityBinding binding;
+    DrawerLayout drawerLayout;
     MaterialSearchView searchView;
+    AppBarConfiguration appBarConfiguration;
     TextView cartItemCount;
-    int mCartItemCount = 10;
     Boolean mLocationPermissionGranted;
+    int mCartItemCount;
     int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION  = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_activity);
+
+        binding = DataBindingUtil.setContentView(this, R.layout.main_activity);
 
         getLocationPermission();
         isLocationEnabled();
-
-        toolbar = findViewById(R.id.toolbar);
-        appBarLayout = findViewById(R.id.appBar);
-        searchView = findViewById(R.id.search_view);
-        drawerLayout = findViewById(R.id.drawer_layout);
-        navigationView = findViewById(R.id.navigationView);
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-
+        drawerLayout = binding.drawerLayout;
+        searchView = binding.searchView;
         setUpNavigation();
         setUpSearch();
         getLocationPermission();
@@ -73,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void setUpSearch() {
-        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+        binding.searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 //Do some magic
@@ -87,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
+        binding.searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
             @Override
             public void onSearchViewShown() {
                 //Do some magic
@@ -102,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void setUpNavigation() {
 
-        setSupportActionBar(toolbar);
+        setSupportActionBar(binding.toolbar);
 
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
@@ -121,8 +123,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 makeFullScreen();
             }
             else{
-                appBarLayout.setVisibility(View.VISIBLE);
-                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+                binding.appBar.setVisibility(View.VISIBLE);
+                binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
             }
         });
 
@@ -130,20 +132,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         topLevelDest.add(R.id.home_fragment);
         topLevelDest.add(R.id.orders_fragment);
         topLevelDest.add(R.id.user_profile_fragment);
-        topLevelDest.add(R.id.user_address_fragment);
 
         appBarConfiguration = new AppBarConfiguration.Builder(topLevelDest)
-                        .setDrawerLayout(drawerLayout)
-                        .build();
+                .setDrawerLayout(binding.drawerLayout)
+                .build();
 
-        NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout);
-        NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
+        NavigationUI.setupActionBarWithNavController(this, navController, binding.drawerLayout);
+        NavigationUI.setupWithNavController(binding.toolbar, navController, appBarConfiguration);
 
         navigationView.setNavigationItemSelectedListener(this);
     }
 
     private void makeFullScreen(){
-        appBarLayout.setVisibility(View.GONE);
+        binding.appBar.setVisibility(View.GONE);
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
     }
 
@@ -185,6 +186,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+    private void setupBadge() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        Set<String> productIDs = preferences.getStringSet(PreferenceKeys.shopping_cart, new HashSet<String>());
+        mCartItemCount = productIDs.size();
+
+        if (cartItemCount != null) {
+            if (mCartItemCount == 0) {
+                if (cartItemCount.getVisibility() != View.GONE) {
+                    cartItemCount.setVisibility(View.GONE);
+                }
+            } else {
+                cartItemCount.setText(String.valueOf(Math.min(mCartItemCount, 99)));
+                /*if (cartItemCount.getVisibility() != View.VISIBLE) {
+                    cartItemCount.setVisibility(View.VISIBLE);
+                }*/
+            }
+        }
+    }
+
     public boolean onOptionsItemSelected(MenuItem item){
         if (item.getItemId()==R.id.cart){
             navController.navigate(R.id.action_open_cart);
@@ -201,7 +221,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.orders:
                 if (navController.getCurrentDestination().getId() != R.id.orders_fragment) {
                     navController.navigate(R.id.action_homeFragment_to_ordersFragment);
-            }
+                }
                 break;
 
             case R.id.user_profile:
@@ -209,30 +229,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     navController.navigate(R.id.action_homeFragment_to_profileFragment);
                 }
                 break;
-
-            case R.id.user_address:
-                if (navController.getCurrentDestination().getId() != R.id.user_address) {
-                    navController.navigate(R.id.action_homeFragment_to_addressFragment);
-                }
-                break;
         }
         return false;
-    }
-
-    private void setupBadge() {
-
-        if (cartItemCount != null) {
-            if (mCartItemCount == 0) {
-                if (cartItemCount.getVisibility() != View.GONE) {
-                    cartItemCount.setVisibility(View.GONE);
-                }
-            } else {
-                cartItemCount.setText(String.valueOf(Math.min(mCartItemCount, 99)));
-                if (cartItemCount.getVisibility() != View.VISIBLE) {
-                    cartItemCount.setVisibility(View.VISIBLE);
-                }
-            }
-        }
     }
 
     private boolean isLocationEnabled() {
@@ -274,5 +272,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static void logout() {
         //FirebaseAuth.getInstance().signOut();
     }
+
 }
 

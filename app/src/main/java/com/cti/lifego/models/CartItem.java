@@ -2,21 +2,14 @@ package com.cti.lifego.models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Product {
-    @SerializedName("id")
+public class CartItem {
     public int id;
-    @SerializedName("name")
     public String name;
-    @SerializedName("image")
     public int image;
-    @SerializedName("price")
     private String price;
-    @SerializedName("vendor")
     private String vendor;
-    @SerializedName("description")
-    public String description;
-    @SerializedName("rating")
-    public int rating;
+    private int quantity;
+    private Product product;
 
     public int getId() {
         return id;
@@ -49,7 +42,6 @@ public class Product {
     public void setVendor(String vendor) {
         this.vendor = vendor;
     }
-
     public int getImage() {
         return image;
     }
@@ -58,18 +50,19 @@ public class Product {
         this.image = image;
     }
 
-    public String getDescription() {
-        return description;
-    }
-    public void setDescription(String description) {
-        this.description = description;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
-    public int getRating() {
-        return rating;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setRating(int rating) {
-        this.rating = rating;
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }

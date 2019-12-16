@@ -12,10 +12,12 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.cti.lifego.R;
+import com.cti.lifego.databinding.CheckoutLocationBinding;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -25,31 +27,29 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.button.MaterialButton;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.net.PlacesClient;
 
 public class CheckoutLocation extends Fragment implements OnMapReadyCallback {
 
+    CheckoutLocationBinding binding;
     private FusedLocationProviderClient mfusedLocationProviderClient;
     private Location currentLocation;
     private GoogleMap mMap;
-    private MaterialButton button;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.checkout_location, container, false);
-        button = view.findViewById(R.id.confirm_location);
+        binding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.checkout_location, container, false);
         mfusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
-        fetchLocation();
+        if (!Places.isInitialized()){
+            Places.initialize(getContext(), "AIzaSyANbNmQEpFm7QdQ0h9qblys2Aip0o7kUBE");
+        }
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_checkout_Location_to_checkout_pricing_fragment);
-            }
-        });
-        return view;
+        PlacesClient placesClient = Places.createClient(getContext());
+        fetchLocation();
+        return binding.getRoot();
     }
 
     @Override
@@ -80,7 +80,6 @@ public class CheckoutLocation extends Fragment implements OnMapReadyCallback {
     private void mapInit() {
         LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
         MarkerOptions markerOptions = new MarkerOptions().position(latLng);
-        //mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,16.0f));
         mMap.addMarker(markerOptions);
     }

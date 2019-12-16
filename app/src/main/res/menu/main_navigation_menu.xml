@@ -28,11 +28,6 @@
                     android:title="@string/profile" />
 
                 <item
-                    android:id="@+id/user_address"
-                    android:icon="@drawable/ic_address"
-                    android:title="@string/address" />
-
-                <item
                     android:icon="@drawable/ic_power"
                     android:title="@string/logout" />
 
