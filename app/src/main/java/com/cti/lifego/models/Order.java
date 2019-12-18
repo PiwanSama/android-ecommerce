@@ -6,7 +6,7 @@ public class Order {
     @SerializedName("id")
     public int id;
     @SerializedName("total_price")
-    public String total_price;
+    public int total_price;
     @SerializedName("order_date")
     public String order_date;
     @SerializedName("delivery_date")
@@ -66,11 +66,11 @@ public class Order {
         this.delivery_address = delivery_address;
     }
 
-    public String getTotal_price() {
+    public int getTotal_price() {
         return total_price;
     }
 
-    public void setTotal_price(String total_price) {
+    public void setTotal_price(int total_price) {
         this.total_price = total_price;
     }
 }

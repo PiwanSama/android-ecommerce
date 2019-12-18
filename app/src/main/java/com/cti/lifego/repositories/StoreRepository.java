@@ -7,8 +7,8 @@ package com.cti.lifego.repositories;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.cti.lifego.api.NetworkService;
 import com.cti.lifego.api.RetrofitInstance;
-import com.cti.lifego.api.StoresInterface;
 import com.cti.lifego.models.Store;
 
 import java.util.List;
@@ -20,7 +20,7 @@ import retrofit2.Response;
 public class StoreRepository {
 
     private static StoreRepository instance;
-    private StoresInterface service = RetrofitInstance.getRetrofitInstance().create(StoresInterface.class);
+    private NetworkService service = RetrofitInstance.getRetrofitInstance().create(NetworkService.class);
 
     public static StoreRepository getInstance(){
         if(instance == null){

@@ -6,7 +6,6 @@ import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,7 +13,6 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
 import com.cti.lifego.R;
-import com.cti.lifego.activities.MainActivity;
 import com.cti.lifego.content.PreferenceKeys;
 import com.cti.lifego.databinding.ProductDetailBinding;
 import com.cti.lifego.models.Product;
@@ -24,8 +22,6 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProductDetailFragment extends Fragment {
     private ProductDetailBinding binding;
@@ -44,12 +40,12 @@ public class ProductDetailFragment extends Fragment {
         binding.addToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addToCart(product,1);
+                addToCart(product);
             }
         });
     }
 
-    public void addToCart(Product product, int quantity){
+    private void addToCart(Product product){
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         SharedPreferences.Editor editor = preferences.edit();
 
@@ -59,19 +55,7 @@ public class ProductDetailFragment extends Fragment {
         editor.putStringSet(PreferenceKeys.shopping_cart, productIDs);
         editor.commit();
 
-        int currentQuantity = preferences.getInt(String.valueOf(product.getId()), 0);
-
-        editor.putInt(String.valueOf(product.getId()), (currentQuantity + quantity));
-        editor.commit();
-
-        getShoppingCart();
-
         Snackbar snackbar = Snackbar.make(Objects.requireNonNull(getView()), R.string.item_added, BaseTransientBottomBar.LENGTH_SHORT);
         snackbar.show();
-    }
-
-    public void getShoppingCart() {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        preferences.getStringSet(PreferenceKeys.shopping_cart,new HashSet<>());
     }
 }

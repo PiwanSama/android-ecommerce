@@ -6,7 +6,7 @@ public class CartItem {
     public int id;
     public String name;
     public int image;
-    private String price;
+    private int price;
     private String vendor;
     private int quantity;
     private Product product;
@@ -27,11 +27,11 @@ public class CartItem {
         this.name = name;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 

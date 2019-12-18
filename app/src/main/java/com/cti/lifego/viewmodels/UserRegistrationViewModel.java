@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 
 import com.cti.lifego.api.RetrofitInstance;
-import com.cti.lifego.api.UserService;
+import com.cti.lifego.api.NetworkService;
 import com.cti.lifego.models.User;
 
 import retrofit2.Call;
@@ -21,7 +21,7 @@ public class UserRegistrationViewModel extends ViewModel {
 
     public void createUser(User user) {
 
-        UserService service = RetrofitInstance.getRetrofitInstance().create(UserService.class);
+        NetworkService service = RetrofitInstance.getRetrofitInstance().create(NetworkService.class);
 
         Call<User> call = service.createUser(user);
 

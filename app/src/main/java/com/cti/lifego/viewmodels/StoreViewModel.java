@@ -22,7 +22,6 @@ import java.util.List;
 
 public class StoreViewModel extends BaseObservable {
     private LiveData<List<Store>> stores;
-    private MutableLiveData<Store> store;
     private StoreRepository storeRepository;
     private MutableLiveData<Boolean> mIsUpdating = new MutableLiveData<>();
     private Boolean imageVisibility;
@@ -40,7 +39,7 @@ public class StoreViewModel extends BaseObservable {
     }
 
     public LiveData<Store> getStore(String storeID){
-        store = storeRepository.getStore(storeID);
+        MutableLiveData<Store> store = storeRepository.getStore(storeID);
         return store;
     }
 

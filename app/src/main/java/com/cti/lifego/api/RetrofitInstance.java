@@ -19,12 +19,10 @@ public class RetrofitInstance {
                 .addInterceptor(loggingInterceptor)
                 .build();
 
-        Retrofit retrofit = new Retrofit.Builder()
+        return new Retrofit.Builder()
                 .baseUrl("http://core.ctiafrica.io/v1/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
-        return retrofit;
     }
 }

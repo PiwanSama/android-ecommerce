@@ -10,7 +10,7 @@ public class Product {
     @SerializedName("image")
     public int image;
     @SerializedName("price")
-    private String price;
+    private int price;
     @SerializedName("vendor")
     private String vendor;
     @SerializedName("description")
@@ -34,11 +34,11 @@ public class Product {
         this.name = name;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 

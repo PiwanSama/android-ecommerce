@@ -37,54 +37,60 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="@string/sign_in"
-        android:textSize="16sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />
 
-    <EditText
-        android:background="@drawable/rounded_background"
-        android:hint="@string/email"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="300dp"
         android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:paddingLeft="10dp"
-        android:paddingRight="5dp"
-        android:paddingStart="10dp"
-        android:paddingEnd="5dp"/>
+        android:layout_margin="8dp"
+        android:hint="@string/email">
 
-    <EditText
-        android:background="@drawable/rounded_background"
-        android:hint="@string/password"
+        <com.google.android.material.textfield.TextInputEditText
+            android:background="@drawable/rounded_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:paddingLeft="10dp"
+            android:paddingRight="5dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="5dp"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="300dp"
         android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:singleLine="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:paddingLeft="10dp"
-        android:paddingRight="5dp"
-        android:paddingStart="10dp"
-        android:paddingEnd="5dp"
-        />
+        android:layout_margin="8dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:background="@drawable/rounded_background"
+            android:hint="@string/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:singleLine="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:paddingLeft="10dp"
+            android:paddingRight="5dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="5dp"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -112,27 +118,30 @@
             android:layout_height="match_parent"
             />
 
-        <EditText
-            android:background="@drawable/rounded_background"
-            android:hint="@string/phone_number"
-            android:layout_width="180dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:maxLength="9"
-            android:inputType="phone"
-            android:singleLine="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:paddingLeft="10dp"
-            android:paddingRight="5dp"
-            android:paddingStart="10dp"
-            android:paddingEnd="5dp"
-            />
+       <com.google.android.material.textfield.TextInputLayout
+           android:layout_width="180dp"
+           android:layout_height="40dp"
+           android:layout_margin="8dp"
+           android:hint="@string/phone_number">
+
+           <EditText
+               android:background="@drawable/rounded_background"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:maxLength="9"
+               android:inputType="phone"
+               android:singleLine="true"
+               app:layout_constraintBottom_toBottomOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toTopOf="parent"
+               android:paddingLeft="10dp"
+               android:paddingRight="5dp"
+               android:paddingStart="10dp"
+               android:paddingEnd="5dp"
+               />
+
+       </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
 
@@ -148,12 +157,13 @@
         android:weightSum="2"
         >
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/sign_in"
             android:layout_margin="10dp"
+            app:cornerRadius="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -161,12 +171,13 @@
             style="?android:attr/buttonBarButtonStyle"
             />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/register"
             android:layout_margin="10dp"
+            app:cornerRadius="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -180,16 +191,14 @@
         android:id="@+id/skip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_margin="8dp"
         android:text="@string/skip"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:textColor="@color/white"
+        android:textColor="@color/colorPrimary"
         />
 
     <ProgressBar

@@ -9,7 +9,6 @@
             name="cartItemView"
             type="com.cti.lifego.viewmodels.CartItemViewModel" />
 
-        <import type="com.cti.lifego.intefaces.ICartFragment"/>
     </data>
 
     <LinearLayout

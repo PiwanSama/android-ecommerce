@@ -8,10 +8,14 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.cti.lifego.R;
 import com.cti.lifego.databinding.CartListItemBinding;
 import com.cti.lifego.models.CartItem;
+import com.cti.lifego.viewmodels.CartItemViewModel;
+import com.cti.lifego.viewmodels.CartViewModel;
 
 import java.util.List;
 
@@ -31,7 +35,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             this.binding = binding;
         }
         void bind(CartItem cartItem){
-            binding.setCartItem(cartItem);
             binding.executePendingBindings();
         }
     }
@@ -39,14 +42,19 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        CartListItemBinding binding = CartListItemBinding.inflate(LayoutInflater.from(parent.getContext()),parent,false);
+
+        CartListItemBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.cart_list_item,parent,false);
+
         return new ViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        CartItemViewModel viewModel = new CartItemViewModel();
         CartItem cartItem = cartItems.get(position);
-        holder.bind(cartItem);
+        viewModel.setCartItem(cartItem);
+        holder.binding.setCartItemView(viewModel);
+        holder.binding.executePendingBindings();
     }
 
     @Override

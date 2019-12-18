@@ -25,7 +25,7 @@ public class User {
     @SerializedName("kin_phone_number")
     public String kin_phone_number;
     @SerializedName("relationship_type")
-    public String relationship_type;
+    public int relationship_type;
 
     public String getSurname() {
         return surname;
@@ -107,11 +107,11 @@ public class User {
         this.kin_phone_number = kin_phone_number;
     }
 
-    public String getRelationship_type() {
+    public int getRelationship_type() {
         return relationship_type;
     }
 
-    public void setRelationship_type(String relationship_type) {
+    public void setRelationship_type(int relationship_type) {
         this.relationship_type = relationship_type;
     }
     

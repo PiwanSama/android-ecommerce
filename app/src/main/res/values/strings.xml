@@ -21,11 +21,19 @@
         <item>+256</item>
     </string-array>
 
-    <string-array name="region_array">
-        <item>Central</item>
-        <item>West</item>
-        <item>East</item>
-        <item>North</item>
+    <string-array name="relationship_array">
+        <item>Father</item>
+        <item>Mother</item>
+        <item>Son</item>
+        <item>Daughter</item>
+        <item>Sister</item>
+        <item>Guardian</item>
+        <item>Foster/Step Parent</item>
+        <item>Husband</item>
+        <item>Brother</item>
+        <item>Wife</item>
+        <item>Grandparent</item>
+        <item>Other</item>
     </string-array>
 
     <string-array name="central_region_array">
@@ -132,5 +140,7 @@
     <string name="dob">Date of Birth</string>
     <string name="cart_empty">Your cart is empty!</string>
     <string name="key_shopping_cart">shopping_cart</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
 </resources>

@@ -16,7 +16,7 @@ public class CartItemViewModel {
         return cartItem;
     }
 
-    private void setCartItem(CartItem cartItem) {
+    public void setCartItem(CartItem cartItem) {
         this.cartItem = cartItem;
     }
 
