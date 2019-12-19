@@ -1,7 +1,5 @@
 package com.cti.lifego.models;
 
-import com.google.gson.annotations.SerializedName;
-
 public class CartItem {
     public int id;
     public String name;

@@ -6,10 +6,12 @@ package com.cti.lifego.viewmodels;
 
 import android.content.Context;
 
+import androidx.lifecycle.ViewModel;
+
 import com.cti.lifego.intefaces.ICartFragment;
 import com.cti.lifego.models.CartItem;
 
-public class CartItemViewModel {
+public class CartItemViewModel extends ViewModel {
     private CartItem cartItem;
 
     public CartItem getCartItem() {

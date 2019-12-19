@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (c) 2019. Written by Samalie Piwan
-  -->
-
 <layout>
 
     <data>
@@ -15,7 +11,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/category"
+        android:id="@+id/category_item"
         android:layout_width="match_parent"
         android:layout_height="160dp"
         app:rippleColor="@color/lightGrey"
@@ -29,9 +25,7 @@
             android:scaleType="centerCrop"
             android:foreground="@drawable/image_gradient"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            imageResource="@{category.image}"
-             />
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
             android:id="@+id/category_name"

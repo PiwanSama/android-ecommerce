@@ -40,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:text="@{cartItemView.cartItem.product.name}"
+                android:text="@{cartItemView.cartItem.quantity}"
                 android:textStyle="bold"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -95,7 +95,7 @@
                     android:layout_height="wrap_content"
                     android:layout_width="0dp"
                     android:gravity="center"
-                    android:text="@={cartItemView.cartItem.product.quantity}"
+                    android:text="@{cartItemView.cartItem.quantity}"
                     android:layout_weight="1"/>
 
                 <ImageView

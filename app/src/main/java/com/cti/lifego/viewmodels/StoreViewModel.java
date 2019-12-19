@@ -9,6 +9,7 @@ import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
@@ -20,11 +21,12 @@ import com.cti.lifego.repositories.StoreRepository;
 
 import java.util.List;
 
-public class StoreViewModel extends BaseObservable {
+public class StoreViewModel extends ViewModel {
     private LiveData<List<Store>> stores;
     private StoreRepository storeRepository;
     private MutableLiveData<Boolean> mIsUpdating = new MutableLiveData<>();
     private Boolean imageVisibility;
+    private Store store;
 
     public void init(){
         if (stores!=null){
@@ -32,6 +34,14 @@ public class StoreViewModel extends BaseObservable {
         }
         storeRepository = StoreRepository.getInstance();
         stores = storeRepository.listStores();
+    }
+
+    public Store getStore() {
+        return store;
+    }
+
+    public void setStore(Store store) {
+        this.store = store;
     }
 
     public LiveData<List<Store>> getStores(){
@@ -43,12 +53,10 @@ public class StoreViewModel extends BaseObservable {
         return store;
     }
 
-    @Bindable
     public Boolean getImageVisibility() { return imageVisibility; }
 
     public void setImageVisibility(boolean imageVisibility){
         this.imageVisibility = imageVisibility;
-        notifyPropertyChanged(BR.imageVisibility);
     }
 
     public RequestListener customRequestListener(){

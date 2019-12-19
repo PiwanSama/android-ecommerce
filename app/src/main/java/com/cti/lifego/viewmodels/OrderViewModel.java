@@ -4,5 +4,7 @@
 
 package com.cti.lifego.viewmodels;
 
-public class OrderViewModel {
+import androidx.lifecycle.ViewModel;
+
+public class OrderViewModel extends ViewModel {
 }

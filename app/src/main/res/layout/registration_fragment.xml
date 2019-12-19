@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,14 +23,14 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:hint="@string/given_name"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_margin="8dp">
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                style="@style/Widget.Design.TextInputLayout">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/user_given_name"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:ems="10" android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                    android:layout_height="match_parent"        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
                     android:inputType="textPersonName|textCapWords"
                     android:textColor="@color/fontColor"
                     android:textColorHint="@color/mutedText"
@@ -40,15 +40,15 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:hint="@string/surname">
+                android:hint="@string/surname"
+                style="@style/Widget.Design.TextInputLayout">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/user_surname"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:ems="10"
                     android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
                     android:inputType="textPersonName|textCapWords"
                     android:textColor="@color/fontColor"
@@ -58,8 +58,9 @@
 
            <com.google.android.material.textfield.TextInputLayout
                android:layout_width="match_parent"
-               android:layout_height="50dp"
-               android:layout_margin="8dp">
+               android:layout_height="wrap_content"
+               android:layout_margin="8dp"
+               style="@style/Widget.Design.TextInputLayout">
 
                <com.google.android.material.textfield.TextInputEditText
                    android:layout_width="match_parent"
@@ -75,9 +76,10 @@
 
            <com.google.android.material.textfield.TextInputLayout
                android:layout_width="match_parent"
-               android:layout_height="50dp"
+               android:layout_height="wrap_content"
                android:layout_margin="8dp"
-               android:hint="@string/password">
+               android:hint="@string/password"
+               style="@style/Widget.Design.TextInputLayout">
 
                <com.google.android.material.textfield.TextInputEditText
                    android:id="@+id/user_password"
@@ -92,9 +94,12 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:hint="@string/dob">
+                android:hint="@string/dob"
+                android:clickable="false"
+                android:focusable="false"
+                style="@style/Widget.Design.TextInputLayout">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/user_dob"
@@ -102,8 +107,6 @@
                     android:layout_height="match_parent"
                     android:ems="10"
                     android:inputType="none"
-                    android:clickable="true"
-                    android:focusable="true"
                     android:textColorHint="@color/mutedText" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -129,8 +132,9 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_margin="8dp">
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    style="@style/Widget.Design.TextInputLayout">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/user_phone_number"
@@ -229,9 +233,10 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:hint="@string/next_of_kin_name">
+                android:hint="@string/next_of_kin_name"
+                style="@style/Widget.Design.TextInputLayout">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/next_of_kin_name"
@@ -265,8 +270,9 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:hint="@string/phone_number">
+                    android:layout_height="wrap_content"
+                    android:hint="@string/phone_number"
+                    style="@style/Widget.Design.TextInputLayout">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/kin_phone_number"
@@ -291,6 +297,12 @@
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/next_of_kin_r_type"
+                android:layout_margin="8dp"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -299,8 +311,8 @@
 
                 <Spinner
                     android:id="@+id/relationship_type_spinner"
-                    android:layout_width="100dp"
-                    android:layout_height="match_parent" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 

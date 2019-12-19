@@ -12,7 +12,7 @@ import com.kofigyan.stateprogressbar.StateProgressBar;
 
 public class CheckoutSuccess extends Fragment {
 
-    StateProgressBar progressBar;
+    private StateProgressBar progressBar;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

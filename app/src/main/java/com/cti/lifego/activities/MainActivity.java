@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         drawerLayout = binding.drawerLayout;
         searchView = binding.searchView;
+        navigationView = binding.navigationView;
         setUpNavigation();
         setUpSearch();
         getLocationPermission();

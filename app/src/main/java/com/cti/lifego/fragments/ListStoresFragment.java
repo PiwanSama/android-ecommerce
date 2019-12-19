@@ -33,13 +33,5 @@ public class ListStoresFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        MaterialCardView card = view.findViewById(R.id.store_click);
-
-        card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_list_stores_to_browse_store);
-            }
-        });
     }
 }

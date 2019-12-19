@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.cti.lifego.R;
 import com.cti.lifego.adapters.CartAdapter;
@@ -17,6 +18,7 @@ import com.cti.lifego.content.PreferenceKeys;
 import com.cti.lifego.databinding.CartFragmentBinding;
 import com.cti.lifego.models.CartItem;
 import com.cti.lifego.viewmodels.CartViewModel;
+import com.cti.lifego.viewmodels.UserRegistrationViewModel;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -27,13 +29,16 @@ public class CartFragment extends Fragment {
 
     private CartFragmentBinding binding;
     private CartAdapter adapter;
-    List<CartItem> cartItems;
+    private List<CartItem> cartItems;
+    CartViewModel cartViewModel;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         binding = DataBindingUtil.inflate(LayoutInflater.from(getContext()),R.layout.cart_fragment, container, false);
+        cartViewModel = new ViewModelProvider(this).get(CartViewModel.class);
+        binding.setCartView(cartViewModel);
         getShoppingCartList();
         return binding.getRoot();
     }

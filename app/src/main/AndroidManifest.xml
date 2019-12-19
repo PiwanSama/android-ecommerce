@@ -1,4 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.cti.lifego">
 
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -17,7 +18,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyANbNmQEpFm7QdQ0h9qblys2Aip0o7kUBE"/>
+            android:value="AIzaSyANbNmQEpFm7QdQ0h9qblys2Aip0o7kUBE" />
 
         <meta-data
             android:name="android.app.default_searchable"
@@ -32,7 +33,8 @@
                 android:resource="@xml/searchable"/>
         </activity>
 
-        <activity android:name="com.cti.lifego.activities.MainActivity">
+        <activity
+            android:name="com.cti.lifego.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
