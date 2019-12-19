@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
 
         networkChangeReceiver = new NetworkChangeReceiver();
-
         registerReceiver(networkChangeReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 
         binding = DataBindingUtil.setContentView(this, R.layout.main_activity);
