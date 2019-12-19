@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:bind="http://schemas.android.com/tools">
 
     <data>
         <variable
@@ -8,7 +8,7 @@
         <variable
             name="imageVisibility"
             type="boolean" />
-        <import type="com.cti.lifego.utils.Utils"/>
+        <import type="com.cti.lifego.utils.StringUtils"/>
         <import type="android.view.View"/>
     </data>
 
@@ -32,7 +32,6 @@
                 android:layout_height="200dp"
                 android:scaleType="centerCrop"
                 imageResource="@{storeView.store.image}"
-                requestListener="@{storeView.customRequestListener()}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/store_name"/>

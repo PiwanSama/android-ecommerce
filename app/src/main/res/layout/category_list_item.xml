@@ -6,7 +6,7 @@
             name="category"
             type="com.cti.lifego.models.Category" />
 
-        <import type="com.cti.lifego.utils.Utils"/>
+        <import type="com.cti.lifego.utils.StringUtils"/>
 
     </data>
 

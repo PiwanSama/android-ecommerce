@@ -142,5 +142,6 @@
     <string name="key_shopping_cart">shopping_cart</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="no_internet">Sorry! We couldn\'t connect to the internet</string>
 
 </resources>

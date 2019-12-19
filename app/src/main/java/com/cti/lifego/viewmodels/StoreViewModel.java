@@ -53,23 +53,11 @@ public class StoreViewModel extends ViewModel {
         return store;
     }
 
-    public Boolean getImageVisibility() { return imageVisibility; }
-
-    public void setImageVisibility(boolean imageVisibility){
-        this.imageVisibility = imageVisibility;
+    public Boolean getImageVisibility() {
+        return imageVisibility;
     }
 
-    public RequestListener customRequestListener(){
-        return new RequestListener() {
-            @Override
-            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target target, boolean isFirstResource) {
-                return false;
-            }
-
-            @Override
-            public boolean onResourceReady(Object resource, Object model, Target target, DataSource dataSource, boolean isFirstResource) {
-                return false;
-            }
-        };
+    public void setImageVisibility(Boolean imageVisibility) {
+        this.imageVisibility = imageVisibility;
     }
 }

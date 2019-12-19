@@ -1,5 +1,11 @@
 package com.cti.lifego.models;
 
+import android.widget.ImageView;
+
+import androidx.databinding.BindingAdapter;
+
+import com.bumptech.glide.Glide;
+
 public class CartItem {
     public int id;
     public String name;

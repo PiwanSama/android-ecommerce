@@ -22,7 +22,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.cti.lifego.R;
 import com.cti.lifego.databinding.RegistrationFragmentBinding;
 import com.cti.lifego.models.User;
-import com.cti.lifego.utils.Utils;
+import com.cti.lifego.utils.StringUtils;
 import com.cti.lifego.viewmodels.UserRegistrationViewModel;
 import com.google.gson.Gson;
 
@@ -66,7 +66,7 @@ public class RegistrationFragment extends Fragment{
         setUpSpinner();
 
         User user = new User();
-        Utils utils = new Utils();
+        StringUtils stringUtils = new StringUtils();
 
         binding.userDob.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,8 +151,8 @@ public class RegistrationFragment extends Fragment{
                     user.password = password;
                     user.dob = dob;
                     user.next_of_kin_name = kin_name;
-                    user.phone = Utils.getPhoneNumber(user_phone_spinner.getSelectedItem().toString(), user_phone_text);
-                    user.kin_phone_number = Utils.getPhoneNumber(kin_phone_spinner.getSelectedItem().toString(), kin_phone_text);
+                    user.phone = StringUtils.getPhoneNumber(user_phone_spinner.getSelectedItem().toString(), user_phone_text);
+                    user.kin_phone_number = StringUtils.getPhoneNumber(kin_phone_spinner.getSelectedItem().toString(), kin_phone_text);
                     user.gender = genderRadioButton.getText().toString();
                     user.opt_in = genderRadioButton.getText().toString();
                     user.relationship_type = getRelationshipType();

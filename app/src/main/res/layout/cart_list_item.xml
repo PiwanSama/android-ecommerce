@@ -3,7 +3,8 @@
   ~ Copyright (c) 2019. Written by Samalie Piwan
   -->
 
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
     <data>
         <variable
             name="cartItemView"

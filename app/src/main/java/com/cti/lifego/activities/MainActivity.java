@@ -1,9 +1,12 @@
 package com.cti.lifego.activities;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -36,6 +39,7 @@ import com.cti.lifego.R;
 import com.cti.lifego.content.PreferenceKeys;
 import com.cti.lifego.databinding.MainActivityBinding;
 import com.cti.lifego.intefaces.IMainActivity;
+import com.cti.lifego.utils.NetworkChangeReceiver;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.navigation.NavigationView;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
@@ -46,6 +50,7 @@ import java.util.Set;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, IMainActivity {
 
+    private BroadcastReceiver networkChangeReceiver = null;
     NavController navController;
     NavigationView navigationView;
     MainActivityBinding binding;
@@ -60,6 +65,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        networkChangeReceiver = new NetworkChangeReceiver();
+
+        registerReceiver(networkChangeReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 
         binding = DataBindingUtil.setContentView(this, R.layout.main_activity);
 
@@ -267,6 +276,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 mLocationPermissionGranted = true;
             }
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(networkChangeReceiver);
     }
 
     //Logs out user and redirects to login activity
