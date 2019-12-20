@@ -20,10 +20,11 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.cti.lifego.R;
+import com.cti.lifego.databinding.LoginFragmentBinding;
 import com.cti.lifego.databinding.RegistrationFragmentBinding;
 import com.cti.lifego.models.User;
 import com.cti.lifego.utils.StringUtils;
-import com.cti.lifego.viewmodels.UserRegistrationViewModel;
+import com.cti.lifego.viewmodels.UserViewModel;
 import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;
@@ -37,7 +38,7 @@ import static com.cti.lifego.R.array.relationship_array;
 public class RegistrationFragment extends Fragment{
 
     private Spinner user_phone_spinner, kin_phone_spinner, relationship_spinner;
-    private UserRegistrationViewModel viewModel;
+    private UserViewModel viewModel;
     private Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
     private RegistrationFragmentBinding binding;
     private RadioButton genderRadioButton;
@@ -47,11 +48,10 @@ public class RegistrationFragment extends Fragment{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         binding = DataBindingUtil.inflate(inflater, R.layout.registration_fragment, container, false);
-        View v = binding.getRoot();
-        viewModel = new ViewModelProvider(this).get(UserRegistrationViewModel.class);
-        return v;
+        viewModel = new ViewModelProvider(this).get(UserViewModel.class);
+        binding.setLifecycleOwner(this);
+        return binding.getRoot();
     }
 
     @Override
@@ -151,13 +151,14 @@ public class RegistrationFragment extends Fragment{
                     user.password = password;
                     user.dob = dob;
                     user.next_of_kin_name = kin_name;
-                    user.phone = StringUtils.getPhoneNumber(user_phone_spinner.getSelectedItem().toString(), user_phone_text);
-                    user.kin_phone_number = StringUtils.getPhoneNumber(kin_phone_spinner.getSelectedItem().toString(), kin_phone_text);
+                    user.phone = StringUtils.concatStrings(user_phone_spinner.getSelectedItem().toString(), user_phone_text);
+                    user.kin_phone_number = StringUtils.concatStrings(kin_phone_spinner.getSelectedItem().toString(), kin_phone_text);
                     user.gender = genderRadioButton.getText().toString();
                     user.opt_in = genderRadioButton.getText().toString();
                     user.relationship_type = getRelationshipType();
                     Gson gson = new Gson();
                     Log.i("Reg", gson.toJson(user));
+                    viewModel.setRegistrationUser(user);
                     //viewModel.createUser(user);
                 }
             }

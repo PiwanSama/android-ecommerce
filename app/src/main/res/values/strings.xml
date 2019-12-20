@@ -145,7 +145,7 @@
     <string name="no_internet">Sorry! We couldn\'t connect to the internet</string>
     <string name="password_sign">Password</string>
     <string name="create_account">Create account</string>
-    <string name="sign_in_life">Sign in to LifeGo and start shopping!</string>
-    <string name="log_in">Sign in to your account</string>
+    <string name="log_in">Log In</string>
+    <string name="log_in_lifego">Log in to LifeGo</string>
 
 </resources>

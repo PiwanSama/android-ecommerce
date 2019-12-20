@@ -13,6 +13,7 @@ import com.cti.lifego.api.RetrofitInstance;
 import com.cti.lifego.api.NetworkService;
 import com.cti.lifego.models.User;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -23,11 +24,11 @@ public class UserRegistrationViewModel extends ViewModel {
 
         NetworkService service = RetrofitInstance.getRetrofitInstance().create(NetworkService.class);
 
-        Call<User> call = service.createUser(user);
+        Call<ResponseBody> call = service.createUser(user);
 
-        call.enqueue(new Callback<User>() {
+        call.enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
+            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
                 if (response.isSuccessful()){
                     Log.e("API", "Insert Success"+response.body()+"XXX"+response.message());
                 }
@@ -37,7 +38,7 @@ public class UserRegistrationViewModel extends ViewModel {
             }
 
             @Override
-            public void onFailure(@NonNull Call<User> call, Throwable t) {
+            public void onFailure(@NonNull Call<ResponseBody> call, Throwable t) {
                 Log.e("API", "Insert Failed");
 
             }

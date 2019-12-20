@@ -2,7 +2,7 @@ package com.cti.lifego.utils;
 
 public class StringUtils {
 
-    public static String getPhoneNumber(String str1, String str2){
+    public static String concatStrings(String str1, String str2){
         return str1.concat(str2);
     }
 

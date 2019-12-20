@@ -1,11 +1,15 @@
 package com.cti.lifego.activities;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,12 +19,15 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -29,8 +36,19 @@ import androidx.navigation.ui.NavigationUI;
 import com.cti.lifego.R;
 import com.cti.lifego.content.PreferenceKeys;
 import com.cti.lifego.databinding.MainActivityBinding;
+import com.cti.lifego.databinding.NavHeaderBinding;
 import com.cti.lifego.intefaces.IMainActivity;
 import com.cti.lifego.utils.NetworkUtil;
+import com.cti.lifego.viewmodels.UserViewModel;
+import com.google.android.gms.common.api.ResolvableApiException;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.SettingsClient;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
@@ -43,42 +61,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     NavController navController;
     NavigationView navigationView;
     MainActivityBinding binding;
+    UserViewModel userViewModel;
     DrawerLayout drawerLayout;
     MaterialSearchView searchView;
+    Boolean start;
     AppBarConfiguration appBarConfiguration;
     TextView cartItemCount;
-    Boolean mLocationPermissionGranted;
-    Boolean start = false, user = true;
     int mCartItemCount;
-    int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION  = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (isLocationEnabled()&&isConnected()){
-            if (user){
-                start = true;
-                setTheme(R.style.AppTheme);
-                binding = DataBindingUtil.setContentView(this, R.layout.main_activity);
-                getLocationPermission();
-                navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-                drawerLayout = binding.drawerLayout;
-                searchView = binding.searchView;
-                navigationView = binding.navigationView;
-                setUpNavigation();
-                setUpSearch();
-            }
-            else{
-
-            }
+        if (!isConnected()){
+            start = false;
+            showSnack(findViewById(android.R.id.content), "No internet connection");
         }
         else {
-            if (!isConnected()){
-                showSnack(findViewById(android.R.id.content), "No internet connection");
-            }
-            else if (isLocationEnabled()){
-                showSnack(findViewById(android.R.id.content), "Turn on your location");
-            }
+            start = true;
+            setTheme(R.style.AppTheme);
+            binding = DataBindingUtil.setContentView(this, R.layout.main_activity);
+            NavHeaderBinding navHeaderBinding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.nav_header, binding.navigationView, false);
+            binding.navigationView.addHeaderView(navHeaderBinding.getRoot());
+            userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+            navHeaderBinding.setUserViewModel(userViewModel);
+            navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+            drawerLayout = binding.drawerLayout;
+            searchView = binding.searchView;
+            navigationView = binding.navigationView;
+            setUpNavigation();
+            setUpSearch();
         }
     }
 
@@ -129,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             if (destination.getId() == R.id.registration_fragment){
                 makeFullScreen();
             }
-            else if (destination.getId() == R.id.sign_in_fragment){
+            else if (destination.getId() == R.id.login_fragment){
                 makeFullScreen();
             }
             else{
@@ -246,40 +257,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
         }
         return false;
-    }
-
-    private boolean isLocationEnabled() {
-        LocationManager locationManager = (LocationManager) (this.getSystemService(Context.LOCATION_SERVICE));
-        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
-                LocationManager.NETWORK_PROVIDER);
-    }
-
-    private void getLocationPermission() {
-        /*
-         * Request location permission, so that we can get the location of the
-         * device. The result of the permission request is handled by a callback,
-         * onRequestPermissionsResult.
-         */
-        if (ContextCompat.checkSelfPermission(this.getApplicationContext(),
-                android.Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
-            mLocationPermissionGranted = true;
-        } else {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
-        }
-    }
-
-    public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        mLocationPermissionGranted = false;
-        if (requestCode == 1) {// If request is cancelled, the result arrays are empty.
-            if (grantResults.length > 0
-                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                mLocationPermissionGranted = true;
-            }
-        }
     }
 
     private boolean isConnected(){

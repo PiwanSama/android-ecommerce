@@ -18,7 +18,6 @@
                 android:layout_marginTop="22dp"
                 android:layout_gravity="center"
                 android:text="@string/personal_details"
-                android:textColor="@color/colorPrimary"
                 style="@style/AllCapsTitle"/>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -35,7 +34,7 @@
                     android:inputType="textPersonName|textCapWords"
                     android:textColor="@color/fontColor"
                     android:textColorHint="@color/mutedText"
-                    />
+                   />
 
             </com.google.android.material.textfield.TextInputLayout>
 

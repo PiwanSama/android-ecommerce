@@ -3,7 +3,8 @@ package com.cti.lifego.models;
 import com.google.gson.annotations.SerializedName;
 
 public class User {
-
+    @SerializedName("id")
+    public int id;
     @SerializedName("surname")
     public String surname;
     @SerializedName("given_name")
@@ -26,6 +27,9 @@ public class User {
     public String kin_phone_number;
     @SerializedName("relationship_type")
     public int relationship_type;
+
+    @SerializedName("image")
+    public String image;
 
     public String getSurname() {
         return surname;
@@ -114,5 +118,20 @@ public class User {
     public void setRelationship_type(int relationship_type) {
         this.relationship_type = relationship_type;
     }
-    
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 }
