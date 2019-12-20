@@ -1,36 +1,27 @@
 package com.cti.lifego.activities;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
-import androidx.core.view.MenuItemCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
-import androidx.navigation.NavDestination;
-import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
@@ -39,18 +30,16 @@ import com.cti.lifego.R;
 import com.cti.lifego.content.PreferenceKeys;
 import com.cti.lifego.databinding.MainActivityBinding;
 import com.cti.lifego.intefaces.IMainActivity;
-import com.cti.lifego.utils.NetworkChangeReceiver;
-import com.google.android.material.appbar.AppBarLayout;
+import com.cti.lifego.utils.NetworkUtil;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, IMainActivity {
-
-    private BroadcastReceiver networkChangeReceiver = null;
     NavController navController;
     NavigationView navigationView;
     MainActivityBinding binding;
@@ -59,28 +48,38 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     AppBarConfiguration appBarConfiguration;
     TextView cartItemCount;
     Boolean mLocationPermissionGranted;
+    Boolean start = false;
     int mCartItemCount;
     int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION  = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (isLocationEnabled()&&isConnected()){
+            start = true;
+            setTheme(R.style.AppTheme);
+            binding = DataBindingUtil.setContentView(this, R.layout.main_activity);
+            getLocationPermission();
+            navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+            drawerLayout = binding.drawerLayout;
+            searchView = binding.searchView;
+            navigationView = binding.navigationView;
+            setUpNavigation();
+            setUpSearch();
+        }
+        else {
+            if (!isConnected()){
+                showSnack(findViewById(android.R.id.content), "No internet connection");
+            }
+            else if (isLocationEnabled()){
+                showSnack(findViewById(android.R.id.content), "Turn on your location");
+            }
+        }
+    }
 
-        networkChangeReceiver = new NetworkChangeReceiver();
-        registerReceiver(networkChangeReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
-
-        binding = DataBindingUtil.setContentView(this, R.layout.main_activity);
-
-        getLocationPermission();
-        isLocationEnabled();
-        navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        drawerLayout = binding.drawerLayout;
-        searchView = binding.searchView;
-        navigationView = binding.navigationView;
-        setUpNavigation();
-        setUpSearch();
-        getLocationPermission();
-        isLocationEnabled();
+    private void showSnack(View v, String s){
+        Snackbar snackbar = Snackbar.make(v, s, BaseTransientBottomBar.LENGTH_LONG);
+        snackbar.show();
     }
 
     private void setUpSearch() {
@@ -156,17 +155,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         binding.appBar.setVisibility(View.GONE);
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
     }
-
     @Override
     public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)){
-            drawerLayout.closeDrawer(GravityCompat.START);
-        }
-        if (searchView.isSearchOpen()){
-            searchView.closeSearch();
+        if (start){
+            if (drawerLayout.isDrawerOpen(GravityCompat.START)){
+                drawerLayout.closeDrawer(GravityCompat.START);
+            }
+            if (searchView.isSearchOpen()){
+                searchView.closeSearch();
+            }
+            else{
+                super.onBackPressed();
+            }
         }
         else{
             super.onBackPressed();
+            this.finish();
         }
     }
 
@@ -243,7 +247,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private boolean isLocationEnabled() {
-
         LocationManager locationManager = (LocationManager) (this.getSystemService(Context.LOCATION_SERVICE));
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
                 LocationManager.NETWORK_PROVIDER);
@@ -277,10 +280,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        unregisterReceiver(networkChangeReceiver);
+    private boolean isConnected(){
+        return NetworkUtil.getConnectivityString(this);
     }
 
     //Logs out user and redirects to login activity

@@ -18,9 +18,13 @@ import com.cti.lifego.adapters.CategoryAdapter;
 import com.cti.lifego.content.Categories;
 import com.cti.lifego.databinding.HomeFragmentBinding;
 import com.cti.lifego.models.Category;
+import com.cti.lifego.utils.NetworkUtil;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 
 public class HomeFragment extends Fragment {
 
@@ -36,10 +40,13 @@ public class HomeFragment extends Fragment {
         CategoryAdapter categoryAdapter = new CategoryAdapter(categoryArrayList);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
 
-
         homeFragmentBinding.categoryRecyclerView.setLayoutManager(linearLayoutManager);
         homeFragmentBinding.categoryRecyclerView.setAdapter(categoryAdapter);
 
         return homeFragmentBinding.getRoot();
+    }
+
+    private boolean isConnected(){
+        return NetworkUtil.getConnectivityString(Objects.requireNonNull(getContext()));
     }
 }

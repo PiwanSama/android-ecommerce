@@ -57,4 +57,9 @@
         <item name="colorControlActivated">@color/gold</item>
     </style>
 
+    <style name="splashScreenTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+        <item name="android:statusBarColor">@color/colorPrimary</item>
+    </style>
+
 </resources>
