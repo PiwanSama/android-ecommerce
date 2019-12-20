@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     AppBarConfiguration appBarConfiguration;
     TextView cartItemCount;
     Boolean mLocationPermissionGranted;
-    Boolean start = false;
+    Boolean start = false, user = true;
     int mCartItemCount;
     int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION  = 1;
 
@@ -56,16 +56,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (isLocationEnabled()&&isConnected()){
-            start = true;
-            setTheme(R.style.AppTheme);
-            binding = DataBindingUtil.setContentView(this, R.layout.main_activity);
-            getLocationPermission();
-            navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-            drawerLayout = binding.drawerLayout;
-            searchView = binding.searchView;
-            navigationView = binding.navigationView;
-            setUpNavigation();
-            setUpSearch();
+            if (user){
+                start = true;
+                setTheme(R.style.AppTheme);
+                binding = DataBindingUtil.setContentView(this, R.layout.main_activity);
+                getLocationPermission();
+                navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+                drawerLayout = binding.drawerLayout;
+                searchView = binding.searchView;
+                navigationView = binding.navigationView;
+                setUpNavigation();
+                setUpSearch();
+            }
+            else{
+
+            }
         }
         else {
             if (!isConnected()){
@@ -125,9 +130,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 makeFullScreen();
             }
             else if (destination.getId() == R.id.sign_in_fragment){
-                makeFullScreen();
-            }
-            else if (destination.getId() == R.id.sign_up_fragment){
                 makeFullScreen();
             }
             else{
@@ -269,7 +271,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String permissions[],
+                                           @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
         mLocationPermissionGranted = false;
         if (requestCode == 1) {// If request is cancelled, the result arrays are empty.

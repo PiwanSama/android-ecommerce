@@ -8,6 +8,6 @@
     <color name="blueGrey">#e7eff5</color>
     <color name="colorGrey">#EDF0F2</color>
     <color name="white">#FFFFFF</color>
-    <color name="lightGrey">#f9f9fa</color>
-    <color name="gold">#FFBC00</color>
+    <color name="lightGrey">#C5C1C1</color>
+    <color name="gold">#B9FFBC00</color>
 </resources>

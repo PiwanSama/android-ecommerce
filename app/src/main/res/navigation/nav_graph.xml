@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/home_fragment">
+    app:startDestination="@id/sign_in_fragment">
 
     <fragment
         android:id="@+id/home_fragment"
@@ -58,16 +58,8 @@
         android:id="@+id/sign_in_fragment"
         android:name="com.cti.lifego.fragments.SignInFragment"
         android:label="Sign In"
-        tools:layout="@layout/signin_fragment" />
+        tools:layout="@layout/signin_fragment">
 
-    <fragment
-        android:id="@+id/sign_up_fragment"
-        android:name="com.cti.lifego.fragments.SignUpFragment"
-        android:label="Register"
-        tools:layout="@layout/sign_up_fragment" >
-        <action
-            android:id="@+id/action_sign_up_fragment_to_registrationDetails"
-            app:destination="@id/registration_fragment" />
     </fragment>
 
     <fragment

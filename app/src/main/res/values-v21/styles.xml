@@ -26,7 +26,8 @@
         <item name="android:colorBackground">@color/white</item>
         <item name="android:textColor">@color/fontColor</item>
         <item name="android:textColorPrimary">@color/colorPrimary</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:statusBarColor">@color/gold</item>
         <item name="android:fontFamily">@font/quicksand_medium</item>
     </style>
 
