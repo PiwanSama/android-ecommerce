@@ -35,9 +35,7 @@
             android:id="@+id/map_fragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
-            map:cameraTilt = "30"
-            map:cameraZoom = "50" />
+            android:name="com.google.android.gms.maps.SupportMapFragment" />
 
     </FrameLayout>
 

@@ -60,13 +60,11 @@ public class CheckoutLocation extends Fragment implements GoogleMap.OnMyLocation
     private Location currentLocation;
     private GoogleMap mMap;
     private int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
-    private int PERMISSIONS_REQUEST_ENABLE_GPS = 2;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-       // getLocationPermission();
         return inflater.inflate(R.layout.checkout_location, container, false);
     }
 
@@ -102,61 +100,6 @@ public class CheckoutLocation extends Fragment implements GoogleMap.OnMyLocation
         });
     }
 
-    private void isLocationEnabled() {
-
-        LocationManager locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
-        boolean gps_enabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        if (!gps_enabled){
-            LocationRequest mLocationRequest = LocationRequest.create()
-                    .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-                    .setInterval(1000)
-                    .setNumUpdates(2);
-
-            final LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
-                    .addLocationRequest(mLocationRequest)
-                    .setAlwaysShow(true);
-
-            SettingsClient client = LocationServices.getSettingsClient(getContext());
-            Task<LocationSettingsResponse> task = client.checkLocationSettings(builder.build());
-
-            task.addOnSuccessListener(getActivity(), locationSettingsResponse -> {
-
-            });
-
-            task.addOnFailureListener(getActivity(), new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    if (e instanceof ResolvableApiException){
-                        try {
-                            //Show the dialog by calling startResolutionFroResult() and check the result onACtivityResult
-                            ResolvableApiException exception = (ResolvableApiException) e;
-                            exception.startResolutionForResult(getActivity(), PERMISSIONS_REQUEST_ENABLE_GPS);
-                        } catch (IntentSender.SendIntentException ex) {
-                            ex.printStackTrace();
-                        }
-                    }
-                }
-            });
-        }
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PERMISSIONS_REQUEST_ENABLE_GPS) {
-            // Make sure the request was successful
-            if (resultCode == RESULT_OK) {
-                //Location successfully enabled
-                Toast.makeText(getContext(), "Yes", Toast.LENGTH_LONG).show();
-                mMap.setMyLocationEnabled(true);
-            }
-            else {
-                Toast.makeText(getContext(), "No", Toast.LENGTH_LONG).show();
-            }
-        }
-
-    }
-
     private void getLocationPermission() {
         if (ContextCompat.checkSelfPermission((getContext()), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             //Location Permission not granted, start request
@@ -174,7 +117,6 @@ public class CheckoutLocation extends Fragment implements GoogleMap.OnMyLocation
         }
         else {
             //Location permission already granted
-            Toast.makeText(getContext(), "Good to go", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -221,7 +163,52 @@ public class CheckoutLocation extends Fragment implements GoogleMap.OnMyLocation
     public void onStart() {
         super.onStart();
         getLocationPermission();
+        getGpsStatus();
         Log.i("APP", "Started");
+    }
+
+    private void getGpsStatus() {
+
+        LocationManager locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
+        boolean gps_enabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        if (!gps_enabled){
+            LocationRequest mLocationRequest = LocationRequest.create()
+                    .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+                    .setInterval(1000)
+                    .setNumUpdates(2);
+
+            final LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
+                    .addLocationRequest(mLocationRequest)
+                    .setAlwaysShow(true);
+
+            SettingsClient client = LocationServices.getSettingsClient(getActivity());
+            Task<LocationSettingsResponse> task = client.checkLocationSettings(builder.build());
+
+            task.addOnSuccessListener(locationSettingsResponse -> { });
+
+            task.addOnFailureListener(e -> {
+                if (e instanceof ResolvableApiException){
+                    try {
+                        //Show the dialog by calling startResolutionFroResult() and check the result onActivityResult
+                        ResolvableApiException exception = (ResolvableApiException) e;
+                        exception.startResolutionForResult(getActivity(), 12);
+                    } catch (IntentSender.SendIntentException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            });
+        }
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+       // super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==12){
+            if (resultCode == RESULT_OK){
+            }
+            else {
+                getGpsStatus();
+            }
+        }
     }
 
     @Override

@@ -26,10 +26,12 @@ import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
@@ -55,6 +57,8 @@ import com.google.android.material.snackbar.Snackbar;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, IMainActivity {
@@ -68,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     AppBarConfiguration appBarConfiguration;
     TextView cartItemCount;
     int mCartItemCount;
+    private int PERMISSIONS_REQUEST_ENABLE_GPS = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -256,6 +261,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
         }
         return false;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
+        if (navHostFragment!=null){
+            for (Fragment fragment : navHostFragment.getChildFragmentManager().getFragments())
+                fragment.onActivityResult(requestCode, resultCode, data);
+        }
     }
 
     private boolean isConnected(){
