@@ -27,7 +27,6 @@ import com.google.gson.Gson;
 import static com.cti.lifego.R.array.country_code_array;
 
 public class LoginFragment extends Fragment implements AdapterView.OnItemSelectedListener {
-    private Spinner country_spinner;
     private LoginUserViewModel viewModel;
     private LoginFragmentBinding binding;
     private Boolean validated;
@@ -44,7 +43,6 @@ public class LoginFragment extends Fragment implements AdapterView.OnItemSelecte
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        country_spinner = binding.countryCode;
 
         binding.skip.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,19 +72,10 @@ public class LoginFragment extends Fragment implements AdapterView.OnItemSelecte
                 // viewModel.loginUser(user);
             }
         });
-
-        setUpCountrySpinner();
     }
 
     private void toast(String message){
         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
-    }
-
-    private void setUpCountrySpinner() {
-        country_spinner.setOnItemSelectedListener(this);
-        ArrayAdapter<String> countryCodeAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, getResources().getStringArray(country_code_array));
-        countryCodeAdapter.setDropDownViewResource(R.layout.custom_spinner_item);
-        country_spinner.setAdapter(countryCodeAdapter);
     }
 
     @Override

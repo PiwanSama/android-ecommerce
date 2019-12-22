@@ -147,5 +147,7 @@
     <string name="create_account">Create account</string>
     <string name="log_in">Log In</string>
     <string name="log_in_lifego">Log in to LifeGo</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="welcome_back">Welcome Back</string>
 
 </resources>

@@ -51,4 +51,13 @@
         <item name="android:statusBarColor">@color/colorPrimary</item>
     </style>
 
+    <style name="TextLabel"  parent="TextAppearance.MaterialComponents.Body1">
+        <!-- Hint and label color deactivated -->
+        <item name="android:textColorHint">@color/white</item>
+        <!-- Hint and label color activated-->
+        <item name="android:colorAccent">@color/gold</item>
+        <item name="android:colorControlNormal">@color/white</item>
+        <item name="android:colorControlActivated">@color/white</item>
+    </style>
+
 </resources>

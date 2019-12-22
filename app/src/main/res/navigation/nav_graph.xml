@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/login_fragment">
+    app:startDestination="@id/checkout_Location">
 
     <fragment
         android:id="@+id/home_fragment"

@@ -81,7 +81,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             setTheme(R.style.AppTheme);
             binding = DataBindingUtil.setContentView(this, R.layout.main_activity);
             NavHeaderBinding navHeaderBinding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.nav_header, binding.navigationView, false);
-            binding.navigationView.addHeaderView(navHeaderBinding.getRoot());
             userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
             navHeaderBinding.setUserViewModel(userViewModel);
             navController = Navigation.findNavController(this, R.id.nav_host_fragment);
