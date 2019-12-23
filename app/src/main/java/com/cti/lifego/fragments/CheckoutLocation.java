@@ -52,6 +52,7 @@ import com.google.android.gms.tasks.Task;
 
 import java.util.Objects;
 
+import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 
 public class CheckoutLocation extends Fragment implements GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener, OnMapReadyCallback {
@@ -59,7 +60,11 @@ public class CheckoutLocation extends Fragment implements GoogleMap.OnMyLocation
     private FusedLocationProviderClient mfusedLocationProviderClient;
     private Location currentLocation;
     private GoogleMap mMap;
-    private int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
+    private SupportMapFragment mapFragment;
+    private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
+    private static final int PERMISSIONS_REQUEST_ENABLE_GPS = 2;
+    private static final int PERMISSIONS_REQUEST_FROM_SETTINGS = 3;
+
 
     @Nullable
     @Override
@@ -72,21 +77,39 @@ public class CheckoutLocation extends Fragment implements GoogleMap.OnMyLocation
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mfusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
-        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map_fragment);
-       // mapFragment.getMapAsync(this);
+        mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map_fragment);
+        mapFragment.getMapAsync(this);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        getGpsStatus();
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap){
         mMap = googleMap;
+        if (ContextCompat.checkSelfPermission((getContext()), android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+            setUpMap();
+        }
+        else{
+            getLocationPermission();
+        }
+    }
+
+    private void setUpMap() {
         mMap.setMyLocationEnabled(true);
         mMap.setOnMyLocationButtonClickListener(this);
         mMap.setOnMyLocationClickListener(this);
-        mMap.setOnMapLoadedCallback(() -> {
-            mMap = googleMap;
-            mapInit();
-        });
+        mMap.setOnMapLoadedCallback(this::mapInit);
     }
+
     private void mapInit() {
         Task<Location> task = mfusedLocationProviderClient.getLastLocation();
         task.addOnSuccessListener(location -> {
@@ -101,18 +124,15 @@ public class CheckoutLocation extends Fragment implements GoogleMap.OnMyLocation
     }
 
     private void getLocationPermission() {
-        if (ContextCompat.checkSelfPermission((getContext()), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission((getActivity()), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             //Location Permission not granted, start request
-            if (shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)&&
-                    ContextCompat.checkSelfPermission(getContext(),
-                            android.Manifest.permission.ACCESS_FINE_LOCATION)
-                            != PackageManager.PERMISSION_GRANTED){
+            if (shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)){
                 //Explain to the user why you need the permission
                 displayNeverAskAgainDialog();
             }
             else {
                 // No explanation needed, request the permission
-                requestPermissions(new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+                 requestPermissions(new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
             }
         }
         else {
@@ -120,51 +140,21 @@ public class CheckoutLocation extends Fragment implements GoogleMap.OnMyLocation
         }
     }
 
-    @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        Log.i("Fragment", "Calling permission results");
         if (requestCode == PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION) {
             // If request is cancelled, the result arrays are empty.
             if (grantResults.length > 0 && grantResults[0] != PackageManager.PERMISSION_GRANTED){
                 //User has denied the location permissions
+                Toast.makeText(getActivity(), "NO", Toast.LENGTH_SHORT).show();
                 displayNeverAskAgainDialog();
             }
             else{
                 //Do nothing because permission is already granted
+                Toast.makeText(getActivity(), "YAY!!", Toast.LENGTH_SHORT).show();
+                setUpMap();
             }
         }
-    }
-
-    private void displayNeverAskAgainDialog() {
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setMessage("We need to access your location. Please grant the permission in your settings screen.");
-        builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-                Intent intent = new Intent();
-                intent.setAction(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                Uri uri = Uri.fromParts("package", getActivity().getPackageName(), null);
-                intent.setData(uri);
-                startActivity(intent);
-            }
-        });
-        builder.setCancelable(false);
-        builder.show();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        Log.i("APP", "Stopped");
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        getLocationPermission();
-        getGpsStatus();
-        Log.i("APP", "Started");
     }
 
     private void getGpsStatus() {
@@ -191,7 +181,7 @@ public class CheckoutLocation extends Fragment implements GoogleMap.OnMyLocation
                     try {
                         //Show the dialog by calling startResolutionFroResult() and check the result onActivityResult
                         ResolvableApiException exception = (ResolvableApiException) e;
-                        exception.startResolutionForResult(getActivity(), 12);
+                        exception.startResolutionForResult(getActivity(), PERMISSIONS_REQUEST_ENABLE_GPS);
                     } catch (IntentSender.SendIntentException ex) {
                         ex.printStackTrace();
                     }
@@ -201,14 +191,51 @@ public class CheckoutLocation extends Fragment implements GoogleMap.OnMyLocation
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-       // super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==12){
-            if (resultCode == RESULT_OK){
+        switch (requestCode){
+            case PERMISSIONS_REQUEST_ENABLE_GPS:
+                if (resultCode == RESULT_OK){
+                    //Do nothing because GPS is enabled
+                }
+                else {
+                    //Repeat request for GPS enable
+                    getGpsStatus();
+                }
+                break;
+            case PERMISSIONS_REQUEST_FROM_SETTINGS:
+                if (resultCode==RESULT_CANCELED){
+                    if (ContextCompat.checkSelfPermission((getActivity()), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+                        Toast.makeText(getActivity(), "Location granted", Toast.LENGTH_SHORT).show();
+                        setUpMap();
+                    }
+                    else {
+                        //Repeat request for GPS enable
+                        displayNeverAskAgainDialog();
+                    }
+                }
             }
-            else {
-                getGpsStatus();
+    }
+
+    private void displayNeverAskAgainDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage("We need to access your location. Please grant the permission in your settings screen.");
+        builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                Intent intent = new Intent();
+                intent.setAction(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                Uri uri = Uri.fromParts("package", getActivity().getPackageName(), null);
+                intent.setData(uri);
+                startActivityForResult(intent, PERMISSIONS_REQUEST_FROM_SETTINGS);
             }
-        }
+        });
+        builder.setCancelable(false);
+        builder.show();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
     }
 
     @Override

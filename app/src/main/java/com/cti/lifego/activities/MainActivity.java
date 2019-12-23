@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     AppBarConfiguration appBarConfiguration;
     TextView cartItemCount;
     int mCartItemCount;
-    private int PERMISSIONS_REQUEST_ENABLE_GPS = 2;
+    NavHostFragment navHostFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +94,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             navigationView = binding.navigationView;
             setUpNavigation();
             setUpSearch();
+            navHostFragment  = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
         }
     }
 
@@ -266,10 +267,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
         if (navHostFragment!=null){
-            for (Fragment fragment : navHostFragment.getChildFragmentManager().getFragments())
+            for (Fragment fragment : navHostFragment.getChildFragmentManager().getFragments()){
                 fragment.onActivityResult(requestCode, resultCode, data);
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        Log.i("Main", "Calling permission results");
+        if (navHostFragment!=null){
+            for (Fragment fragment : navHostFragment.getChildFragmentManager().getFragments()){
+                fragment.onRequestPermissionsResult(requestCode, permissions, grantResults);
+            }
         }
     }
 
@@ -284,3 +296,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 }
 
+
+
+//todo Check for wifi connection
