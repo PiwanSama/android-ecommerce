@@ -14,7 +14,6 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,16 +23,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.cti.lifego.R;
-import com.cti.lifego.activities.MainActivity;
 import com.google.android.gms.common.api.ResolvableApiException;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
@@ -46,10 +42,15 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 import static android.app.Activity.RESULT_CANCELED;
@@ -61,6 +62,7 @@ public class CheckoutLocation extends Fragment implements GoogleMap.OnMyLocation
     private Location currentLocation;
     private GoogleMap mMap;
     private SupportMapFragment mapFragment;
+    private AutocompleteSupportFragment autoCompleteFragment;
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
     private static final int PERMISSIONS_REQUEST_ENABLE_GPS = 2;
     private static final int PERMISSIONS_REQUEST_FROM_SETTINGS = 3;
@@ -70,15 +72,43 @@ public class CheckoutLocation extends Fragment implements GoogleMap.OnMyLocation
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
+
+        Places.initialize(getContext(), getResources().getString(R.string.MAPS_KEY));
+
+        PlacesClient placesClient = Places.createClient(getContext());
+
+        autoCompleteFragment = (AutocompleteSupportFragment) getChildFragmentManager().findFragmentById(R.id.auto_complete_fragment);
+        if (autoCompleteFragment!=null){
+            autoCompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
+            autoCompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+                @Override
+                public void onPlaceSelected(Place place) {
+                    // TODO: Get info about the selected place.
+                    Log.i("LOC", "Place: " + place.getName() + ", " + place.getId());
+                }
+
+                @Override
+                public void onError(Status status) {
+                    // TODO: Handle the error.
+                    Log.i("LOC", "An error occurred: " + status);
+                }
+            });
+        }
+        else {
+            Log.i("pls", "Fragment was null");
+        }
+
         return inflater.inflate(R.layout.checkout_location, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mfusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
+
+        mfusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(Objects.requireNonNull(getActivity()));
         mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map_fragment);
         mapFragment.getMapAsync(this);
+
     }
 
     @Override
@@ -104,8 +134,8 @@ public class CheckoutLocation extends Fragment implements GoogleMap.OnMyLocation
     }
 
     private void setUpMap() {
-        mMap.setMyLocationEnabled(true);
-        mMap.setOnMyLocationButtonClickListener(this);
+        //mMap.setMyLocationEnabled(true);
+        //mMap.setOnMyLocationButtonClickListener(this);
         mMap.setOnMyLocationClickListener(this);
         mMap.setOnMapLoadedCallback(this::mapInit);
     }
@@ -141,17 +171,14 @@ public class CheckoutLocation extends Fragment implements GoogleMap.OnMyLocation
     }
 
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        Log.i("Fragment", "Calling permission results");
         if (requestCode == PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION) {
             // If request is cancelled, the result arrays are empty.
             if (grantResults.length > 0 && grantResults[0] != PackageManager.PERMISSION_GRANTED){
                 //User has denied the location permissions
-                Toast.makeText(getActivity(), "NO", Toast.LENGTH_SHORT).show();
                 displayNeverAskAgainDialog();
             }
             else{
                 //Do nothing because permission is already granted
-                Toast.makeText(getActivity(), "YAY!!", Toast.LENGTH_SHORT).show();
                 setUpMap();
             }
         }

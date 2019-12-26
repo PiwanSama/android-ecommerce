@@ -277,7 +277,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        Log.i("Main", "Calling permission results");
         if (navHostFragment!=null){
             for (Fragment fragment : navHostFragment.getChildFragmentManager().getFragments()){
                 fragment.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -298,4 +297,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
-//todo Check for wifi connection
+//Todo Check for wifi connection
+
+//Todo single order layout

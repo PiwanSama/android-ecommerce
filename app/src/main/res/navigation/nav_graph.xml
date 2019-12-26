@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/checkout_Location">
+    app:startDestination="@id/checkout_pricing_fragment">
 
     <fragment
         android:id="@+id/home_fragment"
@@ -33,25 +33,19 @@
         android:name="com.cti.lifego.fragments.ListStoresFragment"
         android:label="Stores"
         tools:layout="@layout/list_stores">
-
         <action
-            android:id="@+id/action_list_stores_to_browse_store"
-            app:destination="@id/browse_store"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim" />
-
+            android:id="@+id/action_list_stores_fragment_to_browse_store_fragment"
+            app:destination="@id/browse_store_fragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/browse_store"
+        android:id="@+id/browse_store_fragment"
         android:name="com.cti.lifego.fragments.BrowseStoreFragment"
         android:label="Browse"
         tools:layout="@layout/browse_store" >
         <action
-            android:id="@+id/action_browse_category_to_single_product_fragment"
-            app:destination="@id/single_product_fragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim" />
+            android:id="@+id/action_browse_store_fragment_to_single_product_fragment"
+            app:destination="@id/single_product_fragment" />
     </fragment>
 
     <fragment
@@ -69,22 +63,23 @@
         tools:layout="@layout/user_profile" />
 
     <fragment
-        android:id="@+id/checkout_Location"
+        android:id="@+id/checkout_location_fragment"
         android:name="com.cti.lifego.fragments.CheckoutLocation"
         android:label="@string/delivery_location"
         tools:layout="@layout/checkout_location" >
         <action
-            android:id="@+id/action_checkout_Location_to_checkout_pricing_fragment"
-            app:destination="@id/checkout_pricing_fragment"
-            app:popUpTo="@+id/cartFragment"
-            app:popUpToInclusive="false"/>
+            android:id="@+id/action_checkout_location_fragment_to_checkout_pricing_fragment"
+            app:destination="@id/checkout_pricing_fragment" />
     </fragment>
 
     <fragment
         android:id="@+id/checkout_pricing_fragment"
-        android:name="com.cti.lifego.fragments.CheckoutPaymentFragment"
-        android:label="Make Payment"
+        android:name="com.cti.lifego.fragments.CheckoutPayment"
+        android:label="Payment"
         tools:layout="@layout/checkout_payment" >
+        <action
+            android:id="@+id/action_checkout_pricing_fragment_to_checkout_success_fragment"
+            app:destination="@id/checkout_success_fragment" />
     </fragment>
 
     <fragment
@@ -95,7 +90,7 @@
     </fragment>
 
     <fragment
-        android:id="@+id/cartFragment"
+        android:id="@+id/cart_fragment"
         android:name="com.cti.lifego.fragments.CartFragment"
         tools:layout="@layout/cart_fragment"
         android:label="Cart" >
@@ -104,7 +99,7 @@
 
     <action
         android:id="@+id/action_open_cart"
-        app:destination="@id/cartFragment"
+        app:destination="@id/cart_fragment"
         app:enterAnim="@anim/fade_in"
         app:exitAnim="@anim/fade_out" />
 

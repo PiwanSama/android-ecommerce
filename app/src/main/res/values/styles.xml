@@ -9,8 +9,8 @@
         <item name="android:colorBackground">@color/white</item>
         <item name="android:textColor">@color/fontColor</item>
         <item name="android:textColorPrimary">@color/colorPrimary</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:fontFamily">@font/quicksand_medium</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/muli</item>
         <item name="actionBarTheme">@style/AppTheme.AppBarOverlay</item>
         <item name="windowNoTitle">true</item>
     </style>
@@ -31,7 +31,7 @@
 
 
     <style name="AllCapsTitle" parent="TextAppearance.AppCompat.Title">
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:textColor">@color/mutedText</item>
     </style>
@@ -59,12 +59,6 @@
 
     <style name="splashScreenTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_screen</item>
-    </style>
-
-    <style name="TextLabel"  parent="TextAppearance.AppCompat">
-        <!-- Hint and label color deactivated -->
-        <item name="android:textColorHint">@color/white</item>
-        <!-- Hint and label color activated-->
     </style>
 
 </resources>

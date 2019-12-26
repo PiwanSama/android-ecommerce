@@ -1,4 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.cti.lifego">
 
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -17,7 +18,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyANbNmQEpFm7QdQ0h9qblys2Aip0o7kUBE" />
+            android:value="@string/MAPS_KEY" />
 
         <meta-data
             android:name="android.app.default_searchable"

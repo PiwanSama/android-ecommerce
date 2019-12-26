@@ -26,6 +26,9 @@ android {
             sourceCompatibility 1.8
             targetCompatibility 1.8
         }
+        ext {
+            googlePlayServicesVersion = "15.0.1"
+        }
     }
 }
 
@@ -57,13 +60,26 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment:2.1.0"
     implementation "androidx.navigation:navigation-ui:2.1.0"
 
-    implementation name:'maps-sdk-3.0.0-beta', ext:'aar'
-    implementation name:'places-maps-sdk-3.0.0-beta', ext:'aar'
+    //implementation name:'maps-sdk-3.0.0-beta', ext:'aar'
+   // implementation name:'places-maps-sdk-3.0.0-beta', ext:'aar'
 
     implementation 'com.squareup.retrofit2:retrofit:2.6.2'
     implementation "com.squareup.okhttp3:logging-interceptor:4.2.1"
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
 
-    implementation 'com.google.android.gms:play-services-location:17.0.0'
-    implementation "com.google.android.gms:play-services-places:17.0.0"
+    implementation 'com.google.android.libraries.places:places:2.1.0'
+    //This is deprecated
+    //Do not use again
+    //implementation 'com.google.android.gms:play-services-places:17.0.0'
 }
+
+def apiKeyPropertiesFile = rootProject.file("apikeys.properties")
+def apiKeysProperties = new Properties()
+apiKeysProperties.load(new FileInputStream(apiKeyPropertiesFile))
+
+android{
+    defaultConfig{
+        resValue("string", "MAPS_KEY", apiKeysProperties['GOOGLE_MAPS_KEY'])
+    }
+}
+

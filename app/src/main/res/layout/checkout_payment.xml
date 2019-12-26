@@ -1,217 +1,214 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:animateLayoutChanges="true">
+    android:background="@color/colorGrey"
+    android:orientation="vertical">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/pricing_options"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp">
+        android:background="@color/white"
+        android:layout_marginBottom="8dp"
+        app:cardCornerRadius="0dp">
 
-        <com.kofigyan.stateprogressbar.StateProgressBar
-            android:id="@+id/state_progress_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:spb_currentStateNumber="two"
-            app:spb_maxStateNumber="three"
-            app:spb_currentStateDescriptionColor="@color/fontColor"
-            app:spb_stateBackgroundColor="@color/blueGrey"
-            app:spb_stateForegroundColor="@color/colorAccent"
-            app:spb_stateNumberBackgroundColor="@color/lightGrey"
-            app:spb_stateNumberForegroundColor="@color/lightGrey"
-            app:spb_animateToCurrentProgressState="true"
-            app:spb_checkStateCompleted="true"/>
-        
-        <com.google.android.material.button.MaterialButtonToggleGroup
-            android:id="@+id/payment_buttons"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="30dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            app:singleSelection="true"
-            app:layout_constraintTop_toBottomOf="@id/state_progress_bar"
-            app:layout_constraintStart_toStartOf="parent">
-            
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="@string/mtnmomo"
-                android:textAllCaps="false"
-                android:layout_weight="1"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+            android:orientation="vertical">
 
-            <com.google.android.material.button.MaterialButton
+            <TextView
+                android:id="@+id/page_subtitle"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="@string/airtel_money"
-                android:textAllCaps="false"
-                android:layout_weight="1"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:textSize="16sp"
+                android:text="@string/payment_method"
+                android:textStyle="bold"/>
 
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="@string/paypal"
-                android:textAllCaps="false"
-                android:layout_weight="1"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
-            
-            
-        </com.google.android.material.button.MaterialButtonToggleGroup>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/payment_options_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"/>
 
-        <TextView
-            android:id="@+id/pricing"
-            android:layout_width="wrap_content"
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        app:cardCornerRadius="0dp"
+        android:background="@color/white"
+        android:padding="10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:text="@string/pricing"
-            android:textAppearance="@style/AllCapsTitle"
-            app:layout_constraintBottom_toTopOf="@id/price_row"
-            app:layout_constraintTop_toBottomOf="@id/payment_buttons"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <LinearLayout
-            android:id="@+id/price_row"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal"
-            android:weightSum="2"
-            app:layout_constraintTop_toBottomOf="@id/pricing">
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="18dp">
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="start"
-                android:layout_weight="1"
-                android:text="@string/cart_total"
-                android:textAppearance="@style/MutedText" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="end"
-                android:layout_weight="1"
-                android:text="@string/cart_total_price"
-                android:textAlignment="viewEnd" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/tax_row"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal"
-            android:weightSum="2"
-            app:layout_constraintTop_toBottomOf="@id/price_row">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="start"
-                android:layout_weight="1"
-                android:text="@string/tax_total"
-                android:textAppearance="@style/MutedText" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="end"
-                android:layout_weight="1"
-                android:text="@string/product_sample_tax"
-                android:textAlignment="viewEnd" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/fee_row"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-
-
-            android:layout_marginTop="20dp"
-            
-            
-            android:orientation="horizontal"
-            android:weightSum="2"
-            app:layout_constraintTop_toBottomOf="@id/tax_row">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="start"
-                android:layout_weight="1"
-                android:text="@string/fee_total"
-                android:textAppearance="@style/MutedText" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="end"
-                android:layout_weight="1"
-                android:text="@string/product_sample_fee"
-                android:textAlignment="viewEnd" />
-
-        </LinearLayout>
-
-        <View
-            android:id="@+id/divider"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/colorAccent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fee_row" />
-
-        <LinearLayout
-            android:id="@+id/total_row"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal"
-            android:weightSum="2"
-            app:layout_constraintTop_toBottomOf="@id/divider">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="start"
-                android:layout_weight="1"
-                android:text="@string/subtotal"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/pricing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/pricing"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/card2" />
+                app:layout_constraintTop_toTopOf="parent"/>
 
-            <TextView
-                android:layout_width="0dp"
+            <LinearLayout
+                android:id="@+id/price_row"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="end"
-                android:layout_weight="1"
-                android:text="@string/subtotal_price"
-                android:textAlignment="viewEnd"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                app:layout_constraintTop_toBottomOf="@id/pricing">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="start"
+                    android:layout_weight="1"
+                    android:text="@string/cart_total"
+                    android:textColor="@color/mutedText"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="end"
+                    android:layout_weight="1"
+                    android:text="@string/cart_total_price"
+                    android:textAlignment="viewEnd" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tax_row"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                app:layout_constraintTop_toBottomOf="@id/price_row">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="start"
+                    android:layout_weight="1"
+                    android:text="@string/tax_total"
+                    android:textColor="@color/mutedText" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="end"
+                    android:layout_weight="1"
+                    android:text="@string/product_sample_tax"
+                    android:textAlignment="viewEnd" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/fee_row"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                app:layout_constraintTop_toBottomOf="@id/tax_row">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="start"
+                    android:layout_weight="1"
+                    android:text="@string/fee_total"
+                    android:textColor="@color/mutedText" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="end"
+                    android:layout_weight="1"
+                    android:text="@string/product_sample_fee"
+                    android:textAlignment="viewEnd" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/colorAccent"
                 app:layout_constraintStart_toStartOf="parent"
-                />
+                app:layout_constraintTop_toBottomOf="@id/fee_row" />
 
-        </LinearLayout>
+            <LinearLayout
+                android:id="@+id/total_row"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                app:layout_constraintTop_toBottomOf="@id/divider">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="start"
+                    android:layout_weight="1"
+                    android:text="@string/subtotal"
+                    android:textColor="@color/mutedText"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/card2" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/make_payment_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|bottom"
-        android:layout_marginTop="20dp"
-        app:cornerRadius="0dp"
-        android:text="@string/make_payment" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="end"
+                    android:layout_weight="1"
+                    android:text="@string/subtotal_price"
+                    android:textAlignment="viewEnd"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    />
+
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/make_payment_button"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="40dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:textColor="@color/white"
+                android:elevation="4dp"
+                app:cornerRadius="0dp"
+                android:text="@string/make_payment"
+                app:layout_constraintTop_toBottomOf="@id/total_row"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
 
 </LinearLayout>

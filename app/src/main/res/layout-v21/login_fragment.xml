@@ -21,6 +21,7 @@
             android:layout_marginTop="20dp"
             android:text="@string/welcome_back"
             android:textColor="@color/fontColor"
+            android:textStyle="bold"
             android:textSize="28sp"/>
 
         <TextView

@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 
+    <data>
+        <variable
+            name="product"
+            type="com.cti.lifego.models.Product" />
+    </data>
+
     <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -50,6 +56,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/product_sample_name"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -59,8 +67,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="@string/product_sample_price"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
+                    android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/name" />
 
@@ -70,8 +77,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="@string/vendor"
-                    android:textAppearance="@style/AllCapsTitle"
-                    android:textColor="@null"
+                    
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/price" />
 
@@ -90,8 +97,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="@string/info"
-                    android:textColor="@null"
-                    android:textAppearance="@style/AllCapsTitle"
+                    
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/vendor" />
 
@@ -111,9 +118,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10sp"
                     android:lineSpacingExtra="5sp"
-                    android:textColor="@null"
                     android:text="@string/rating_review"
-                    android:textAppearance="@style/AllCapsTitle"
+                    
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/product_info" />
 

@@ -21,32 +21,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center">
 
                 <ImageView
+                    android:id="@+id/cart_icon"
                     android:layout_width="200dp"
                     android:layout_height="200dp"
-                    android:src="@drawable/ic_shopping_cart_blue"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toTopOf="@id/empty_text"/>
+                    android:src="@drawable/ic_shopping_cart_blue"/>
 
                 <TextView
                     android:id="@+id/empty_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/cart_empty"
-                    android:textSize="18sp"
                     android:textColor="@color/mutedText"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    android:textSize="26sp"/>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/cart_recycler_view"

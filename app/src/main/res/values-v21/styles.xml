@@ -10,9 +10,9 @@
         <item name="android:colorBackground">@color/white</item>
         <item name="android:textColor">@color/fontColor</item>
         <item name="android:textColorPrimary">@color/fontColor</item>
-        <item name="android:textSize">15sp</item>
-        <item name="android:letterSpacing">0.05</item>
-        <item name="android:fontFamily">@font/quicksand_medium</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:letterSpacing">0.03</item>
+        <item name="android:fontFamily">@font/open_sans</item>
         <item name="actionBarTheme">@style/AppTheme.AppBarOverlay</item>
         <item name="android:statusBarColor">@color/colorPrimary</item>
         <item name="android:windowContentTransitions">true</item>
@@ -29,9 +29,9 @@
     </style>
 
     <style name="AllCapsTitle" parent="TextAppearance.AppCompat.Title">
-        <item name="android:textSize">12sp</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:textColor">@color/mutedText</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="MutedText" parent="TextAppearance.AppCompat.Small">
@@ -49,15 +49,6 @@
     <style name="splashScreenTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_screen</item>
         <item name="android:statusBarColor">@color/colorPrimary</item>
-    </style>
-
-    <style name="TextLabel"  parent="TextAppearance.MaterialComponents.Body1">
-        <!-- Hint and label color deactivated -->
-        <item name="android:textColorHint">@color/white</item>
-        <!-- Hint and label color activated-->
-        <item name="android:colorAccent">@color/gold</item>
-        <item name="android:colorControlNormal">@color/white</item>
-        <item name="android:colorControlActivated">@color/white</item>
     </style>
 
 </resources>

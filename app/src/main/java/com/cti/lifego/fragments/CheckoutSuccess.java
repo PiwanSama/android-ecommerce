@@ -12,13 +12,9 @@ import com.kofigyan.stateprogressbar.StateProgressBar;
 
 public class CheckoutSuccess extends Fragment {
 
-    private StateProgressBar progressBar;
-
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.checkout_success, container, false);
-        progressBar = view.findViewById(R.id.state_progress_bar);
-        progressBar.setStateDescriptionData(getResources().getStringArray(R.array.progress_statebar_array));
         return view;
     }
 }
