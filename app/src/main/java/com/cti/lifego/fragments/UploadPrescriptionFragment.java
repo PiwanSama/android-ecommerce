@@ -6,6 +6,7 @@ package com.cti.lifego.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import com.cti.lifego.R;
 import com.esafirm.imagepicker.features.ImagePicker;
 import com.esafirm.imagepicker.features.ReturnMode;
 import com.esafirm.imagepicker.model.Image;
+import com.google.android.material.button.MaterialButton;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -28,6 +30,7 @@ public class UploadPrescriptionFragment extends Fragment {
     public int CAMERA_REQUEST_CODE = 552;
     public int GALLERY_REQUEST_CODE = 553;
     ImageView prescription;
+    MaterialButton camera, gallery;
 
     @Nullable
     @Override
@@ -39,7 +42,22 @@ public class UploadPrescriptionFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        camera = view.findViewById(R.id.upload_camera);
+        gallery = view.findViewById(R.id.upload_gallery);
+        prescription = view.findViewById(R.id.prescription_image);
+        camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openCamera();
+            }
+        });
 
+        gallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openGallery();
+            }
+        });
     }
 
     private void openCamera() {
@@ -57,18 +75,19 @@ public class UploadPrescriptionFragment extends Fragment {
                 .start(GALLERY_REQUEST_CODE);
     }
 
-
-    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (ImagePicker.shouldHandle(requestCode, resultCode, data)) {
-            //try {
-            if ((requestCode == GALLERY_REQUEST_CODE) || (requestCode == CAMERA_REQUEST_CODE)){
-                if ((resultCode == RESULT_OK)){
+            if (resultCode == RESULT_OK){
+                //try {
+                if ((requestCode == GALLERY_REQUEST_CODE) || (requestCode == CAMERA_REQUEST_CODE)){
                     Image image = ImagePicker.getFirstImageOrNull(data);
                     String filePath = image.getPath();
                     Glide.with(this).load(filePath).into(prescription);
                 }
+            }
+            else {
+                Log.i("Error", String.valueOf(resultCode));
             }
         }
     }

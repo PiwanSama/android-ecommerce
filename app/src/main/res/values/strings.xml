@@ -120,5 +120,8 @@
     <string name="welcome_back">Welcome Back</string>
     <string name="pay">One last step!</string>
     <string name="payment_method">Payment option</string>
+    <string name="submit">Submit</string>
+    <string name="required">A prescription is required to verify your order at the pharmacy</string>
+    <string name="deliver_to">We will deliver to:</string>
 
 </resources>

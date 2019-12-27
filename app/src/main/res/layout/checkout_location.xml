@@ -33,7 +33,6 @@
 
                <AutoCompleteTextView
                    android:id="@+id/auto_complete_fragment"
-                   android:layout_gravity="center"
                    android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
                    android:layout_width="match_parent"
                    android:layout_height="match_parent"
@@ -41,7 +40,8 @@
                    android:textColorHint="@color/mutedText"
                    android:background="@android:color/transparent"
                    android:textSize="16sp"
-                   android:gravity="center"/>
+                   android:layout_marginStart="10dp"
+                   android:layout_marginLeft="10dp" />
 
            </androidx.cardview.widget.CardView>
 
