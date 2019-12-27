@@ -6,24 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.kofigyan.stateprogressbar.StateProgressBar
-        android:id="@+id/state_progress_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/icon_text"
-        app:spb_currentStateNumber="three"
-        app:spb_maxStateNumber="three"
-        app:spb_currentStateDescriptionColor="@color/fontColor"
-        app:spb_stateBackgroundColor="@color/blueGrey"
-        app:spb_stateForegroundColor="@color/colorAccent"
-        app:spb_stateNumberBackgroundColor="@color/lightGrey"
-        app:spb_stateNumberForegroundColor="@color/lightGrey"
-        app:spb_enableAllStatesCompleted="true"/>
-
     <LinearLayout
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/icon_text"
@@ -32,7 +14,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/state_progress_bar"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="UseCompoundDrawables">
 
         <ImageView

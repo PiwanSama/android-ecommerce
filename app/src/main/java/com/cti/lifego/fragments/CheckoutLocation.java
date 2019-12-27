@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -26,8 +27,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.navigation.fragment.NavHostFragment;
 
 import com.cti.lifego.R;
 import com.google.android.gms.common.api.ResolvableApiException;
@@ -50,7 +49,6 @@ import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -58,7 +56,7 @@ import java.util.Objects;
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 
-public class CheckoutLocation extends Fragment implements GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener, OnMapReadyCallback, BottomSheetDialogBehavior.BottomSheetListener {
+public class CheckoutLocation extends Fragment implements GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener, OnMapReadyCallback{
 
     private FusedLocationProviderClient mfusedLocationProviderClient;
     private Location currentLocation;
@@ -66,6 +64,7 @@ public class CheckoutLocation extends Fragment implements GoogleMap.OnMyLocation
     private SupportMapFragment mapFragment;
     private AutocompleteSupportFragment autoCompleteFragment;
     private View mapView;
+    private LinearLayout bottomSheetLayout;
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
     private static final int PERMISSIONS_REQUEST_ENABLE_GPS = 2;
     private static final int PERMISSIONS_REQUEST_FROM_SETTINGS = 3;
@@ -137,6 +136,7 @@ public class CheckoutLocation extends Fragment implements GoogleMap.OnMyLocation
     }
 
     private void setUpMap() {
+
         mMap.setMyLocationEnabled(true);
         mMap.setOnMyLocationButtonClickListener(this);
         mMap.setOnMyLocationClickListener(this);
@@ -146,7 +146,7 @@ public class CheckoutLocation extends Fragment implements GoogleMap.OnMyLocation
             RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) locationButton.getLayoutParams();
             layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP, 0);
             layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
-            layoutParams.setMargins(0,0,30,30);
+            layoutParams.setMargins(0,0,30,400);
         }
     }
 
@@ -278,19 +278,11 @@ public class CheckoutLocation extends Fragment implements GoogleMap.OnMyLocation
     @Override
     public void onMyLocationClick(@NonNull Location location) {
         Toast.makeText(getContext(), "Current location:\n" + location, Toast.LENGTH_LONG).show();
-
     }
 
     @Override
     public boolean onMyLocationButtonClick() {
-        FragmentManager manager = getActivity().getSupportFragmentManager();
-        BottomSheetDialogFragment bottomSheetFragment = new BottomSheetDialogFragment();
-        bottomSheetFragment.show(manager, "Bottom Sheet Fragment");
-        return true;
-    }
-
-    @Override
-    public void onButtonClicked(String text) {
-
+        return false;
     }
 }
+

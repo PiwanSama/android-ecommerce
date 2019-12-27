@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 
 import com.cti.lifego.R;
-import com.kofigyan.stateprogressbar.StateProgressBar;
 
 public class CheckoutSuccess extends Fragment {
 

@@ -123,5 +123,6 @@
     <string name="submit">Submit</string>
     <string name="required">A prescription is required to verify your order at the pharmacy</string>
     <string name="deliver_to">We will deliver to:</string>
+    <string name="order">Order details</string>
 
 </resources>

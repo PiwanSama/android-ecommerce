@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/checkout_location_fragment">
+    app:startDestination="@id/orderDetailFragment">
 
     <fragment
         android:id="@+id/home_fragment"
@@ -127,5 +127,11 @@
         android:name="com.cti.lifego.fragments.UploadPrescriptionFragment"
         android:label="Upload Prescription"
         tools:layout="@layout/upload_prescription" />
+
+    <fragment
+        android:id="@+id/orderDetailFragment"
+        android:name="com.cti.lifego.fragments.OrderDetailFragment"
+        android:label="@string/order"
+        tools:layout="@layout/single_order" />
 
 </navigation>
