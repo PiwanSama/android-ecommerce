@@ -49,10 +49,10 @@ public class ProductDetailFragment extends Fragment {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         SharedPreferences.Editor editor = preferences.edit();
 
-        Set<String> productIDs = preferences.getStringSet(PreferenceKeys.shopping_cart, new HashSet<String>());
+        Set<String> productIDs = preferences.getStringSet(PreferenceKeys.shopping_cart_ids, new HashSet<String>());
         assert productIDs != null;
         productIDs.add(String.valueOf(product.getId()));
-        editor.putStringSet(PreferenceKeys.shopping_cart, productIDs);
+        editor.putStringSet(PreferenceKeys.shopping_cart_ids, productIDs);
         editor.commit();
 
         Snackbar snackbar = Snackbar.make(Objects.requireNonNull(getView()), R.string.item_added, BaseTransientBottomBar.LENGTH_SHORT);

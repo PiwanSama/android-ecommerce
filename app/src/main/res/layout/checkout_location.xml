@@ -24,12 +24,13 @@
            <androidx.cardview.widget.CardView
                android:id="@+id/auto_complete_holder"
                android:layout_width="match_parent"
-               android:layout_height="40dp"
+               android:layout_height="48dp"
                android:layout_marginTop="20dp"
-               android:layout_marginLeft="20dp"
-               android:layout_marginRight="20dp"
+               android:layout_marginLeft="10dp"
+               android:layout_marginRight="10dp"
                android:layout_marginBottom="20dp"
-               app:cardCornerRadius="4dp">
+               app:cardCornerRadius="4dp"
+               app:cardElevation="4dp">
 
                <AutoCompleteTextView
                    android:id="@+id/auto_complete_fragment"
@@ -41,9 +42,7 @@
                    android:textSize="16sp"
                    android:padding="10dp"
                    android:background="@android:color/transparent"
-                   android:gravity="center"
-                   android:layout_marginStart="10dp"
-                   android:layout_marginLeft="10dp" />
+                   android:gravity="center"/>
 
            </androidx.cardview.widget.CardView>
 
@@ -66,13 +65,15 @@
             android:layout_gravity="center"
             android:textStyle="bold"
             android:textSize="18sp"
+            android:textColor="@color/white"
             android:text="@string/deliver_to"/>
 
         <TextView
             android:id="@+id/delivery_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp"
+            android:textColor="@color/white"/>
 
     </LinearLayout>
 

@@ -38,8 +38,7 @@ public class ProductViewModel extends ViewModel {
     }
 
     public LiveData<Product> getProduct(String id){
-        LiveData<Product> product = productRepository.getProduct(id);
-        return product;
+        return productRepository.getProduct(id);
     }
 
 }

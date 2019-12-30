@@ -39,8 +39,9 @@
             android:layout_height="40dp"
             android:text="@string/camera"
             android:layout_margin="20dp"
-            app:backgroundTint="@color/colorPrimary"
+            app:backgroundTint="@color/colorAccent"
             app:cornerRadius="0dp"
+            app:elevation="4dp"
             android:clickable="true"
             android:focusable="true" />
 
@@ -51,8 +52,9 @@
             android:layout_height="40dp"
             android:text="@string/gallery"
             android:layout_margin="20dp"
+            app:elevation="4dp"
             app:cornerRadius="0dp"
-            app:backgroundTint="@color/colorPrimary"
+            app:backgroundTint="@color/colorAccent"
             android:clickable="true"
             android:focusable="true"/>
 
@@ -69,8 +71,9 @@
     <com.google.android.material.button.MaterialButton
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:backgroundTint="@color/colorPrimary"
         android:layout_marginTop="30dp"
-        android:text="@string/submit"/>
+        android:text="@string/submit"
+        app:backgroundTint="@color/colorAccent"
+        app:cornerRadius="0dp"/>
 
 </LinearLayout>

@@ -20,7 +20,7 @@
             android:layout_gravity="end"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorAccent"
             android:layout_marginRight="5dp" />
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -68,8 +68,6 @@
             android:enabled="false"
             android:text="@string/email_address"/>
 
-        <!--TODO Add date picker -->
-
         <EditText
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -78,7 +76,8 @@
             android:inputType="phone"
             android:textColor="@color/fontColor"
             android:enabled="false"
-            android:text="@string/contact1"/>
+            android:text="@string/contact1"
+            android:importantForAutofill="no" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -110,33 +109,17 @@
 
         </RadioGroup>
 
-        <LinearLayout
+        <com.google.android.material.button.MaterialButton
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_height="60dp"
+            android:text="@string/save"
+            android:layout_margin="10dp"
             android:layout_marginTop="20dp"
-            android:orientation="horizontal"
-            android:weightSum="1"
-            >
-
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_weight="1"
-                android:text="@string/save"
-                android:backgroundTint="@color/gold"
-                app:cornerRadius="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/total_row"
-                style="?android:attr/buttonBarButtonStyle"
-                />
-
-        </LinearLayout>
+            app:elevation="4dp"
+            app:backgroundTint="@color/colorAccent"
+            app:cornerRadius="0dp"
+            style="?android:attr/buttonBarButtonStyle"
+            />
 
         <ProgressBar
             android:layout_width="wrap_content"
@@ -154,6 +137,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.659"/>
+
     </LinearLayout>
 
 </ScrollView>

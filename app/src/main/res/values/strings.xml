@@ -74,8 +74,8 @@
 
     <!--Model Binding Strings-->
     <string name="order_confirm">Your order has been placed!</string>
-    <string name="order_id">Order ID : 123DFT</string>
-    <string name="order_date">Ordered on : 12/06/2019</string>
+    <string name="order_id">Order ID</string>
+    <string name="order_date">12/06/2019</string>
     <string name="vendor">Vendor</string>
     <string name="make_payment">Make payment</string>
     <string name="prescriptions">Prescriptions</string>
@@ -86,7 +86,7 @@
     <string name="email_address">Email Address</string>
     <string name="sample_vendor">AB Clinic Bukoto</string>
     <string name="order_date2">Ordered on : 14/07/2019</string>
-    <string name="order_id2">Order ID : 763BTX</string>
+    <string name="order_id2">Order ID</string>
     <string name="shopping_cart">Cart</string>
     <string name="item_added">This item has been added to your cart</string>
     <string name="rating_review">Ratings and Reviews</string>
@@ -95,7 +95,7 @@
     <string name="select_delivery_address">Where should we deliver to?</string>
     <string name="delivery_location">Delivery Location</string>
     <string name="confirm_location">Confirm Location</string>
-    <string name="order_details">Your order number is EXT536</string>
+    <string name="order_details">Order details</string>
     <string name="upload">Upload Prescription</string>
     <string name="camera">Camera</string>
     <string name="gallery">Gallery</string>
@@ -124,5 +124,13 @@
     <string name="required">A prescription is required to verify your order at the pharmacy</string>
     <string name="deliver_to">We will deliver to:</string>
     <string name="order">Order details</string>
+    <string name="orders_empty">You haven\'t made any orders yet!</string>
+    <string name="estimated_time">Estimated Time</string>
+    <string name="track_order">Track your order</string>
+    <string name="one">1 Hour</string>
+    <string name="ordered_on">Ordered on</string>
+    <string name="sample_order_id">763BTX</string>
+    <string name="pls">1x Azithromycin</string>
+    <string name="plstwo">2x Ampiclox</string>
 
 </resources>

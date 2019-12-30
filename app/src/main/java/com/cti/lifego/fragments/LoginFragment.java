@@ -6,9 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,19 +18,17 @@ import androidx.navigation.Navigation;
 import com.cti.lifego.R;
 import com.cti.lifego.databinding.LoginFragmentBinding;
 import com.cti.lifego.models.LoginUser;
-import com.cti.lifego.viewmodels.LoginUserViewModel;
+import com.cti.lifego.viewmodels.UserViewModel;
 import com.google.gson.Gson;
 
-import static com.cti.lifego.R.array.country_code_array;
-
 public class LoginFragment extends Fragment implements AdapterView.OnItemSelectedListener {
-    private LoginUserViewModel viewModel;
+    private UserViewModel viewModel;
     private LoginFragmentBinding binding;
     private Boolean validated;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = new ViewModelProvider(this).get(LoginUserViewModel.class);
+        viewModel = new ViewModelProvider(this).get(UserViewModel.class);
         binding = DataBindingUtil.inflate(inflater, R.layout.login_fragment, container, false);
         binding.setLifecycleOwner(this);
         binding.setLoginUser(viewModel);
@@ -47,7 +42,7 @@ public class LoginFragment extends Fragment implements AdapterView.OnItemSelecte
         binding.skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.home_fragment);
+                Navigation.findNavController(view).navigate(R.id.homeFragment);
             }
         });
 

@@ -1,33 +1,21 @@
 package com.cti.lifego.activities;
 
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentSender;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.provider.Settings;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -42,23 +30,12 @@ import com.cti.lifego.databinding.NavHeaderBinding;
 import com.cti.lifego.intefaces.IMainActivity;
 import com.cti.lifego.utils.NetworkUtil;
 import com.cti.lifego.viewmodels.UserViewModel;
-import com.google.android.gms.common.api.ResolvableApiException;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.LocationSettingsRequest;
-import com.google.android.gms.location.LocationSettingsResponse;
-import com.google.android.gms.location.SettingsClient;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, IMainActivity {
@@ -142,10 +119,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         actionBar.setHomeButtonEnabled(true);
 
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
-            if (destination.getId() == R.id.registration_fragment){
+            if (destination.getId() == R.id.registrationFragment){
                 makeFullScreen();
             }
-            else if (destination.getId() == R.id.login_fragment){
+            else if (destination.getId() == R.id.loginFragment){
                 makeFullScreen();
             }
             else{
@@ -155,9 +132,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
 
         Set<Integer> topLevelDest = new HashSet<>();
-        topLevelDest.add(R.id.home_fragment);
-        topLevelDest.add(R.id.orders_fragment);
-        topLevelDest.add(R.id.user_profile_fragment);
+        topLevelDest.add(R.id.homeFragment);
+        topLevelDest.add(R.id.ordersFragment);
+        topLevelDest.add(R.id.userProfileFragment);
 
         appBarConfiguration = new AppBarConfiguration.Builder(topLevelDest)
                 .setDrawerLayout(binding.drawerLayout)
@@ -219,7 +196,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void setupBadge() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        Set<String> productIDs = preferences.getStringSet(PreferenceKeys.shopping_cart, new HashSet<String>());
+        Set<String> productIDs = preferences.getStringSet(PreferenceKeys.shopping_cart_ids, new HashSet<String>());
         mCartItemCount = productIDs.size();
 
         if (cartItemCount != null) {
@@ -250,7 +227,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = menuItem.getItemId();
         switch (id){
             case R.id.orders:
-                if (navController.getCurrentDestination().getId() != R.id.orders_fragment) {
+                if (navController.getCurrentDestination().getId() != R.id.ordersFragment) {
                     navController.navigate(R.id.action_homeFragment_to_ordersFragment);
                 }
                 break;
@@ -295,8 +272,4 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 }
 
-
-
 //Todo Check for wifi connection
-
-//Todo single order layout

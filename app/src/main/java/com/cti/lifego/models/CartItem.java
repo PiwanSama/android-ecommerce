@@ -1,10 +1,6 @@
 package com.cti.lifego.models;
 
-import android.widget.ImageView;
-
-import androidx.databinding.BindingAdapter;
-
-import com.bumptech.glide.Glide;
+import androidx.lifecycle.LiveData;
 
 public class CartItem {
     public int id;
@@ -13,7 +9,11 @@ public class CartItem {
     private int price;
     private String vendor;
     private int quantity;
-    private Product product;
+    private LiveData<Product> product;
+
+    public CartItem(LiveData<Product> product) {
+        this.product = product;
+    }
 
     public int getId() {
         return id;
@@ -62,11 +62,11 @@ public class CartItem {
         return quantity;
     }
 
-    public Product getProduct() {
+    public LiveData<Product> getProduct() {
         return product;
     }
 
-    public void setProduct(Product product) {
+    public void setProduct(LiveData<Product> product) {
         this.product = product;
     }
 }

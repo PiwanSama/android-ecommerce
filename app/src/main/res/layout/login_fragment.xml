@@ -4,7 +4,7 @@
     <data>
         <variable
             name="loginUser"
-            type="com.cti.lifego.viewmodels.LoginUserViewModel" />
+            type="com.cti.lifego.viewmodels.UserViewModel" />
     </data>
 
     <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -36,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
-            android:textColorHint="@color/colorPrimary"
+            android:textColorHint="@color/mutedText"
             style="@style/Widget.Design.TextInputLayout">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -55,7 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="40dp"
-            android:textColorHint="@color/colorPrimary"
+            android:textColorHint="@color/mutedText"
             style="@style/Widget.Design.TextInputLayout">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -109,8 +109,9 @@
             android:layout_marginTop="40dp"
             android:layout_marginBottom="20dp"
             android:text="@string/log_in"
-            android:background="@color/colorPrimary"
+            app:backgroundTint="@color/colorAccent"
             android:textColor="@color/white"
+            app:elevation="4dp"
             app:cornerRadius="0dp" />
 
         <TextView

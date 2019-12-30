@@ -5,4 +5,6 @@
 package com.cti.lifego.intefaces;
 
 public interface IMainActivity {
+
 }
+

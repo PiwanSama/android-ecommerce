@@ -5,6 +5,6 @@
 package com.cti.lifego.content;
 
 public class PreferenceKeys {
-    public static final String shopping_cart = "Shopping Cart";
+    public static final String shopping_cart_ids = "Shopping Cart";
     public static final String current_vendor = "Current Vendor";
 }

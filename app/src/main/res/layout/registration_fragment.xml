@@ -60,6 +60,7 @@
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:layout_margin="8dp"
+               android:hint="@string/email_address"
                style="@style/Widget.Design.TextInputLayout">
 
                <com.google.android.material.textfield.TextInputEditText
@@ -69,8 +70,7 @@
                    android:ems="10"
                    android:inputType="textEmailAddress"
                    android:textColor="@color/fontColor"
-                   android:textColorHint="@color/mutedText"
-                   android:hint="@string/email_address"/>
+                   android:textColorHint="@color/mutedText"/>
 
            </com.google.android.material.textfield.TextInputLayout>
 
@@ -115,7 +115,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/phone_contact"
-                android:textColor="@color/colorPrimary"
                 android:layout_margin="8dp"/>
 
             <LinearLayout
@@ -165,9 +164,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:text="@string/gender"
-                android:textColor="@color/colorPrimary"
-                />
+                android:text="@string/gender" />
 
             <RadioGroup
                 android:id="@+id/user_gender"
@@ -195,9 +192,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:text="@string/opt_in"
-                android:textColor="@color/colorPrimary"
-                />
+                android:text="@string/opt_in" />
 
             <RadioGroup
                 android:id="@+id/user_opt_in"
@@ -227,7 +222,6 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="22dp"
                 android:text="@string/nok_details"
-                android:textColor="@color/colorPrimary"
                 android:layout_gravity="center"
                 style="@style/AllCapsTitle"/>
 
@@ -334,7 +328,8 @@
                     android:layout_height="60dp"
                     android:layout_weight="1"
                     android:text="@string/register_title"
-                    android:backgroundTint="@color/gold"
+                    app:elevation="4dp"
+                    app:backgroundTint="@color/colorAccent"
                     app:cornerRadius="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"

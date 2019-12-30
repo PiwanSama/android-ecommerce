@@ -8,7 +8,7 @@ import android.content.Context;
 
 import androidx.lifecycle.ViewModel;
 
-import com.cti.lifego.intefaces.ICartFragment;
+import com.cti.lifego.intefaces.ICartItem;
 import com.cti.lifego.models.CartItem;
 
 public class CartItemViewModel extends ViewModel {
@@ -22,12 +22,16 @@ public class CartItemViewModel extends ViewModel {
         this.cartItem = cartItem;
     }
 
+    public String getQuantityString(CartItem cartItem){
+        return ("Qty: " + String.valueOf(cartItem.getQuantity()));
+    }
+
     public void increaseQuantity(Context context){
         CartItem cartItem = getCartItem();
         cartItem.setQuantity(cartItem.getQuantity()+1);
         setCartItem(cartItem);
-        ICartFragment iCartFragment = (ICartFragment)context;
-        iCartFragment.updateQuantity(cartItem.getProduct(), 1);
+        ICartItem iCartItem = (ICartItem)context;
+        iCartItem.updateQuantity(cartItem.getProduct(), 1);
     }
 
     public void decreaseQuantity(Context context){
@@ -35,8 +39,14 @@ public class CartItemViewModel extends ViewModel {
         if (cartItem.getQuantity()>1){
             cartItem.setQuantity(cartItem.getQuantity()-1);
             setCartItem(cartItem);
-            ICartFragment iCartFragment = (ICartFragment)context;
-            iCartFragment.updateQuantity(cartItem.getProduct(), -1);
+            ICartItem iCartItem = (ICartItem)context;
+            iCartItem.updateQuantity(cartItem.getProduct(), -1);
         }
+    }
+
+    public void deleteItem(Context context){
+        CartItem cartItem = getCartItem();
+        ICartItem iCartItem = (ICartItem) context;
+        iCartItem.deleteItem(cartItem.getProduct());
     }
 }

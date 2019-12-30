@@ -3,8 +3,7 @@
   ~ Copyright (c) 2019. Written by Samalie Piwan
   -->
 
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:bind="http://schemas.android.com/tools">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
             name="cartItemView"
@@ -26,7 +25,7 @@
             android:layout_height="match_parent"
             android:contentDescription="@string/product_name_desc"
             android:scaleType="fitCenter"
-            imageResource="@{cartItemView.cartItem.product.image}"
+            android:src="@{cartItemView.cartItem.product.image}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -41,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:text="@{cartItemView.cartItem.quantity}"
+                android:text="@{cartItemView.getQuantityString(cartItemView.cartItem)}"
                 android:textStyle="bold"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -80,8 +79,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/product_price"
-                android:weightSum="3"
-                android:background="@drawable/rounded_background">
+                android:weightSum="3">
 
                 <ImageView
                     android:id="@+id/increase_count"
@@ -115,7 +113,8 @@
                 android:layout_height="20dp"
                 android:src="@drawable/ic_trash"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                android:onClick="@{()-> cartItemView.deleteItem(context)}"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

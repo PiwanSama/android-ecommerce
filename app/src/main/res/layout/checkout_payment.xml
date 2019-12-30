@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:layout_marginBottom="8dp"
+        app:cardElevation="4dp"
         app:cardCornerRadius="0dp">
 
         <LinearLayout
@@ -49,6 +50,7 @@
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         app:cardCornerRadius="0dp"
+        app:cardElevation="4dp"
         android:background="@color/white"
         android:padding="10dp">
 
@@ -156,7 +158,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="8dp"
-                android:background="@color/colorAccent"
+                android:background="@color/colorAccentTransparent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/fee_row" />
 
@@ -178,7 +180,7 @@
                     android:textColor="@color/mutedText"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/card2" />
+                    app:layout_constraintTop_toBottomOf="@id/divider" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -198,9 +200,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="40dp"
-                android:backgroundTint="@color/colorPrimary"
+                app:backgroundTint="@color/colorAccent"
                 android:textColor="@color/white"
-                android:elevation="4dp"
+                app:elevation="4dp"
                 app:cornerRadius="0dp"
                 android:text="@string/make_payment"
                 app:layout_constraintTop_toBottomOf="@id/total_row"
