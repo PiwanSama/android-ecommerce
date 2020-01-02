@@ -1,5 +1,6 @@
 package com.cti.lifego.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,8 @@ import java.util.Objects;
 
 public class OrdersFragment extends Fragment {
 
+    private Context mContext;
+
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (!isConnected()){
@@ -25,5 +28,17 @@ public class OrdersFragment extends Fragment {
 
     private boolean isConnected(){
         return NetworkUtil.getConnectivityString(Objects.requireNonNull(getContext()));
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        mContext = context;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        this.mContext = null;
     }
 }

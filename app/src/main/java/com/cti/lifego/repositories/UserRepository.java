@@ -12,7 +12,6 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.cti.lifego.api.NetworkService;
 import com.cti.lifego.api.RetrofitInstance;
-import com.cti.lifego.models.LoginUser;
 import com.cti.lifego.models.User;
 
 import okhttp3.ResponseBody;
@@ -31,8 +30,8 @@ public class UserRepository{
         return instance;
     }
 
-    public Call<ResponseBody> loginUser(LoginUser user){
-        Call<ResponseBody> call = service.loginUser(user);
+    public Call<ResponseBody> loginUser(String email, String password){
+        Call<ResponseBody> call = service.loginUser(email, password);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

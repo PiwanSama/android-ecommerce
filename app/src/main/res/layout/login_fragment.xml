@@ -2,9 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+        <import type="com.cti.lifego.viewmodels.LoginViewModel.LoginFormErrors" />
+
         <variable
-            name="loginUser"
-            type="com.cti.lifego.viewmodels.UserViewModel" />
+            name="loginViewModel"
+            type="com.cti.lifego.viewmodels.LoginViewModel" />
+
     </data>
 
     <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -37,6 +40,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
             android:textColorHint="@color/mutedText"
+            android:errorText='@{loginViewModel.loginFormErrors.contains(LoginFormErrors.MISSING_EMAIL) ? "Required" : ""}'
             style="@style/Widget.Design.TextInputLayout">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -45,7 +49,7 @@
                 android:layout_height="match_parent"
                 android:inputType="textEmailAddress"
                 android:textColor="@color/fontColor"
-                android:text="@{loginUser.email}"
+                android:text="@={loginViewModel.email}"
                 android:hint="@string/email_address"
                 />
 
@@ -56,6 +60,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="40dp"
             android:textColorHint="@color/mutedText"
+            android:errorText='@{loginViewModel.loginFormErrors.contains(LoginFormErrors.MISSING_PASSWORD) ? "Required" : ""}'
             style="@style/Widget.Design.TextInputLayout">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -63,8 +68,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="textPassword"
-                android:text="@{loginUser.password}"
                 android:textColor="@color/fontColor"
+                android:text="@={loginViewModel.password}"
                 android:hint="@string/password_sign"
                 />
         </com.google.android.material.textfield.TextInputLayout>

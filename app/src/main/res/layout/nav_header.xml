@@ -4,12 +4,14 @@
     <data>
 
         <variable
-            name="userViewModel"
-            type="com.cti.lifego.viewmodels.UserViewModel" />
+            name="loginViewModel"
+            type="com.cti.lifego.viewmodels.LoginViewModel" />
 
         <import type="com.cti.lifego.utils.StringUtils"/>
 
         <import type="android.view.View"/>
+
+        <import type="com.cti.lifego.viewmodels.LoginViewModel.AuthenticationState" />
 
     </data>
 
@@ -26,12 +28,12 @@
             android:layout_height="80dp"
             android:layout_marginBottom="10dp"
             android:layout_margin="20dp"
-            android:src="@{userViewModel.user.image, default= @drawable/ic_user_placeholder}"/>
+            android:src="@drawable/ic_user_placeholder"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text='@{userViewModel.user.givenName , default = "Sign In"}'
+            android:text='@{loginViewModel.user.givenName , default = "Sign In"}'
             android:layout_marginBottom="10dp"
             android:textStyle="bold"
             android:textColor="@color/white"
@@ -42,8 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="@{userViewModel.user.email}"
-            android:visibility="@{userViewModel.userExists? View.VISIBLE : View.GONE}"
+            android:visibility="gone"
             android:textColor="@color/white"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             />

@@ -64,7 +64,7 @@ public class CheckoutLocation extends Fragment implements GoogleMap.OnMyLocation
     private SupportMapFragment mapFragment;
     private AutocompleteSupportFragment autoCompleteFragment;
     private View mapView;
-    private LinearLayout bottomSheetLayout;
+    private Context mContext;
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
     private static final int PERMISSIONS_REQUEST_ENABLE_GPS = 2;
     private static final int PERMISSIONS_REQUEST_FROM_SETTINGS = 3;
@@ -75,9 +75,9 @@ public class CheckoutLocation extends Fragment implements GoogleMap.OnMyLocation
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
-        Places.initialize(getContext(), getResources().getString(R.string.MAPS_KEY));
+        Places.initialize(mContext, getResources().getString(R.string.MAPS_KEY));
 
-        PlacesClient placesClient = Places.createClient(getContext());
+        PlacesClient placesClient = Places.createClient(mContext);
 
         autoCompleteFragment = (AutocompleteSupportFragment) getChildFragmentManager().findFragmentById(R.id.auto_complete_fragment);
         if (autoCompleteFragment!=null){
@@ -127,7 +127,7 @@ public class CheckoutLocation extends Fragment implements GoogleMap.OnMyLocation
     @Override
     public void onMapReady(GoogleMap googleMap){
         mMap = googleMap;
-        if (ContextCompat.checkSelfPermission((getContext()), android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+        if (ContextCompat.checkSelfPermission((mContext), android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
             setUpMap();
         }
         else{
@@ -196,7 +196,7 @@ public class CheckoutLocation extends Fragment implements GoogleMap.OnMyLocation
 
     private void getGpsStatus() {
 
-        LocationManager locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
+        LocationManager locationManager = (LocationManager) mContext.getSystemService(Context.LOCATION_SERVICE);
         boolean gps_enabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
         if (!gps_enabled){
             LocationRequest mLocationRequest = LocationRequest.create()
@@ -277,12 +277,24 @@ public class CheckoutLocation extends Fragment implements GoogleMap.OnMyLocation
 
     @Override
     public void onMyLocationClick(@NonNull Location location) {
-        Toast.makeText(getContext(), "Current location:\n" + location, Toast.LENGTH_LONG).show();
+        Toast.makeText(mContext, "Current location:\n" + location, Toast.LENGTH_LONG).show();
     }
 
     @Override
     public boolean onMyLocationButtonClick() {
         return false;
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        mContext = context;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        this.mContext = null;
     }
 }
 

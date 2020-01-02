@@ -4,6 +4,7 @@
 
 package com.cti.lifego.fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,10 +28,11 @@ import static android.app.Activity.RESULT_OK;
 
 public class UploadPrescriptionFragment extends Fragment {
 
-    public int CAMERA_REQUEST_CODE = 552;
-    public int GALLERY_REQUEST_CODE = 553;
-    ImageView prescription;
-    MaterialButton camera, gallery;
+    private int CAMERA_REQUEST_CODE = 552;
+    private int GALLERY_REQUEST_CODE = 553;
+    private ImageView prescription;
+    private MaterialButton camera, gallery;
+    private Context mContext;
 
     @Nullable
     @Override
@@ -90,5 +92,17 @@ public class UploadPrescriptionFragment extends Fragment {
                 Log.i("Error", String.valueOf(resultCode));
             }
         }
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        mContext = context;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        this.mContext = null;
     }
 }

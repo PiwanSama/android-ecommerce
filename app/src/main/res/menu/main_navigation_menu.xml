@@ -3,11 +3,12 @@
 
     <item android:title="@string/history">
         <menu>
-            <group>
+            <group android:checkableBehavior="none">
 
-            <item
-                android:icon="@drawable/ic_prescription"
-                android:title="@string/prescriptions" />
+                <item
+                    android:id="@+id/prescriptions"
+                    android:icon="@drawable/ic_prescription"
+                    android:title="@string/prescriptions" />
 
                 <item
                     android:id="@+id/orders"
@@ -20,7 +21,7 @@
 
     <item android:title="@string/settings">
         <menu>
-            <group>
+            <group  android:checkableBehavior="none">
 
                 <item
                     android:id="@+id/user_profile"

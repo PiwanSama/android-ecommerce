@@ -100,7 +100,7 @@
     <string name="camera">Camera</string>
     <string name="gallery">Gallery</string>
     <string name="personal_details">Your Personal Details</string>
-    <string name="opt_in">Opt In</string>
+    <string name="opt_in">Will you be using Insurance?</string>
     <string name="next_of_kin_name">Next of Kin Name</string>
     <string name="next_of_kin_r_type">Next of Kin Relationship Type</string>
     <string name="phone_contact">Phone Contact</string>
@@ -132,5 +132,6 @@
     <string name="sample_order_id">763BTX</string>
     <string name="pls">1x Azithromycin</string>
     <string name="plstwo">2x Ampiclox</string>
+    <string name="next">Next</string>
 
 </resources>

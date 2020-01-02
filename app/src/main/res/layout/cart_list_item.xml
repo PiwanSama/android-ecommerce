@@ -95,7 +95,7 @@
                     android:layout_width="0dp"
                     android:gravity="center"
                     android:text="@{cartItemView.cartItem.quantity}"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1" />
 
                 <ImageView
                     android:id="@+id/decrease_count"

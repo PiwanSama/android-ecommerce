@@ -29,7 +29,7 @@ import com.cti.lifego.databinding.MainActivityBinding;
 import com.cti.lifego.databinding.NavHeaderBinding;
 import com.cti.lifego.intefaces.IMainActivity;
 import com.cti.lifego.utils.NetworkUtil;
-import com.cti.lifego.viewmodels.UserViewModel;
+import com.cti.lifego.viewmodels.LoginViewModel;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     NavController navController;
     NavigationView navigationView;
     MainActivityBinding binding;
-    UserViewModel userViewModel;
+    LoginViewModel loginViewModel;
     DrawerLayout drawerLayout;
     MaterialSearchView searchView;
     Boolean start;
@@ -63,8 +63,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             setTheme(R.style.AppTheme);
             binding = DataBindingUtil.setContentView(this, R.layout.main_activity);
             NavHeaderBinding navHeaderBinding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.nav_header, binding.navigationView, false);
-            userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
-            navHeaderBinding.setUserViewModel(userViewModel);
+            loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+            navHeaderBinding.setLoginViewModel(loginViewModel);
             navController = Navigation.findNavController(this, R.id.nav_host_fragment);
             drawerLayout = binding.drawerLayout;
             searchView = binding.searchView;
@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         actionBar.setHomeButtonEnabled(true);
 
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
-            if (destination.getId() == R.id.registrationFragment){
+            if (destination.getId() == R.id.user_registration_graph){
                 makeFullScreen();
             }
             else if (destination.getId() == R.id.loginFragment){
@@ -131,12 +131,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        Set<Integer> topLevelDest = new HashSet<>();
-        topLevelDest.add(R.id.homeFragment);
-        topLevelDest.add(R.id.ordersFragment);
-        topLevelDest.add(R.id.userProfileFragment);
+        Set<Integer> topLevelDestination = new HashSet<>();
+        topLevelDestination.add(R.id.homeFragment);
+        topLevelDestination.add(R.id.ordersFragment);
+        topLevelDestination.add(R.id.userProfileFragment);
+        topLevelDestination.add(R.id.cartFragment);
 
-        appBarConfiguration = new AppBarConfiguration.Builder(topLevelDest)
+        appBarConfiguration = new AppBarConfiguration.Builder(topLevelDestination)
                 .setDrawerLayout(binding.drawerLayout)
                 .build();
 

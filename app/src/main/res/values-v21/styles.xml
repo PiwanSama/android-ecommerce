@@ -17,16 +17,8 @@
         <item name="actionBarTheme">@style/AppTheme.AppBarOverlay</item>
         <item name="android:statusBarColor">@color/colorPrimary</item>
         <item name="android:windowContentTransitions">true</item>
+        <item name="android:navigationBarColor">@color/white</item>
         <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="NavigationTheme">
-        <item name="android:textSize">16sp</item>
-    </style>
-
-    <style name="NavigationItem" parent="TextAppearance.AppCompat.Body1">
-        <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/mutedText</item>
     </style>
 
     <style name="AllCapsTitle" parent="TextAppearance.AppCompat.Title">

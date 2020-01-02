@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 public class Product {
     @SerializedName("id")
     public int id;
-    @SerializedName("name")
+    @SerializedName("kin_name")
     public String name;
     @SerializedName("image")
     public int image;

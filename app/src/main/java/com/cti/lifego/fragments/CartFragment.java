@@ -1,18 +1,17 @@
 package com.cti.lifego.fragments;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -33,21 +32,25 @@ import java.util.Set;
 
 public class CartFragment extends Fragment implements ICartFragment {
 
+    private Context mContext;
     private CartFragmentBinding binding;
-    private CartAdapter cartAdapter;
     private CartViewModel cartViewModel;
-    ProductViewModel productViewModel;
-    List<CartItem> cartItems;
-    RecyclerView cartRecyclerView;
+    private ProductViewModel productViewModel;
+    private List<CartItem> cartItems;
+    private RecyclerView cartRecyclerView;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = DataBindingUtil.inflate(LayoutInflater.from(getContext()),R.layout.cart_fragment, container, false);
+        binding = DataBindingUtil.inflate(LayoutInflater.from(mContext),R.layout.cart_fragment, container, false);
+
+        showBar();
+
         cartRecyclerView = binding.cartRecyclerView;
         cartViewModel = new ViewModelProvider(this).get(CartViewModel.class);
         productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
+
         return binding.getRoot();
     }
 
@@ -55,59 +58,87 @@ public class CartFragment extends Fragment implements ICartFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         getShoppingCartList();
-        if (cartItems!=null){
-            cartAdapter = new CartAdapter(cartItems);
+        if (cartItems.size()!=0){
+            CartAdapter cartAdapter = new CartAdapter(cartItems);
             cartRecyclerView.setAdapter(cartAdapter);
+            showCart();
         }
         else {
-            Toast.makeText(getContext(), "Empty", Toast.LENGTH_SHORT).show();
+            cartEmpty();
         }
     }
 
     private void getShoppingCartList() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         Set<String> ids = preferences.getStringSet(PreferenceKeys.shopping_cart_ids, new HashSet<>());
-
         //In this case I will populate the cartItemsList with Cart Items created using the Product IDS stores
         cartItems = new ArrayList<>();
         if (ids!=null) {
             for (String id : ids) {
-                //You want to create a new cart item from that product id.
-                cartItems.add(new CartItem(productViewModel.getProduct(id)));
+                //Fetch the product associated with each product id from the database using productViewModel.getProduct(id).getValue();
+                //Fetch the product quantity from shared preferences
+                int quantity = preferences.getInt(id, 0);
+                //Create a new cart item from that product id.
+                cartItems.add(new CartItem(productViewModel.getProduct(id), quantity));
             }
         }
-
         cartViewModel.setCartList(cartItems);
         binding.setCartView(cartViewModel);
     }
 
-    public void updateCartItems(){
+    @Override
+    public void updateQuantity(Product product, int quantity) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(mContext);
+        SharedPreferences.Editor editor = preferences.edit();
+
+        //add the quantity
+        int currentQuantity = preferences.getInt(String.valueOf(product.getId()), 0);
+
+        //commit the updated quantity
+        editor.putInt(String.valueOf(product.getId()), (currentQuantity + quantity));
+        editor.commit();
         getShoppingCartList();
     }
 
     @Override
-    public void getQuantity(int quantity) {
+    public void deleteItem(CartItem cartItem) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(mContext);
+        SharedPreferences.Editor editor = preferences.edit();
 
-    }
+        editor.remove(String.valueOf(cartItem.getProduct().getValue().getId()));
+        editor.commit();
 
-    @Override
-    public void setQuantity(int quantity) {
+        Set<String> ids  = preferences.getStringSet(PreferenceKeys.shopping_cart_ids, new HashSet<String>());
+        assert ids != null;
+        if (ids.size() == 1){
+            editor.remove(PreferenceKeys.shopping_cart_ids);
+            editor.commit();
+        }
+        else {
+            ids.remove(String.valueOf(cartItem.getProduct().getValue().getId()));
+            editor.putStringSet(PreferenceKeys.shopping_cart_ids, ids);
+            editor.commit();
+        }
 
-    }
-
-    @Override
-    public void updateQuantity(CartItem cartItem) {
-
-    }
-
-    @Override
-    public void setCartVisibility(boolean cartVisibility) {
-
+        getShoppingCartList();
     }
 
     @Override
     public void emptyCart() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(mContext);
+        Set<String> serialNumbers = preferences.getStringSet(PreferenceKeys.shopping_cart_ids, new HashSet<String>());
+        SharedPreferences.Editor editor = preferences.edit();
 
+        for(String serialNumber : serialNumbers){
+            editor.remove(serialNumber);
+            editor.commit();
+        }
+
+        editor.remove(PreferenceKeys.shopping_cart_ids);
+        editor.commit();
+
+        getShoppingCartList();
+        cartEmpty();
     }
 
     @Override
@@ -118,6 +149,34 @@ public class CartFragment extends Fragment implements ICartFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
+    }
+
+    private void showBar(){
+        binding.contentLoading.show();
+    }
+
+    private void cartEmpty(){
+        binding.contentLoading.hide();
+        binding.cartEmptyView.setVisibility(View.VISIBLE);
+    }
+
+    private void showCart(){
+        binding.contentLoading.hide();
+        binding.populatedCartView.setVisibility(View.VISIBLE);
+    }
+
+    //TODO - Selected Store
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        mContext = context;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        this.mContext = null;
     }
 
 }

@@ -1,5 +1,6 @@
 package com.cti.lifego.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +29,7 @@ import java.util.Objects;
 
 public class HomeFragment extends Fragment {
 
+    private Context mContext;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +40,7 @@ public class HomeFragment extends Fragment {
         ArrayList<Category> categoryArrayList = new ArrayList<>(Arrays.asList(categories.CATEGORIES));
 
         CategoryAdapter categoryAdapter = new CategoryAdapter(categoryArrayList);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
 
         homeFragmentBinding.categoryRecyclerView.setLayoutManager(linearLayoutManager);
         homeFragmentBinding.categoryRecyclerView.setAdapter(categoryAdapter);
@@ -47,6 +49,18 @@ public class HomeFragment extends Fragment {
     }
 
     private boolean isConnected(){
-        return NetworkUtil.getConnectivityString(Objects.requireNonNull(getContext()));
+        return NetworkUtil.getConnectivityString(Objects.requireNonNull(mContext));
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        mContext = context;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        this.mContext = null;
     }
 }

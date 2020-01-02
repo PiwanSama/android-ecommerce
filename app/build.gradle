@@ -60,8 +60,10 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment:2.1.0"
     implementation "androidx.navigation:navigation-ui:2.1.0"
 
-    //implementation name:'maps-sdk-3.0.0-beta', ext:'aar'
-   // implementation name:'places-maps-sdk-3.0.0-beta', ext:'aar'
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
+    //implementation kin_name:'maps-sdk-3.0.0-beta', ext:'aar'
+   // implementation kin_name:'places-maps-sdk-3.0.0-beta', ext:'aar'
 
     implementation 'com.squareup.retrofit2:retrofit:2.7.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.2.2'

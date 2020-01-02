@@ -45,7 +45,7 @@ public class ProductRepository {
         return products;
     }
 
-    public LiveData<Product> getProduct(String id){
+    public MutableLiveData<Product> getProduct(String id){
         final MutableLiveData<Product> product = new MutableLiveData<>();
         service.getProduct(id).enqueue(new Callback<Product>() {
             @Override

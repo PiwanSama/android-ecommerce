@@ -11,8 +11,9 @@ public class CartItem {
     private int quantity;
     private LiveData<Product> product;
 
-    public CartItem(LiveData<Product> product) {
+    public CartItem(LiveData<Product> product, int quantity) {
         this.product = product;
+        this.quantity = quantity;
     }
 
     public int getId() {
