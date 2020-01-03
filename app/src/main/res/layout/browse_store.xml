@@ -10,32 +10,39 @@
             type="com.cti.lifego.viewmodels.ProductViewModel" />
     </data>
 
-    <com.facebook.shimmer.ShimmerFrameLayout
-        android:id="@+id/store_products_shimmer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <include layout="@layout/product_list_item"/>
-
-        <include layout="@layout/product_list_item"/>
-
-        <include layout="@layout/product_list_item"/>
-
-    </com.facebook.shimmer.ShimmerFrameLayout>
-
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fillViewport="true"
-        android:background="@color/colorGrey"
-        tools:context=".fragments.BrowseStoreFragment">
+        android:orientation="vertical">
 
-       <androidx.recyclerview.widget.RecyclerView
-           android:id="@+id/browse_store_recycler_view"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"/>
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/store_products_shimmer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    </ScrollView>
+            <include layout="@layout/product_list_item"/>
+
+            <include layout="@layout/product_list_item"/>
+
+            <include layout="@layout/product_list_item"/>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true"
+            android:background="@color/colorGrey"
+            tools:context=".fragments.BrowseStoreFragment">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/browse_store_recycler_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </ScrollView>
+
+    </LinearLayout>
 
 </layout>
 

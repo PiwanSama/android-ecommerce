@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.cti.lifego.models.Order;
+import com.cti.lifego.models.User;
 import com.cti.lifego.repositories.OrderRepository;
 
 import java.util.List;
@@ -32,8 +33,9 @@ public class OrderViewModel extends ViewModel {
         if (orders!=null){
             return;
         }
+        User user = new User();
         orderRepository = OrderRepository.getInstance();
-        orders = orderRepository.listOrders();
+        orders = orderRepository.listOrders(String.valueOf(user.getId()));
     }
 
     public MutableLiveData<OrderViewState> getViewState() {

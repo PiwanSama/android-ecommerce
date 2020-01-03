@@ -4,6 +4,7 @@
 
 package com.cti.lifego.api;
 
+import com.cti.lifego.models.CartItem;
 import com.cti.lifego.models.Order;
 import com.cti.lifego.models.Product;
 import com.cti.lifego.models.Store;
@@ -46,4 +47,8 @@ public interface NetworkService {
     Call<List<Order>> getOrders(String UserID);
     @GET("stores/{id}")
     Call<Order>getOrder(@Path("id") String OrderID);
+
+    //cart
+    @GET("cart")
+    Call<List<CartItem>> getCart(String UserID);
 }

@@ -67,7 +67,7 @@
 
     <!--Model Binding Strings-->
     <string name="order_confirm">Your order has been placed!</string>
-    <string name="order_id">Order ID</string>
+    <string name="order_id">Order ID: </string>
     <string name="order_date">12/06/2019</string>
     <string name="vendor">Vendor</string>
     <string name="make_payment">Make payment</string>
@@ -117,5 +117,13 @@
     <string name="sample_order_id">763BTX</string>
     <string name="pls">1x Azithromycin</string>
     <string name="next">Next</string>
+    <string name="order_date_title">Order Date</string>
+    <string name="order_total">34,000/=</string>
+    <string name="delivery_address">Delivery Address</string>
+    <string name="delivery_address_sample">Plot 41 Some Rd</string>
+    <string name="delivery_address_title">Delivery Address</string>
+    <string name="order_content">You ordered :</string>
+    <string name="az">1 x Azithromycin</string>
+    <string name="view_details">View Details</string>
 
 </resources>

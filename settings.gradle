@@ -1,1 +1,1 @@
-include ':app', ':vertical-stepper'
+include ':app', ':vertical-stepper', ':app-debug'

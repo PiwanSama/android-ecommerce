@@ -37,7 +37,7 @@ public class ProductDetailFragment extends BaseFragment {
             binding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.no_internet, container, false);
         }
         else {
-            binding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.no_internet, container, false);
+            binding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.product_detail, container, false);
         }
         return binding.getRoot();
     }

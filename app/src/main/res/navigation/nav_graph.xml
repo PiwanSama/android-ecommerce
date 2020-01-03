@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_graph"
     android:label="Main Graph"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/orderDetailFragment">
 
     <fragment
         android:id="@+id/loginFragment"
@@ -72,7 +72,7 @@
 
         <argument
             android:name="categoryID"
-            app:argType="Integer"/>
+            app:argType="integer"/>
 
     </fragment>
 

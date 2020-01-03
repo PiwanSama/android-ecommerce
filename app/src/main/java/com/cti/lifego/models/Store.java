@@ -4,12 +4,6 @@
 
 package com.cti.lifego.models;
 
-import android.widget.ImageView;
-
-import androidx.databinding.BindingAdapter;
-
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.annotations.SerializedName;
 
 public class Store {
@@ -19,7 +13,7 @@ public class Store {
     @SerializedName("kin_name")
     public String name;
     @SerializedName("image")
-    public int image;
+    public String image;
     @SerializedName("rating")
     public int rating;
     @SerializedName("address")
@@ -69,11 +63,11 @@ public class Store {
         this.contact = contact;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

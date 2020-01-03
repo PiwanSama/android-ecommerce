@@ -157,7 +157,6 @@ public class CartFragment extends Fragment implements ICartFragment {
 
     private void cartEmpty(){
         binding.contentLoading.hide();
-        binding.cartEmptyView.setVisibility(View.VISIBLE);
     }
 
     private void showCart(){
