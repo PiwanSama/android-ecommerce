@@ -27,25 +27,23 @@ public interface NetworkService {
     @POST("login")
     Call<ResponseBody> loginUser(@Field("email") String email, @Field("password") String password);
     @GET("user")
-    Call<User> getUser(@Path("id") String id);
+    Call<User> getUser(@Path("id") String userID);
     @PATCH("update_user/{id}")
-    Call<User> updateUser(@Body User user, @Path("id") String id);
+    Call<User> updateUser(@Body User user, @Path("id") String UserID);
 
     //Stores
     @GET("stores")
-    Call<List<Store>> getStores();
-    @GET("stores/{id}")
-    Call<Store>getStore(@Path("id") String id);
+    Call<List<Store>> getStores(@Path("id") int categoryID);
 
     //Products
     @GET("products")
-    Call<List<Product>> getProducts();
-    @GET("stores/{id}")
-    Call<Product>getProduct(@Path("id") String id);
+    Call<List<Product>> getProducts(String storeID);
+    @GET("products/{id}")
+    Call<Product>getProduct(@Path("id") String productID);
 
     //Orders
     @GET("orders")
-    Call<List<Order>> getOrders();
+    Call<List<Order>> getOrders(String UserID);
     @GET("stores/{id}")
-    Call<Order>getOrder(@Path("id") String id);
+    Call<Order>getOrder(@Path("id") String OrderID);
 }

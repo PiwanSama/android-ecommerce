@@ -3,7 +3,6 @@
     <color name="colorPrimary">#0071BC</color>
     <color name="colorPrimaryDark">#09263E</color>
     <color name="colorAccent">#06d6a0</color>
-    <color name="colorPrimaryTransparent">#850071BC</color>
     <color name="colorAccentTransparent">#7506D6A0</color>
     <color name="fontColor">#212529</color>
     <color name="mutedText">#6c757d</color>

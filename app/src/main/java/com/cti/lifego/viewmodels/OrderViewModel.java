@@ -14,29 +14,47 @@ import com.cti.lifego.repositories.OrderRepository;
 import java.util.List;
 
 public class OrderViewModel extends ViewModel {
-    private LiveData<List<Order>> products;
-    private MutableLiveData<Order> selectedOrder = new MutableLiveData<>();
+    private LiveData<List<Order>> orders;
+    private MutableLiveData<String> selectedOrderId = new MutableLiveData<>();
+    private MutableLiveData<OrderViewState> viewState = new MutableLiveData<>();
     private OrderRepository orderRepository;
-    private Order product;
+
+    public enum OrderViewState{
+        VIEW_ALL_ORDERS,
+        VIEW_SINGLE_ORDER
+    }
+
+    public OrderViewModel() {
+        viewState.setValue(OrderViewState.VIEW_ALL_ORDERS);
+    }
 
     public void init(){
-        if (products!=null){
+        if (orders!=null){
             return;
         }
         orderRepository = OrderRepository.getInstance();
-        products = orderRepository.listOrders();
+        orders = orderRepository.listOrders();
+    }
+
+    public MutableLiveData<OrderViewState> getViewState() {
+        return viewState;
+    }
+
+    public void select(String id) {
+        selectedOrderId.setValue(id);
+        viewState.setValue(OrderViewState.VIEW_SINGLE_ORDER);
+    }
+
+    public LiveData<String> getSelected(){
+        return selectedOrderId;
     }
 
     public LiveData<List<Order>> listOrders(){
-        return products;
+        return orders;
     }
 
     public MutableLiveData<Order> getOrder(String id){
-        selectedOrder = orderRepository.getOrder(id);
-        return selectedOrder;
+        return orderRepository.getOrder(id);
     }
 
-    private LiveData<Order> getSelected(){
-        return selectedOrder;
-    }
 }

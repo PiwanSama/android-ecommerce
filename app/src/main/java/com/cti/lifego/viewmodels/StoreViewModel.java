@@ -14,28 +14,37 @@ import com.cti.lifego.repositories.StoreRepository;
 import java.util.List;
 
 public class StoreViewModel extends ViewModel {
-    private MutableLiveData<Store> selectedStore = new MutableLiveData<Store>();
+    private MutableLiveData<String> selectedStoreID = new MutableLiveData<String>();
     private LiveData<List<Store>> stores;
-    private StoreRepository storeRepository;
+    private MutableLiveData<StoreViewState> storeViewState = new MutableLiveData<>();
+    private int categoryID;
+
+    public enum StoreViewState{
+        VIEW_ALL_STORES,
+        VIEW_SINGLE_STORE
+    }
+    public StoreViewModel(int categoryID){
+        this.categoryID = categoryID;
+        storeViewState.setValue(StoreViewState.VIEW_ALL_STORES);
+    }
 
     public void init(){
         if (stores!=null){
             return;
         }
-        storeRepository = StoreRepository.getInstance();
-        stores = storeRepository.listStores();
+        StoreRepository storeRepository = StoreRepository.getInstance();
+        stores = storeRepository.listStores(categoryID);
+    }
+    public MutableLiveData<StoreViewState> getViewState() {
+        return storeViewState;
     }
 
-    public LiveData<List<Store>> getStores(){
+    public void select(String id) {
+        selectedStoreID.setValue(id);
+        storeViewState.setValue(StoreViewState.VIEW_SINGLE_STORE);
+    }
+
+    public LiveData<List<Store>> listStores(Integer categoryID){
         return stores;
-    }
-
-    public LiveData<Store> getStore(String storeID){
-        selectedStore = storeRepository.getStore(storeID);
-        return selectedStore;
-    }
-
-    public LiveData<Store> getSelected() {
-        return selectedStore;
     }
 }

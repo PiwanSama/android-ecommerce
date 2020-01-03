@@ -15,8 +15,10 @@ public class Order {
     public String delivery_address;
     @SerializedName("status")
     public String status;
-    @SerializedName("product_id")
-    public int product_id;
+    @SerializedName("product")
+    public Product product;
+    @SerializedName("store")
+    public Store store;
 
     public int getId() {
         return id;
@@ -50,12 +52,12 @@ public class Order {
         this.status = status;
     }
 
-    public int getProduct_id() {
-        return product_id;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProduct_id(int product_id) {
-        this.product_id = product_id;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public String getDelivery_address() {

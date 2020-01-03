@@ -18,9 +18,10 @@ import com.cti.lifego.models.Category;
 
 import java.util.ArrayList;
 
-public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> implements RecyclerView.OnClickListener{
+public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder>{
 
     private ArrayList<Category> categories;
+    private CategoryClickListener categoryClickListener;
 
     public CategoryAdapter(ArrayList<Category> categories){
         this.categories = categories;
@@ -28,22 +29,22 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView name, description;
-        public ImageView image;
-        public int id;
+        private TextView name, description;
+        private ImageView image;
+        private CategoryClickListener listener;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.category_name);
             description = (TextView) itemView.findViewById(R.id.category_description);
             image = (ImageView) itemView.findViewById(R.id.category_image);
+            this.listener = categoryClickListener;
         }
     }
 
     @NonNull
     @Override
     public CategoryAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_list_item, parent, false);
     return new ViewHolder(itemView);
 
@@ -55,6 +56,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         holder.name.setText(category.getName());
         holder.description.setText(category.getDescription());
         holder.image.setImageResource(category.getImage());
+        holder.listener.getCategoryId(category.getId());
     }
 
     @Override
@@ -62,8 +64,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         return categories.size();
     }
 
-    @Override
-    public void onClick(View v) {
-
+    public interface CategoryClickListener {
+        void getCategoryId(int id);
     }
+
 }

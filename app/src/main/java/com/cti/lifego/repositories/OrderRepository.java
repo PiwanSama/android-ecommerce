@@ -29,9 +29,9 @@ public class OrderRepository {
         return instance;
     }
 
-    public LiveData<List<Order>> listOrders(){
+    public LiveData<List<Order>> listOrders(String userID){
         final MutableLiveData<List<Order>> orders = new MutableLiveData<>();
-        service.getOrders().enqueue(new Callback<List<Order>>() {
+        service.getOrders(userID).enqueue(new Callback<List<Order>>() {
             @Override
             public void onResponse(Call<List<Order>> call, Response<List<Order>> response) {
                 orders.setValue(response.body());

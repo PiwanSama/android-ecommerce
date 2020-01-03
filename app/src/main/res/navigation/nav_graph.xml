@@ -17,7 +17,36 @@
         android:name="com.cti.lifego.fragments.HomeFragment"
         android:label="LifeGo"
         app:enterAnim="@anim/fade_in"
-        tools:layout="@layout/home_fragment" />
+        tools:layout="@layout/home_fragment">
+
+        <action
+            android:id="@+id/action_showStores"
+            app:destination="@+id/storesListFragment"
+            app:enterAnim="@anim/fade_in" />
+
+        <action
+            android:id="@+id/action_open_cart"
+            app:destination="@id/cartFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popUpTo="@+id/homeFragment"
+            app:popUpToInclusive="false" />
+
+        <action
+            android:id="@+id/action_homeFragment_to_ordersFragment"
+            app:destination="@id/ordersFragment"
+            app:enterAnim="@anim/fade_in"
+            app:popUpTo="@+id/homeFragment"
+            app:popUpToInclusive="false" />
+
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/userProfileFragment"
+            app:enterAnim="@anim/fade_in"
+            app:popUpTo="@+id/homeFragment"
+            app:popUpToInclusive="false" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/ordersFragment"
@@ -29,18 +58,22 @@
         android:id="@+id/productDetailFragment"
         android:name="com.cti.lifego.fragments.ProductDetailFragment"
         android:label="Product"
-        tools:layout="@layout/product_detail">
-
-    </fragment>
+        tools:layout="@layout/product_detail"/>
 
     <fragment
         android:id="@+id/storesListFragment"
         android:name="com.cti.lifego.fragments.ListStoresFragment"
         android:label="Stores"
         tools:layout="@layout/list_stores">
+
         <action
-            android:id="@+id/action_storesListFragment_to_browseStoreFragment"
+            android:id="@+id/browseStoreAction"
             app:destination="@id/browseStoreFragment" />
+
+        <argument
+            android:name="categoryID"
+            app:argType="Integer"/>
+
     </fragment>
 
     <fragment
@@ -48,9 +81,17 @@
         android:name="com.cti.lifego.fragments.BrowseStoreFragment"
         android:label="Browse"
         tools:layout="@layout/browse_store">
+
         <action
-            android:id="@+id/action_browseStoreFragment_to_productDetailFragment"
-            app:destination="@id/productDetailFragment" />
+            android:id="@+id/action_showProductDetail"
+            app:destination="@id/productDetailFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"/>
+
+        <argument
+            android:name="storeID"
+            app:argType="string" />
+
     </fragment>
 
     <fragment
@@ -76,34 +117,6 @@
         android:name="com.cti.lifego.fragments.OrderDetailFragment"
         android:label="@string/order"
         tools:layout="@layout/single_order_details" />
-
-    <action
-        android:id="@+id/action_open_cart"
-        app:destination="@id/cartFragment"
-        app:enterAnim="@anim/fade_in"
-        app:exitAnim="@anim/fade_out"
-        app:popUpTo="@+id/homeFragment"
-        app:popUpToInclusive="false" />
-
-    <action
-        android:id="@+id/action_homeFragment_to_ordersFragment"
-        app:destination="@id/ordersFragment"
-        app:enterAnim="@anim/fade_in"
-        app:popUpTo="@+id/homeFragment"
-        app:popUpToInclusive="false" />
-
-    <action
-        android:id="@+id/action_homeFragment_to_profileFragment"
-        app:destination="@id/userProfileFragment"
-        app:enterAnim="@anim/fade_in"
-        app:popUpTo="@+id/homeFragment"
-        app:popUpToInclusive="false" />
-
-    <action
-        android:id="@+id/action_browseStoreFragment_to_productDetailFragment"
-        app:destination="@id/productDetailFragment"
-        app:enterAnim="@anim/nav_default_enter_anim"
-        app:exitAnim="@anim/nav_default_exit_anim"/>
 
     <action
         android:id="@+id/action_homeFragment_to_LoginFragment"
@@ -144,7 +157,7 @@
 
         <fragment
             android:id="@+id/checkoutSuccessFragment"
-            android:name="com.cti.lifego.fragments.CheckoutSuccess"
+            android:name="com.cti.lifego.fragments.CheckoutSummary"
             android:label="Success"
             tools:layout="@layout/checkout_success" />
     </navigation>

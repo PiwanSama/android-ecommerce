@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.cti.lifego.viewmodels.StoreViewModel" />
+    </data>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/store_shimmer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/store_list_item"/>
+
+        <include layout="@layout/store_list_item"/>
+
+        <include layout="@layout/store_list_item"/>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fillViewport="true"
         android:background="@color/colorGrey"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         tools:context=".fragments.ListStoresFragment">
 
         <androidx.recyclerview.widget.RecyclerView

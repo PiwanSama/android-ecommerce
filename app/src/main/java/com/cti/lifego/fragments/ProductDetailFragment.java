@@ -1,6 +1,5 @@
 package com.cti.lifego.fragments;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -11,14 +10,15 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.cti.lifego.R;
 import com.cti.lifego.content.PreferenceKeys;
 import com.cti.lifego.databinding.ProductDetailBinding;
 import com.cti.lifego.models.Product;
-import com.google.android.material.snackbar.BaseTransientBottomBar;
-import com.google.android.material.snackbar.Snackbar;
+import com.cti.lifego.viewmodels.ProductViewModel;
 
 import java.util.HashSet;
 import java.util.Objects;
@@ -26,35 +26,50 @@ import java.util.Set;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ProductDetailFragment extends Fragment {
-    private Context mContext;
+public class ProductDetailFragment extends BaseFragment {
     private ProductDetailBinding binding;
+    private ProductViewModel productViewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.inflate(LayoutInflater.from(mContext), R.layout.product_detail, container, false);
+        if (!isNetworkConnected()){
+            binding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.no_internet, container, false);
+        }
+        else {
+            binding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.no_internet, container, false);
+        }
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Product product = binding.getProduct();
+        binding.productShimmer.startShimmer();
+        productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
+        binding.setLifecycleOwner(this);
+        binding.setViewModel(productViewModel);
+
+        productViewModel.getSelected().observe(getViewLifecycleOwner(), new Observer<String>() {
+                    @Override
+                    public void onChanged(String s) {
+                        MutableLiveData<Product> productMutableLiveData = productViewModel.getProduct(s);
+                        Product product = productMutableLiveData.getValue();
+                        binding.setProduct(product);
+                        binding.productShimmer.stopShimmer();
+                        binding.productShimmer.setVisibility(View.GONE);
+                    }
+                });
         CircleImageView add =  binding.addToCart;
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                add.setEnabled(false);
-                add.setCircleBackgroundColor(Objects.requireNonNull(getActivity()).getResources().getColor(R.color.colorAccent));
-                addToCart(product, 1);
-            }
+        add.setOnClickListener(v -> {
+            add.setEnabled(false);
+            add.setCircleBackgroundColor(Objects.requireNonNull(getActivity()).getResources().getColor(R.color.colorAccent));
+            addToCart(binding.getProduct());
         });
     }
 
-    private void addToCart(Product product, int quantity){
+    private void addToCart(Product product){
         //Add the product ID to shared preferences so we can fetch it from the remote database in the cart fragment
-
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         SharedPreferences.Editor editor = preferences.edit();
 
@@ -65,23 +80,9 @@ public class ProductDetailFragment extends Fragment {
         editor.commit();
 
         //Commit the updated quantity
-        editor.putInt(String.valueOf(product.getId()), quantity);
+        editor.putInt(String.valueOf(product.getId()), 1);
         editor.commit();
 
 
-        Snackbar snackbar = Snackbar.make(Objects.requireNonNull(getView()), R.string.item_added, BaseTransientBottomBar.LENGTH_SHORT);
-        snackbar.show();
-    }
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        mContext = context;
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        this.mContext = null;
     }
 }

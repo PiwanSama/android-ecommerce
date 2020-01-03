@@ -29,9 +29,9 @@ public class ProductRepository {
         return instance;
     }
 
-    public LiveData<List<Product>> listProducts(){
+    public LiveData<List<Product>> listProducts(String storeID){
         final MutableLiveData<List<Product>> products = new MutableLiveData<>();
-        service.getProducts().enqueue(new Callback<List<Product>>() {
+        service.getProducts(storeID).enqueue(new Callback<List<Product>>() {
             @Override
             public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
                 products.setValue(response.body());

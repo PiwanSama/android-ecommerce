@@ -5,7 +5,21 @@
         <variable
             name="product"
             type="com.cti.lifego.models.Product" />
+
+        <variable
+            name="viewModel"
+            type="com.cti.lifego.viewmodels.ProductViewModel" />
+
     </data>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/product_shimmer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/product_detail_skeleton"/>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
     <ScrollView
         xmlns:app="http://schemas.android.com/apk/res-auto"

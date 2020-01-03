@@ -53,7 +53,7 @@
     <LinearLayout
         android:id="@+id/bottom_sheet"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="100dp"
         android:layout_gravity="bottom"
         android:orientation="vertical"
         android:padding="16dp"
@@ -65,7 +65,6 @@
             android:layout_gravity="center"
             android:textStyle="bold"
             android:textSize="18sp"
-            android:textColor="@color/white"
             android:text="@string/deliver_to"/>
 
         <TextView

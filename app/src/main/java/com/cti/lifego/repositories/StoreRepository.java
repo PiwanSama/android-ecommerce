@@ -29,9 +29,9 @@ public class StoreRepository {
         return instance;
     }
 
-    public LiveData<List<Store>> listStores(){
+    public LiveData<List<Store>> listStores(int categoryID){
         final MutableLiveData<List<Store>> stores = new MutableLiveData<>();
-        service.getStores().enqueue(new Callback<List<Store>>() {
+        service.getStores(categoryID).enqueue(new Callback<List<Store>>() {
             @Override
             public void onResponse(Call<List<Store>> call, Response<List<Store>> response) {
                 stores.setValue(response.body());
@@ -43,21 +43,5 @@ public class StoreRepository {
             }
         });
         return stores;
-    }
-
-    public MutableLiveData<Store> getStore(String storeId){
-        final MutableLiveData<Store> store = new MutableLiveData<>();
-        service.getStore(storeId).enqueue(new Callback<Store>() {
-            @Override
-            public void onResponse(Call<Store> call, Response<Store> response) {
-                store.setValue(response.body());
-            }
-
-            @Override
-            public void onFailure(Call<Store> call, Throwable t) {
-
-            }
-        });
-        return store;
     }
 }

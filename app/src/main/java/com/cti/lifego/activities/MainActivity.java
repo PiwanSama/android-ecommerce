@@ -1,9 +1,7 @@
 package com.cti.lifego.activities;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,7 +22,6 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.cti.lifego.R;
-import com.cti.lifego.content.PreferenceKeys;
 import com.cti.lifego.databinding.MainActivityBinding;
 import com.cti.lifego.databinding.NavHeaderBinding;
 import com.cti.lifego.intefaces.IMainActivity;
@@ -180,44 +177,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getMenuInflater().inflate(R.menu.toolbar_menu, menu);
         MenuItem search_item = menu.findItem(R.id.search);
         searchView.setMenuItem(search_item);
-
-        final MenuItem cart_item = menu.findItem(R.id.cart);
-        final View cartItemView = menu.findItem(R.id.cart).getActionView();
-        cartItemCount = cartItemView.findViewById(R.id.cart_badge);
-        setupBadge();
-        cartItemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onOptionsItemSelected(cart_item);
-            }
-        });
-
-        return true;
-    }
-
-    private void setupBadge() {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        Set<String> productIDs = preferences.getStringSet(PreferenceKeys.shopping_cart_ids, new HashSet<String>());
-        mCartItemCount = productIDs.size();
-
-        if (cartItemCount != null) {
-            if (mCartItemCount == 0) {
-                if (cartItemCount.getVisibility() != View.GONE) {
-                    cartItemCount.setVisibility(View.GONE);
-                }
-            } else {
-                cartItemCount.setText(String.valueOf(Math.min(mCartItemCount, 99)));
-                /*if (cartItemCount.getVisibility() != View.VISIBLE) {
-                    cartItemCount.setVisibility(View.VISIBLE);
-                }*/
-            }
-        }
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item){
-        if (item.getItemId()==R.id.cart){
-            navController.navigate(R.id.action_open_cart);
-        }
         return true;
     }
 

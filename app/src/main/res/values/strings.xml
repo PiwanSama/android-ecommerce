@@ -35,7 +35,6 @@
     <string name="search_hint">Search products and stores</string>
 
     <!--Blank Screens-->
-    <string name="orders_blank">No orders yet</string>
 
     <!--Buttons-->
     <string name="checkout">Checkout</string>
@@ -43,13 +42,9 @@
 
     <!--General-->
     <string name="info">Description</string>
-    <string name="lorem">Azithromycin is an antiobiotic used in the treatment of infections such as rain, showers and thunder.Azithromycin is an antiobiotic used in the treatment of infections such as rain, showers and thunder, the antiobiotic used in the treatment of infections such as rain, showers and thunder.</string>
     <string name="female">Female</string>
     <string name="male">Male</string>
     <string name="gender">Gender</string>
-    <string name="mtnmomo">MTN MoMo</string>
-    <string name="airtel_money">Airtel Money</string>
-    <string name="paypal">PayPal</string>
     <string name="fee_total">Delivery Fee</string>
     <string name="save">Save</string>
     <string name="change_photo">Change Photo</string>
@@ -62,9 +57,7 @@
     <string name="contact1">Phone Number</string>
 
     <!--Samples-->
-    <string name="product_sample_name">Azithromycin 400</string>
     <string name="product_name_desc">Product name</string>
-    <string name="product_sample_manufacturer">Medipharm Labs</string>
     <string name="product_sample_price">22,000/=</string>
     <string name="subtotal_price">92,780/=</string>
     <string name="product_sample_tax">2780/=</string>
@@ -84,28 +77,21 @@
     <string name="given_name">Given Name</string>
     <string name="surname">Surname</string>
     <string name="email_address">Email Address</string>
-    <string name="sample_vendor">AB Clinic Bukoto</string>
-    <string name="order_date2">Ordered on : 14/07/2019</string>
-    <string name="order_id2">Order ID</string>
-    <string name="shopping_cart">Cart</string>
     <string name="item_added">This item has been added to your cart</string>
     <string name="rating_review">Ratings and Reviews</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="sort_filter">Filter Search Results</string>
     <string name="select_delivery_address">Where should we deliver to?</string>
     <string name="delivery_location">Delivery Location</string>
-    <string name="confirm_location">Confirm Location</string>
     <string name="order_details">Order details</string>
     <string name="upload">Upload Prescription</string>
     <string name="camera">Camera</string>
     <string name="gallery">Gallery</string>
-    <string name="personal_details">Your Personal Details</string>
     <string name="opt_in">Will you be using Insurance?</string>
     <string name="next_of_kin_name">Next of Kin Name</string>
     <string name="next_of_kin_r_type">Next of Kin Relationship Type</string>
     <string name="phone_contact">Phone Contact</string>
     <string name="next_of_kin_phone_contact">Next of Kin Phone Contact</string>
-    <string name="nok_details">Your Next of Kin Details</string>
     <string name="register_title">Register</string>
     <string name="dob">Date of Birth</string>
     <string name="cart_empty">Your cart is empty!</string>
@@ -118,7 +104,6 @@
     <string name="log_in_lifego">Log in to LifeGo</string>
     <string name="forgot_password">Forgot password?</string>
     <string name="welcome_back">Welcome Back</string>
-    <string name="pay">One last step!</string>
     <string name="payment_method">Payment option</string>
     <string name="submit">Submit</string>
     <string name="required">A prescription is required to verify your order at the pharmacy</string>
@@ -131,7 +116,6 @@
     <string name="ordered_on">Ordered on</string>
     <string name="sample_order_id">763BTX</string>
     <string name="pls">1x Azithromycin</string>
-    <string name="plstwo">2x Ampiclox</string>
     <string name="next">Next</string>
 
 </resources>
