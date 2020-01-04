@@ -125,5 +125,6 @@
     <string name="order_content">You ordered :</string>
     <string name="az">1 x Azithromycin</string>
     <string name="view_details">View Details</string>
+    <string name="view_order">View Order</string>
 
 </resources>

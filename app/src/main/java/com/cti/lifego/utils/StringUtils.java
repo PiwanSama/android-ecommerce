@@ -1,5 +1,7 @@
 package com.cti.lifego.utils;
 
+import java.math.BigDecimal;
+
 public class StringUtils {
 
     public static String concatStrings(String str1, String str2){
@@ -8,6 +10,10 @@ public class StringUtils {
 
     public static String getQuantityString(int quantity){
         return (String.valueOf(quantity));
+    }
+
+    public static String bigDecimalToString(BigDecimal price){
+        return (String.valueOf(price));
     }
 
     public static String convertIntToString(int value){

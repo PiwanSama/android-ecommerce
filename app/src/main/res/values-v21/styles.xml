@@ -6,14 +6,14 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:colorControlNormal">@color/mutedText</item>
-        <item name="android:colorControlHighlight">@color/mutedText</item>
+        <item name="android:colorControlHighlight">@color/white</item>
         <item name="android:colorControlActivated">@color/mutedText</item>
         <item name="android:colorBackground">@color/white</item>
         <item name="android:textColor">@color/fontColor</item>
         <item name="android:textColorPrimary">@color/fontColor</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:letterSpacing">0.03</item>
-        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:fontFamily">@font/lato</item>
         <item name="actionBarTheme">@style/AppTheme.AppBarOverlay</item>
         <item name="android:statusBarColor">@color/colorPrimary</item>
         <item name="android:windowContentTransitions">true</item>
@@ -42,6 +42,20 @@
     <style name="splashScreenTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_screen</item>
         <item name="android:statusBarColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="FloatingCardStyle" parent="@style/Widget.MaterialComponents.Button">
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+    </style>
+
+    <style name="SelectableItemTheme">
+        <item name="android:colorControlHighlight">@color/white</item>
+    </style>
+
+    <style name="SelectableItemBackground">
+        <item name="android:theme">@style/SelectableItemTheme</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
     </style>
 
 </resources>

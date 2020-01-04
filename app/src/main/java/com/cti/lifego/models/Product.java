@@ -1,22 +1,19 @@
 package com.cti.lifego.models;
 
-import com.google.gson.annotations.SerializedName;
+import com.cti.lifego.intefaces.Saleable;
 
-public class Product {
-    @SerializedName("id")
-    public int id;
-    @SerializedName("kin_name")
-    public String name;
-    @SerializedName("image")
-    public int image;
-    @SerializedName("price")
-    private int price;
-    @SerializedName("vendor")
+import java.io.Serializable;
+import java.math.BigDecimal;
+
+public class Product implements Saleable, Serializable {
+
+    private int id;
+    private String name;
+    private int image;
+    private BigDecimal price;
     private String vendor;
-    @SerializedName("description")
-    public String description;
-    @SerializedName("rating")
-    public int rating;
+    private String description;
+    private int rating;
 
     public int getId() {
         return id;
@@ -30,15 +27,20 @@ public class Product {
         return name;
     }
 
+    @Override
+    public int getID() {
+        return 0;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
 
-    public int getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
@@ -61,6 +63,7 @@ public class Product {
     public String getDescription() {
         return description;
     }
+
     public void setDescription(String description) {
         this.description = description;
     }

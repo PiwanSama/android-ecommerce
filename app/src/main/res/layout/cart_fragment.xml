@@ -48,7 +48,7 @@
                     android:id="@+id/cart_total_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{cartView.getTotalCostString()}"
+                    android:text="@{cartView.cartItemCount}"
                     android:layout_margin="20dp"
                     android:layout_gravity="center"
                     />

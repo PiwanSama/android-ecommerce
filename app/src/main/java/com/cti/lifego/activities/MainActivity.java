@@ -23,7 +23,6 @@ import androidx.navigation.ui.NavigationUI;
 import com.cti.lifego.R;
 import com.cti.lifego.databinding.MainActivityBinding;
 import com.cti.lifego.databinding.NavHeaderBinding;
-import com.cti.lifego.intefaces.IMainActivity;
 import com.cti.lifego.utils.NetworkUtil;
 import com.cti.lifego.viewmodels.LoginViewModel;
 import com.google.android.material.navigation.NavigationView;
@@ -34,7 +33,7 @@ import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import java.util.HashSet;
 import java.util.Set;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, IMainActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     NavController navController;
     NavigationView navigationView;
     MainActivityBinding binding;

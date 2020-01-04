@@ -4,6 +4,7 @@
 
 package com.cti.lifego.adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -13,59 +14,62 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.cti.lifego.R;
 import com.cti.lifego.databinding.CartListItemBinding;
+import com.cti.lifego.models.Cart;
 import com.cti.lifego.models.CartItem;
-import com.cti.lifego.viewmodels.CartItemViewModel;
-import com.cti.lifego.viewmodels.CartViewModel;
+import com.cti.lifego.utils.CartHelper;
 
+import java.util.Collections;
 import java.util.List;
 
-public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
+public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
 
-    private List<CartItem> cartItems;
+    private Context context;
+    private CartListItemBinding binding;
+    private Cart cart = CartHelper.getCart();
+    private List<CartItem> cartItems = Collections.emptyList();
 
-    public CartAdapter(List<CartItem> cartItems){
-        this.cartItems = cartItems;
+    public CartAdapter(Context context)
+    {
+        this.context = context;
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
-        private final CartListItemBinding binding;
+    class CartViewHolder extends RecyclerView.ViewHolder{
 
-        ViewHolder(@NonNull CartListItemBinding binding) {
+        private final CartListItemBinding itemBinding;
+
+        CartViewHolder(@NonNull CartListItemBinding binding) {
             super(binding.getRoot());
-            this.binding = binding;
+            this.itemBinding = binding;
         }
-        void bind(CartItem cartItem){
+
+        void bind(CartItem cartItem)
+        {
+            binding.setCartItem(cartItem);
+            binding.totalItemCost.setText(String.valueOf(cart.getCost(cartItem.getProduct())));
             binding.executePendingBindings();
         }
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
+    public CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         CartListItemBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.cart_list_item,parent,false);
-        return new ViewHolder(binding);
+        return new CartViewHolder(binding);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        CartItemViewModel viewModel = new CartItemViewModel();
+    public void onBindViewHolder(@NonNull CartViewHolder cartViewHolder, int position) {
         CartItem cartItem = cartItems.get(position);
-        viewModel.setCartItem(cartItem);
-        holder.binding.setCartItemView(viewModel);
-        holder.binding.executePendingBindings();
+        cartViewHolder.bind(cartItem);
     }
 
     @Override
     public int getItemCount() {
-        if (cartItems !=null){
-            return cartItems.size();
-        }return 0;
+        return cartItems.size();
     }
 
-    public void updateCartList(List<CartItem> cartItems){
-        this.cartItems.clear();
-        this.cartItems.addAll(cartItems);
+    public void updateCartItems(List<CartItem> cartItems){
+        this.cartItems = cartItems;
         notifyDataSetChanged();
     }
 }

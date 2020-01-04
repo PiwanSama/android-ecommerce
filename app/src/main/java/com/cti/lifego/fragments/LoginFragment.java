@@ -1,6 +1,5 @@
 package com.cti.lifego.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +9,6 @@ import android.widget.AdapterView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
@@ -18,10 +16,9 @@ import com.cti.lifego.R;
 import com.cti.lifego.databinding.LoginFragmentBinding;
 import com.cti.lifego.viewmodels.LoginViewModel;
 
-public class LoginFragment extends Fragment implements AdapterView.OnItemSelectedListener {
+public class LoginFragment extends BaseFragment implements AdapterView.OnItemSelectedListener {
     private LoginViewModel loginViewModel;
     private LoginFragmentBinding binding;
-    private Context mContext;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +29,7 @@ public class LoginFragment extends Fragment implements AdapterView.OnItemSelecte
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        binding.holder.setVisibility(View.VISIBLE);
 
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         binding.setLifecycleOwner(this);
@@ -46,9 +44,11 @@ public class LoginFragment extends Fragment implements AdapterView.OnItemSelecte
         });
 
         binding.signInButton.setOnClickListener(v -> {
-            String email = binding.userEmail.getText().toString();
-            String password = binding.userPassword.getText().toString();
-            loginViewModel.loginUser(email, password);
+           // String email = binding.userEmail.getText().toString();
+           // String password = binding.userPassword.getText().toString();
+          //  loginViewModel.loginUser(email, password);
+
+
         });
 
         binding.noAccount.setOnClickListener(new View.OnClickListener() {
@@ -67,17 +67,5 @@ public class LoginFragment extends Fragment implements AdapterView.OnItemSelecte
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
-    }
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        mContext = context;
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        this.mContext = null;
     }
 }

@@ -4,16 +4,18 @@
 
 package com.cti.lifego.viewmodels;
 
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.cti.lifego.models.CartItem;
-import com.cti.lifego.utils.Prices;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CartViewModel extends ViewModel {
 
+    private MutableLiveData<String> cartItemCount = new MutableLiveData<>();
+    private MutableLiveData<String> cartItemCost = new MutableLiveData<>();
     private List<CartItem> cartList = new ArrayList<>();
 
     public List<CartItem> getCartList() {
@@ -24,14 +26,19 @@ public class CartViewModel extends ViewModel {
         this.cartList = cartList;
     }
 
-    public String getTotalCostString(){
-        double totalCost = 0;
+    public MutableLiveData<String> getCartItemCount() {
+        return cartItemCount;
+    }
 
-        for (CartItem cartItem: cartList){
-            int id = cartItem.getProduct().getValue().getId();
-            int productQuantity = cartItem.getQuantity();
-            double cost = productQuantity * (Prices.getPrices().get(id).doubleValue());
-        }
-       return "S";
+    public void setCartItemCount() {
+        cartItemCount.setValue(String.valueOf(cartList.size()));
+    }
+
+    public MutableLiveData<String> getCartItemCost() {
+        return cartItemCost;
+    }
+
+    public void setCartItemCost(MutableLiveData<String> cartItemCost) {
+        this.cartItemCost = cartItemCost;
     }
 }

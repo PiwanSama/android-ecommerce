@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_graph"
     android:label="Main Graph"
-    app:startDestination="@id/orderDetailFragment">
+    app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/loginFragment"
@@ -117,6 +117,11 @@
         android:name="com.cti.lifego.fragments.OrderDetailFragment"
         android:label="@string/order"
         tools:layout="@layout/single_order_details" />
+
+    <fragment
+        android:id="@+id/floatingOrderFragment"
+        android:name="com.cti.lifego.fragments.FloatingCardOrderFragment"
+        tools:layout="@layout/floating_card_order" />
 
     <action
         android:id="@+id/action_homeFragment_to_LoginFragment"

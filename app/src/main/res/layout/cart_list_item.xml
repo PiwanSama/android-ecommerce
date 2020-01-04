@@ -3,121 +3,155 @@
   ~ Copyright (c) 2019. Written by Samalie Piwan
   -->
 
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
+
+        <import type="com.cti.lifego.utils.StringUtils"/>
         <variable
             name="cartItemView"
             type="com.cti.lifego.viewmodels.CartItemViewModel" />
 
+        <variable
+            name="cartItem"
+            type="com.cti.lifego.models.CartItem" />
+
     </data>
 
-    <LinearLayout
-        android:id="@+id/cart_item"
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:orientation="horizontal"
-        android:weightSum="2"
-        xmlns:android="http://schemas.android.com/apk/res/android">
+        app:elevation="4dp">
 
-        <ImageView
-            android:layout_width="120dp"
-            android:layout_height="match_parent"
-            android:contentDescription="@string/product_name_desc"
-            android:scaleType="fitCenter"
-            android:src="@{cartItemView.cartItem.product.image}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="8dp">
-
-            <TextView
-                android:id="@+id/product_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:text="@{cartItemView.getQuantityString(cartItemView.cartItem)}"
-                android:textStyle="bold"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                />
-
-            <TextView
-                android:id="@+id/product_vendor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:text="@{cartItemView.cartItem.product.vendor}"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/product_name"
-                android:textAppearance="@style/MutedText"
-                android:textSize="12sp"/>
-
-            <TextView
-                android:id="@+id/product_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:text="@{cartItemView.cartItem.product.price}"
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/product_vendor"
-                />
+            android:layout_height="wrap_content">
 
             <LinearLayout
-                android:id="@id/textinput_counter"
-                android:layout_width="120dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="10dp"
+                android:id="@+id/cart_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/product_price"
-                android:weightSum="3">
+                android:weightSum="2"
+                >
 
                 <ImageView
-                    android:id="@+id/increase_count"
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_minus"
-                    android:layout_weight="1"
-                    android:onClick="@{()-> cartItemView.increaseQuantity(context)}"/>
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/product_name_desc"
+                    android:scaleType="fitCenter"
+                    android:src="@{cartItem.product.image}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/product_quantity"
-                    android:layout_height="wrap_content"
-                    android:layout_width="0dp"
-                    android:gravity="center"
-                    android:text="@{cartItemView.cartItem.quantity}"
-                    android:layout_weight="1" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp">
 
-                <ImageView
-                    android:id="@+id/decrease_count"
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_plus"
-                    android:layout_weight="1"
-                    android:onClick="@{()-> cartItemView.decreaseQuantity(context)}"/>
+                    <TextView
+                        android:id="@+id/product_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="@{cartItem.product.name}"
+                        android:layout_marginStart="8dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        />
+
+                    <TextView
+                        android:id="@+id/product_unit_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="@{StringUtils.bigDecimalToString(cartItem.product.price)}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/product_name"
+                        />
+
+                    <LinearLayout
+                        android:id="@id/textinput_counter"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:weightSum="3">
+
+                        <ImageView
+                            android:id="@+id/increase_count"
+                            android:layout_width="0dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_minus"
+                            android:layout_weight="1"
+                            android:onClick="@{()-> cartItemView.increaseQuantity(context)}"/>
+
+                        <TextView
+                            android:id="@+id/product_quantity"
+                            android:layout_height="wrap_content"
+                            android:layout_width="0dp"
+                            android:gravity="center"
+                            android:text="@{cartItemView.cartItem.quantity}"
+                            android:layout_weight="1"/>
+
+                        <ImageView
+                            android:id="@+id/decrease_count"
+                            android:layout_width="0dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_plus"
+                            android:layout_weight="1"
+                            android:onClick="@{()-> cartItemView.decreaseQuantity(context)}"/>
+
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/delete_item"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_trash"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:onClick="@{()-> cartItemView.deleteItem(context)}"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                style="@style/Divider.Horizontal"/>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="10dp">
 
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/total_item_cost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@{StringUtils.bigDecimalToString(cartItem.totalCost)}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/ic_trash"
+                    android:onClick="@{()-> cartItemView.deleteItem(context)}"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
 
 </layout>

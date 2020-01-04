@@ -32,14 +32,14 @@ public class CartItemViewModel extends ViewModel {
         CartItem cartItem = getCartItem();
         cartItem.setQuantity(cartItem.getQuantity()+1);
         setCartItem(cartItem);
-        product = cartItem.getProduct().getValue();
+        product = cartItem.getProduct();
         ICartFragment iCartFragment = (ICartFragment) context;
         iCartFragment.updateQuantity(product, 1);
     }
 
     public void decreaseQuantity(Context context){
         CartItem cartItem = getCartItem();
-        product = cartItem.getProduct().getValue();
+        product = cartItem.getProduct();
         if (cartItem.getQuantity()>1){
             cartItem.setQuantity(cartItem.getQuantity()-1);
             setCartItem(cartItem);
@@ -50,7 +50,7 @@ public class CartItemViewModel extends ViewModel {
 
     public void deleteItem(Context context){
         CartItem cartItem = getCartItem();
-        product = cartItem.getProduct().getValue();
+        product = cartItem.getProduct();
         ICartFragment iCartFragment = (ICartFragment) context;
         iCartFragment.deleteItem(cartItem);
     }
