@@ -22,7 +22,8 @@
         <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/product_shimmer"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:visibility="gone">
 
             <include layout="@layout/product_detail_skeleton"/>
 
@@ -167,14 +168,21 @@
 
         </ScrollView>
 
-        <FrameLayout
+        <LinearLayout
+            android:id="@+id/floating_card_holder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent">
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:visibility="gone">
 
-            <include layout="@layout/floating_card_order"/>
+            <include
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                layout="@layout/floating_card_order"/>
 
-        </FrameLayout>
+        </LinearLayout>
 
     </LinearLayout>
 

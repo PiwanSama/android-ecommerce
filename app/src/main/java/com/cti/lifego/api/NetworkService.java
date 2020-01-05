@@ -4,7 +4,6 @@
 
 package com.cti.lifego.api;
 
-import com.cti.lifego.models.CartItem;
 import com.cti.lifego.models.Order;
 import com.cti.lifego.models.Product;
 import com.cti.lifego.models.Store;
@@ -33,22 +32,18 @@ public interface NetworkService {
     Call<User> updateUser(@Body User user, @Path("id") String UserID);
 
     //Stores
-    @GET("stores")
-    Call<List<Store>> getStores(@Path("id") int categoryID);
+    @GET("stores/{id}")
+    Call<List<Store>> getStores(@Path("id") String categoryID);
 
     //Products
     @GET("products")
-    Call<List<Product>> getProducts(String storeID);
+    Call<List<Product>> getProducts(@Path("storeID") String storeID);
     @GET("products/{id}")
     Call<Product>getProduct(@Path("id") String productID);
 
     //Orders
     @GET("orders")
-    Call<List<Order>> getOrders(String UserID);
-    @GET("stores/{id}")
+    Call<List<Order>> getOrders();
+    @GET("order/{id}")
     Call<Order>getOrder(@Path("id") String OrderID);
-
-    //cart
-    @GET("cart")
-    Call<List<CartItem>> getCart(String UserID);
 }

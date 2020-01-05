@@ -6,8 +6,9 @@
     <color name="colorAccentTransparent">#7506D6A0</color>
     <color name="fontColor">#212529</color>
     <color name="mutedText">#6c757d</color>
-    <color name="colorGrey">#EDF0F2</color>
+    <color name="colorGrey">#C5C1C1</color>
     <color name="lightGrey">#C5C1C1</color>
     <color name="white">#FFFFFF</color>
     <color name="gold">#FFD166</color>
+    <color name="transparent">#7CCDD1DA</color>
 </resources>

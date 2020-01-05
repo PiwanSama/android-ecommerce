@@ -11,7 +11,6 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.fragment.NavHostFragment;
 
 import com.cti.lifego.R;
 import com.cti.lifego.databinding.ProductDetailBinding;
@@ -27,7 +26,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ProductDetailFragment extends BaseFragment {
     private ProductDetailBinding binding;
     private ProductViewModel productViewModel;
-    private NavHostFragment navHost;
     private Cart cart = CartHelper.getCart();
 
     @Override
@@ -71,8 +69,6 @@ public class ProductDetailFragment extends BaseFragment {
             add.setCircleBackgroundColor(Objects.requireNonNull(getActivity()).getResources().getColor(R.color.colorAccent));
             //Add item to cart object
             cart.add(product, 1);
-
-
         });
     }
 }

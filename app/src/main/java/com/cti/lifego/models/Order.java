@@ -3,10 +3,14 @@ package com.cti.lifego.models;
 import com.google.gson.annotations.SerializedName;
 
 public class Order {
-    @SerializedName("id")
+    @SerializedName("order_id")
     public int id;
+    @SerializedName("product")
+    public Product product;
     @SerializedName("total_price")
     public int total_price;
+    @SerializedName("quantity")
+    public String quantity;
     @SerializedName("order_date")
     public String order_date;
     @SerializedName("delivery_date")
@@ -15,10 +19,12 @@ public class Order {
     public String delivery_address;
     @SerializedName("status")
     public String status;
-    @SerializedName("product")
-    public Product product;
     @SerializedName("store")
     public Store store;
+    @SerializedName("delivery_id")
+    public String DeliveryID;
+
+
 
     public int getId() {
         return id;
@@ -74,5 +80,29 @@ public class Order {
 
     public void setTotal_price(int total_price) {
         this.total_price = total_price;
+    }
+
+    public Store getStore() {
+        return store;
+    }
+
+    public void setStore(Store store) {
+        this.store = store;
+    }
+
+    public String getDeliveryID() {
+        return DeliveryID;
+    }
+
+    public void setDeliveryID(String deliveryID) {
+        DeliveryID = deliveryID;
+    }
+
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
     }
 }

@@ -35,7 +35,7 @@ public class OrderViewModel extends ViewModel {
         }
         User user = new User();
         orderRepository = OrderRepository.getInstance();
-        orders = orderRepository.listOrders(String.valueOf(user.getId()));
+        orders = orderRepository.listOrders();
     }
 
     public MutableLiveData<OrderViewState> getViewState() {

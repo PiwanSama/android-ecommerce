@@ -29,7 +29,7 @@ public class StoreRepository {
         return instance;
     }
 
-    public LiveData<List<Store>> listStores(int categoryID){
+    public LiveData<List<Store>> listStores(String categoryID){
         final MutableLiveData<List<Store>> stores = new MutableLiveData<>();
         service.getStores(categoryID).enqueue(new Callback<List<Store>>() {
             @Override

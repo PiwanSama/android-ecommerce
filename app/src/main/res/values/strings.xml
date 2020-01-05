@@ -126,5 +126,8 @@
     <string name="az">1 x Azithromycin</string>
     <string name="view_details">View Details</string>
     <string name="view_order">View Order</string>
+    <string name="personal_details">Your Personal Details</string>
+    <string name="kin_details">Your Next of Kin Details</string>
+    <string name="select">Select</string>
 
 </resources>

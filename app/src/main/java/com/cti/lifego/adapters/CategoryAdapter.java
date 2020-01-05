@@ -21,25 +21,29 @@ import java.util.ArrayList;
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder>{
 
     private ArrayList<Category> categories;
-    private CategoryClickListener categoryClickListener;
     private CategoryClickListener listener;
 
-    public CategoryAdapter(ArrayList<Category> categories){
+    public CategoryAdapter(ArrayList<Category> categories, CategoryClickListener listener){
         this.categories = categories;
+        this.listener = listener;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder{
 
         private TextView name, description;
         private ImageView image;
-        private CategoryClickListener listener;
 
-        public ViewHolder(@NonNull View itemView) {
+        ViewHolder(@NonNull View itemView) {
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.category_name);
             description = (TextView) itemView.findViewById(R.id.category_description);
             image = (ImageView) itemView.findViewById(R.id.category_image);
-            this.listener = categoryClickListener;
+        }
+
+        void bind(Category category, CategoryClickListener listener){
+            itemView.setOnClickListener(v -> {
+                listener.getCategoryId(category);
+            });
         }
     }
 
@@ -57,7 +61,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         holder.name.setText(category.getName());
         holder.description.setText(category.getDescription());
         holder.image.setImageResource(category.getImage());
-        holder.listener.getCategoryId(category.getId());
+        holder.bind(category, listener);
     }
 
     @Override
@@ -66,7 +70,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     }
 
     public interface CategoryClickListener {
-        void getCategoryId(int id);
+        void getCategoryId(Category category);
     }
-
 }

@@ -53,19 +53,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         else {
             start = true;
-            setTheme(R.style.AppTheme);
-            binding = DataBindingUtil.setContentView(this, R.layout.main_activity);
-            NavHeaderBinding navHeaderBinding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.nav_header, binding.navigationView, false);
-            loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
-            navHeaderBinding.setLoginViewModel(loginViewModel);
-            navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-            drawerLayout = binding.drawerLayout;
-            searchView = binding.searchView;
-            navigationView = binding.navigationView;
-            setUpNavigation();
-            setUpSearch();
-            navHostFragment  = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
+            setUp();
         }
+    }
+
+    public void setUp(){
+        setTheme(R.style.AppTheme);
+        binding = DataBindingUtil.setContentView(this, R.layout.main_activity);
+        NavHeaderBinding navHeaderBinding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.nav_header, binding.navigationView, false);
+        loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+        navHeaderBinding.setLoginViewModel(loginViewModel);
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        drawerLayout = binding.drawerLayout;
+        searchView = binding.searchView;
+        navigationView = binding.navigationView;
+        setUpNavigation();
+        setUpSearch();
+        navHostFragment  = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
     }
 
     private void showSnack(View v, String s){
@@ -112,7 +116,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         actionBar.setHomeButtonEnabled(true);
 
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
-            if (destination.getId() == R.id.user_registration_graph){
+            if (destination.getId() == R.id.personalDetailsFragment){
+                makeFullScreen();
+            }
+            else if (destination.getId() == R.id.kinDetailsFragment){
                 makeFullScreen();
             }
             else if (destination.getId() == R.id.loginFragment){

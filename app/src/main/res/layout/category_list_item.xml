@@ -5,16 +5,12 @@
         <variable
             name="category"
             type="com.cti.lifego.models.Category" />
-
-        <import type="com.cti.lifego.utils.StringUtils"/>
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/category_item"
         android:layout_width="match_parent"
         android:layout_height="160dp"
-        app:rippleColor="@color/lightGrey"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -34,7 +30,6 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@color/white"
-            android:layout_marginLeft="10dp"
             android:text="@{category.name}"
             app:layout_constraintStart_toStartOf="@id/category_image"
             app:layout_constraintBottom_toTopOf="@id/category_description"
@@ -46,7 +41,6 @@
             android:layout_height="wrap_content"
             android:text="@{category.description}"
             android:textColor="@color/white"
-            android:layout_marginLeft="10dp"
             android:textSize="12sp"
             android:singleLine="false"
             app:layout_constraintStart_toStartOf="@id/category_image"

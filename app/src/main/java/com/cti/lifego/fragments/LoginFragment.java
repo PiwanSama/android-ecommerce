@@ -17,7 +17,6 @@ import com.cti.lifego.databinding.LoginFragmentBinding;
 import com.cti.lifego.viewmodels.LoginViewModel;
 
 public class LoginFragment extends BaseFragment implements AdapterView.OnItemSelectedListener {
-    private LoginViewModel loginViewModel;
     private LoginFragmentBinding binding;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -29,26 +28,18 @@ public class LoginFragment extends BaseFragment implements AdapterView.OnItemSel
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        binding.holder.setVisibility(View.VISIBLE);
 
-        loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+        LoginViewModel loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         binding.setLifecycleOwner(this);
         binding.setLoginViewModel(loginViewModel);
 
 
-        binding.skip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.homeFragment);
-            }
-        });
+        binding.skip.setOnClickListener(v -> Navigation.findNavController(view).navigate(R.id.homeFragment));
 
         binding.signInButton.setOnClickListener(v -> {
-           // String email = binding.userEmail.getText().toString();
-           // String password = binding.userPassword.getText().toString();
-          //  loginViewModel.loginUser(email, password);
-
-
+            String email = binding.userEmail.getText().toString();
+            String password = binding.userPassword.getText().toString();
+            loginViewModel.loginUser(email, password);
         });
 
         binding.noAccount.setOnClickListener(new View.OnClickListener() {

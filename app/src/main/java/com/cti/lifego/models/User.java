@@ -27,9 +27,24 @@ public class User {
     public String kin_phone_number;
     @SerializedName("relationship_type")
     public int relationship_type;
-
     @SerializedName("image")
     public String image;
+
+    public User(){ }
+
+    public User(String surname, String givenName, String email, String phone, String dob, String gender, String opt_in, String password, String next_of_kin_name, String kin_phone_number, int relationship_type) {
+        this.surname = surname;
+        this.givenName = givenName;
+        this.email = email;
+        this.phone = phone;
+        this.dob = dob;
+        this.gender = gender;
+        this.opt_in = opt_in;
+        this.password = password;
+        this.next_of_kin_name = next_of_kin_name;
+        this.kin_phone_number = kin_phone_number;
+        this.relationship_type = relationship_type;
+    }
 
     public String getSurname() {
         return surname;

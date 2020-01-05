@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,12 +20,15 @@ import com.cti.lifego.adapters.OrdersAdapter;
 import com.cti.lifego.databinding.OrdersFragmentBinding;
 import com.cti.lifego.viewmodels.OrderViewModel;
 
+import static android.view.View.GONE;
+
 public class OrdersFragment extends BaseFragment implements OrdersAdapter.OrderClickListener {
 
     private OrdersFragmentBinding binding;
     private OrdersAdapter adapter;
     private OrderViewModel viewModel;
     private RecyclerView ordersRecyclerView;
+    ProgressBar loading;
 
     @Nullable
     @Override
@@ -42,10 +46,13 @@ public class OrdersFragment extends BaseFragment implements OrdersAdapter.OrderC
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        loading = binding.loadingOrders;
+        loading.setVisibility(View.VISIBLE);
         final NavController navController = Navigation.findNavController(view);
         ordersRecyclerView = binding.ordersRecyclerView;
         ordersRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
+        loading = binding.loadingOrders;
+        loading.setVisibility(View.VISIBLE);
         viewModel = new ViewModelProvider(this).get(OrderViewModel.class);
         binding.setLifecycleOwner(this);
         binding.setViewModel(viewModel);
@@ -69,6 +76,8 @@ public class OrdersFragment extends BaseFragment implements OrdersAdapter.OrderC
                 adapter.setOrders(orders);
                 ordersRecyclerView.setAdapter(adapter);
             }
+            loading.setVisibility(GONE);
+            binding.ordersEmpty.setVisibility(View.VISIBLE);
         });
     }
 

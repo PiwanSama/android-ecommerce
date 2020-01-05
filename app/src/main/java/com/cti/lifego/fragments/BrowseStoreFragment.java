@@ -18,13 +18,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.cti.lifego.R;
 import com.cti.lifego.adapters.BrowseStoreAdapter;
-import com.cti.lifego.content.PreferenceKeys;
-import com.cti.lifego.databinding.BrowseStoreBinding;
+import com.cti.lifego.databinding.FragmentBrowseStoreBinding;
+import com.cti.lifego.models.Product;
 import com.cti.lifego.viewmodels.ProductViewModel;
 
-public class BrowseStoreFragment extends BaseFragment implements BrowseStoreAdapter.ProductClickListener {
+public class BrowseStoreFragment extends BaseFragment{
 
-    private BrowseStoreBinding binding;
+    private FragmentBrowseStoreBinding binding;
     private BrowseStoreAdapter adapter;
     private ProductViewModel viewModel;
     private RecyclerView productRecyclerView;
@@ -35,8 +35,7 @@ public class BrowseStoreFragment extends BaseFragment implements BrowseStoreAdap
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (isNetworkConnected()){
-            binding = DataBindingUtil.inflate(inflater, R.layout.browse_store, container, false);
-            binding.storeProductsShimmer.startShimmer();
+            binding = DataBindingUtil.inflate(inflater, R.layout.fragment_browse_store, container, false);
             return binding.getRoot();
         }
         else {
@@ -62,7 +61,21 @@ public class BrowseStoreFragment extends BaseFragment implements BrowseStoreAdap
         viewModel.getViewState().observe(getViewLifecycleOwner(), productViewState -> {
             switch (productViewState){
                 case VIEW_ALL_PRODUCTS:
-                    loadData();
+                    assert getArguments() != null;
+                    viewModel.listProducts(storeID).observe(getViewLifecycleOwner(), products -> {
+                        adapter = new BrowseStoreAdapter(products, getContext(), new BrowseStoreAdapter.ProductClickListener() {
+                            @Override
+                            public void getProductId(Product product) {
+                                NavController controller = Navigation.findNavController(view);
+                                BrowseStoreFragmentDirections.ActionShowProductDetail action = BrowseStoreFragmentDirections.actionShowProductDetail(String.valueOf(product.getId()));
+                                controller.navigate(action);
+                            }
+                        });
+                        if (products!=null){
+                            adapter.setProducts(products);
+                            productRecyclerView.setAdapter(adapter);
+                        }
+                    });
                     break;
                 case VIEW_SINGLE_PRODUCT:
                     navController.navigate(R.id.productDetailFragment);
@@ -71,38 +84,8 @@ public class BrowseStoreFragment extends BaseFragment implements BrowseStoreAdap
         });
     }
 
-    private void loadData() {
-        assert getArguments() != null;
-        viewModel.listProducts(storeID).observe(getViewLifecycleOwner(), products -> {
-            adapter = new BrowseStoreAdapter(products, getContext());
-            if (products!=null){
-                adapter.setProducts(products);
-                productRecyclerView.setAdapter(adapter);
-                binding.storeProductsShimmer.stopShimmer();
-                binding.storeProductsShimmer.setVisibility(View.INVISIBLE);
-            }
-        });
-    }
-
-    @Override
-    public void getProductId(String id) { viewModel.select(id); }
-
     private void setSelectedStore(String id){
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString(PreferenceKeys.current_vendor, id);
-    }
-
-    private boolean isStoreDifferent(String id){
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        String currentStoreID = preferences.getString(PreferenceKeys.current_vendor, null);
-        if (id.equals(currentStoreID)){
-            //Get the cart that had been created
-            return true;
-        }
-        else {
-            setSelectedStore(id);
-            return false;
-        }
     }
 }

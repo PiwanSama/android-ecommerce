@@ -17,23 +17,20 @@ public class StoreViewModel extends ViewModel {
     private MutableLiveData<String> selectedStoreID = new MutableLiveData<String>();
     private LiveData<List<Store>> stores;
     private MutableLiveData<StoreViewState> storeViewState = new MutableLiveData<>();
-    private int categoryID;
 
     public enum StoreViewState{
         VIEW_ALL_STORES,
         VIEW_SINGLE_STORE
     }
-    public StoreViewModel(int categoryID){
-        this.categoryID = categoryID;
-        storeViewState.setValue(StoreViewState.VIEW_ALL_STORES);
-    }
+
 
     public void init(){
+        storeViewState.setValue(StoreViewState.VIEW_ALL_STORES);
         if (stores!=null){
             return;
         }
         StoreRepository storeRepository = StoreRepository.getInstance();
-        stores = storeRepository.listStores(categoryID);
+        stores = storeRepository.listStores("2");
     }
     public MutableLiveData<StoreViewState> getViewState() {
         return storeViewState;

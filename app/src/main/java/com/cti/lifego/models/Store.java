@@ -10,7 +10,7 @@ public class Store {
 
     @SerializedName("id")
     public int id;
-    @SerializedName("kin_name")
+    @SerializedName("name")
     public String name;
     @SerializedName("image")
     public String image;
