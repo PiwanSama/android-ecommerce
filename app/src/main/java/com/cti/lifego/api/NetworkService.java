@@ -19,6 +19,7 @@ import retrofit2.http.GET;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Url;
 
 public interface NetworkService {
     //Users
@@ -46,4 +47,7 @@ public interface NetworkService {
     Call<List<Order>> getOrders();
     @GET("order/{id}")
     Call<Order>getOrder(@Path("id") String OrderID);
+
+    //Google Map API
+    Call<String> getDirection(@Url String url);
 }

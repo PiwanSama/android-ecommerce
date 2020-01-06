@@ -3,12 +3,10 @@
     <color name="colorPrimary">#0071BC</color>
     <color name="colorPrimaryDark">#09263E</color>
     <color name="colorAccent">#05C794</color>
-    <color name="colorAccentTransparent">#7506D6A0</color>
+    <color name="colorAccentTransparent">#6B05C794</color>
     <color name="fontColor">#212529</color>
     <color name="mutedText">#6c757d</color>
-    <color name="colorGrey">#C5C1C1</color>
-    <color name="lightGrey">#C5C1C1</color>
+    <color name="colorLightGrey">#F3EAEA</color>
     <color name="white">#FFFFFF</color>
     <color name="gold">#FFD166</color>
-    <color name="transparent">#7CCDD1DA</color>
 </resources>

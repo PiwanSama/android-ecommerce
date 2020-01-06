@@ -48,11 +48,11 @@ public class OrdersFragment extends BaseFragment implements OrdersAdapter.OrderC
         super.onViewCreated(view, savedInstanceState);
         loading = binding.loadingOrders;
         loading.setVisibility(View.VISIBLE);
+
         final NavController navController = Navigation.findNavController(view);
         ordersRecyclerView = binding.ordersRecyclerView;
         ordersRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        loading = binding.loadingOrders;
-        loading.setVisibility(View.VISIBLE);
+
         viewModel = new ViewModelProvider(this).get(OrderViewModel.class);
         binding.setLifecycleOwner(this);
         binding.setViewModel(viewModel);

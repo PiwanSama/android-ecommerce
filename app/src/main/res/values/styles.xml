@@ -5,13 +5,11 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="colorControlNormal">@color/colorPrimary</item>
         <item name="android:colorBackground">@color/white</item>
         <item name="android:textColor">@color/fontColor</item>
-        <item name="android:textColorPrimary">@color/colorPrimary</item>
+        <item name="android:textColorPrimary">@color/fontColor</item>
         <item name="android:textSize">16sp</item>
         <item name="android:fontFamily">@font/lato</item>
-        <item name="actionBarTheme">@style/AppTheme.AppBarOverlay</item>
         <item name="windowNoTitle">true</item>
     </style>
 
@@ -35,12 +33,12 @@
     <style name="RatingBar" parent="Theme.AppCompat">
         <item name="android:minHeight">15dp</item>
         <item name="android:maxHeight">15dp</item>
-        <item name="colorControlNormal">@color/colorGrey</item>
+        <item name="colorControlNormal">@color/colorLightGrey</item>
         <item name="colorControlActivated">@color/gold</item>
     </style>
 
     <style name="Divider">
-        <item name="android:background">@color/colorGrey</item>
+        <item name="android:background">@color/colorLightGrey</item>
     </style>
 
     <style name="Divider.Horizontal" parent="Divider">

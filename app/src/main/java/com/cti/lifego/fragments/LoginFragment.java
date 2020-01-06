@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,7 +15,7 @@ import com.cti.lifego.R;
 import com.cti.lifego.databinding.LoginFragmentBinding;
 import com.cti.lifego.viewmodels.LoginViewModel;
 
-public class LoginFragment extends BaseFragment implements AdapterView.OnItemSelectedListener {
+public class LoginFragment extends BaseFragment {
     private LoginFragmentBinding binding;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -50,13 +49,4 @@ public class LoginFragment extends BaseFragment implements AdapterView.OnItemSel
         });
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
 }

@@ -49,7 +49,7 @@ public class HomeFragment extends BaseFragment{
         CategoryAdapter categoryAdapter = new CategoryAdapter(categoryArrayList, category -> {
             saveCategory(category.getId());
             NavController controller = Navigation.findNavController(view);
-            HomeFragmentDirections.ActionHomeFragmentToStoresListFragment action = HomeFragmentDirections.actionHomeFragmentToStoresListFragment(category.getId());
+            HomeFragmentDirections.ActionListStores action = HomeFragmentDirections.actionListStores(category.getId());
             controller.navigate(action);
         });
 

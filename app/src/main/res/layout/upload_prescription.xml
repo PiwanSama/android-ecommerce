@@ -65,7 +65,7 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_gravity="center"
-        android:background="@color/colorGrey"
+        android:background="@color/colorLightGrey"
         android:scaleType="fitCenter"
         android:src="@drawable/placeholder"/>
 

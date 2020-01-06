@@ -2,9 +2,7 @@
 <!--
   ~ Copyright (c) 2019. Written by Samalie Piwan
   -->
-<FrameLayout
-    android:id="@+id/map_holder"
-    android:layout_width="match_parent"
+<FrameLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
@@ -22,7 +20,6 @@
            android:background="@android:color/transparent">
 
            <androidx.cardview.widget.CardView
-               android:id="@+id/auto_complete_holder"
                android:layout_width="match_parent"
                android:layout_height="48dp"
                android:layout_marginTop="20dp"
@@ -51,7 +48,6 @@
     </fragment>
 
     <LinearLayout
-        android:id="@+id/bottom_sheet"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_gravity="bottom"
@@ -68,7 +64,7 @@
             android:text="@string/deliver_to"/>
 
         <TextView
-            android:id="@+id/delivery_location"
+            android:id="@+id/selected_place"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"

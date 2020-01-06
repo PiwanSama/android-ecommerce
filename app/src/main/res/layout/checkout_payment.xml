@@ -4,11 +4,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorGrey"
+    android:background="@color/colorLightGrey"
     android:orientation="vertical">
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/pricing_options"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -24,7 +23,6 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/page_subtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
@@ -95,6 +93,7 @@
                     android:layout_gravity="end"
                     android:layout_weight="1"
                     android:text="@string/cart_total_price"
+                    android:textColor="@color/mutedText"
                     android:textAlignment="viewEnd" />
 
             </LinearLayout>
@@ -122,6 +121,7 @@
                     android:layout_gravity="end"
                     android:layout_weight="1"
                     android:text="@string/product_sample_tax"
+                    android:textColor="@color/mutedText"
                     android:textAlignment="viewEnd" />
 
             </LinearLayout>
@@ -149,6 +149,7 @@
                     android:layout_gravity="end"
                     android:layout_weight="1"
                     android:text="@string/product_sample_fee"
+                    android:textColor="@color/mutedText"
                     android:textAlignment="viewEnd" />
 
             </LinearLayout>
@@ -189,6 +190,7 @@
                     android:layout_weight="1"
                     android:text="@string/subtotal_price"
                     android:textAlignment="viewEnd"
+                    android:textColor="@color/mutedText"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     />
@@ -196,7 +198,6 @@
             </LinearLayout>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/make_payment_button"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="40dp"
