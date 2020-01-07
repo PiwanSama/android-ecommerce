@@ -108,5 +108,10 @@
     <string name="personal_details">Your Personal Details</string>
     <string name="kin_details">Your Next of Kin Details</string>
     <string name="select">Select</string>
+    <string name="service_not_available">Sorry! Something went wrong</string>
+    <string name="invalid_lat_long_used">This location is invalid</string>
+    <string name="no_address_found">Address not found</string>
+    <string name="address_found">Found addresses</string>
+    <string name="no_geocoder_available">No Geocoder</string>
 
 </resources>

@@ -4,9 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_graph"
     android:label="Main Graph"
-    app:startDestination="@id/checkoutPricingFragment">
+    app:startDestination="@id/checkoutLocationFragment">
 
     <!-- Home Fragment and related -->
+
+    <fragment
+        android:id="@+id/checkoutLocationFragment"
+        android:name="com.cti.lifego.fragments.CheckoutLocation"
+        android:label="@string/delivery_location"
+        tools:layout="@layout/checkout_location">
+        <action
+            android:id="@+id/actionToPricing"
+            app:destination="@id/checkoutPricingFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/homeFragment"
@@ -131,16 +141,6 @@
         android:label="Log In"
         tools:layout="@layout/login_fragment"/>
 
-    <fragment
-        android:id="@+id/checkoutPricingFragment"
-        android:name="com.cti.lifego.fragments.CheckoutPayment"
-        android:label="Payment"
-        tools:layout="@layout/checkout_payment">
-        <action
-            android:id="@+id/actionCheckoutSuccess"
-            app:destination="@id/checkoutSuccessFragment" />
-    </fragment>
-
     <action
         android:id="@+id/actionStartLogin"
         app:destination="@id/loginFragment"
@@ -149,8 +149,8 @@
 
     <navigation
         android:id="@+id/checkout_graph"
-        android:label="Checkout Graph"
-        app:startDestination="@id/checkoutLocationFragment">
+        android:label="Checkout Graph">
+        <!--Put start destintion asn location chkout -->
 
         <fragment
             android:id="@+id/uploadPrescriptionFragment"
@@ -158,14 +158,16 @@
             android:label="Upload Prescription"
             tools:layout="@layout/upload_prescription" />
 
+
+
         <fragment
-            android:id="@+id/checkoutLocationFragment"
-            android:name="com.cti.lifego.fragments.CheckoutLocation"
-            android:label="@string/delivery_location"
-            tools:layout="@layout/checkout_location">
+            android:id="@+id/checkoutPricingFragment"
+            android:name="com.cti.lifego.fragments.CheckoutPayment"
+            android:label="Payment"
+            tools:layout="@layout/checkout_payment">
             <action
-                android:id="@+id/actionToPricing"
-                app:destination="@id/checkoutPricingFragment" />
+                android:id="@+id/actionCheckoutSuccess"
+                app:destination="@id/checkoutSuccessFragment" />
         </fragment>
 
 

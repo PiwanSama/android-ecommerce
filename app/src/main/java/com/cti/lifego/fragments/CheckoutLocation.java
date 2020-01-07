@@ -5,24 +5,24 @@
 package com.cti.lifego.fragments;
 
 import android.Manifest;
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
+import android.os.ResultReceiver;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.LinearInterpolator;
-import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,10 +35,14 @@ import androidx.core.content.ContextCompat;
 import com.cti.lifego.R;
 import com.cti.lifego.api.MapsRetrofitInstance;
 import com.cti.lifego.api.NetworkService;
+import com.cti.lifego.content.Constants;
+import com.cti.lifego.services.FetchAddressIntentService;
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResponse;
@@ -81,8 +85,9 @@ import static android.app.Activity.RESULT_OK;
 
 public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLocationButtonClickListener, OnMapReadyCallback{
 
-    private FusedLocationProviderClient mfusedLocationProviderClient;
+    private FusedLocationProviderClient fusedLocationProviderClient;
     private Location currentLocation;
+    private LocationRequest mLocationRequest;
     private GoogleMap mMap;
     private View mapView;
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
@@ -93,47 +98,20 @@ public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLoca
 
     private List<LatLng> polyLineList;
     private Marker pickupPoint;
-    private float v;
-    private double lat,lng;
-    private Handler handler;
     private LatLng startPosition, endPosition, currentPosition;
-    private int index, next;
-    private Button btnGo;
     private String destination;
     private PolylineOptions polylineOptions, blackPolyLineOptions;
     private Polyline greyPolyline, blackPolyline;
 
-    Runnable drawPathRunnable = new Runnable() {
-        @Override
-        public void run() {
-            if (index<polyLineList.size()-1){
-                index++;
-                next = index+1;
-            }
-            if (index<polyLineList.size()-1){
-                startPosition = polyLineList.get(index);
-                endPosition = polyLineList.get(next);
-            }
-
-            ValueAnimator animator = ValueAnimator.ofFloat(0,1);
-            animator.setDuration(3000)
-            animator.setInterpolator(new LinearInterpolator());
-            animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public void onAnimationUpdate(ValueAnimator animation) {
-                    v = animator.getAnimatedFraction();
-                    lng = v*endPosition.longitude +
-                }
-            });
-
-        }
-    }
+    private TextView placeText;
+    private String addressOutput;
+    private AddressReceiver resultReceiver;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-
+        resultReceiver = new AddressReceiver(null);
         Places.initialize(getContext(), getResources().getString(R.string.MAPS_KEY));
         PlacesClient placesClient = Places.createClient(getContext());
         return inflater.inflate(R.layout.checkout_location, container, false);
@@ -143,7 +121,7 @@ public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLoca
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        TextView placeText = view.findViewById(R.id.selected_place);
+        placeText = view.findViewById(R.id.selected_place);
 
         AutocompleteSupportFragment autoCompleteFragment = (AutocompleteSupportFragment) getChildFragmentManager().findFragmentById(R.id.auto_complete_fragment);
         if (autoCompleteFragment !=null){
@@ -151,7 +129,7 @@ public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLoca
             autoCompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
                 @Override
                 public void onPlaceSelected(@NonNull Place place) {
-                   placeText.setText(place.getName());
+                  // placeText.setText(place.getName());
                     Log.i("LOC", "Place: " + place.getName() + ", " + place.getId());
                 }
 
@@ -166,7 +144,7 @@ public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLoca
             Log.i("pls", "Fragment was null");
         }
 
-        mfusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(Objects.requireNonNull(getActivity()));
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(Objects.requireNonNull(getActivity()));
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map_fragment);
         mapFragment.getMapAsync(this);
         mapView = mapFragment.getView();
@@ -191,38 +169,52 @@ public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLoca
 
     private void setUpMap() {
         mMap.setMyLocationEnabled(true);
-        mMap.setOnMyLocationButtonClickListener(this);
-        mMap.setOnMapLoadedCallback(this::mapInit);
-        mMap.getUiSettings().setZoomControlsEnabled(false);
+        mMap.setMinZoomPreference(16);
+
         if (mapView!=null && mapView.findViewById(Integer.parseInt("1"))!=null){
             View locationButton = ((View) mapView.findViewById(Integer.parseInt("1")).getParent()).findViewById(Integer.parseInt("2"));
             RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) locationButton.getLayoutParams();
             layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP, 0);
             layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
-            layoutParams.setMargins(0,0,30,200);
+            layoutParams.setMargins(0,0,30,320);
         }
-    }
 
-    private void mapInit() {
-        Task<Location> task = mfusedLocationProviderClient.getLastLocation();
-        task.addOnSuccessListener(location -> {
-            if (location!=null){
-                currentLocation = location;
-                LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
-                MarkerOptions markerOptions = new MarkerOptions()
-                        .title("You are here")
-                        .position(latLng);
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,16.0f));
-                mMap.addMarker(markerOptions);
-            }
-        });
+        mLocationRequest = new LocationRequest();
+        mLocationRequest.setInterval(120000); // two minute interval
+        mLocationRequest.setFastestInterval(120000);
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+        fusedLocationProviderClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
 
         polyLineList = new ArrayList<>();
-        //Get selected place here pls
+
+        if (!Geocoder.isPresent()) {
+            Toast.makeText(getContext(),
+                    R.string.no_geocoder_available,
+                    Toast.LENGTH_LONG).show();
+            return;
+        }
+
     }
 
+    private LocationCallback mLocationCallback = new LocationCallback(){
+        @Override
+        public void onLocationResult(LocationResult locationResult) {
+            List<Location> locationList = locationResult.getLocations();
+            if (locationList.size() > 0){
+                //The last location is the newest
+                currentLocation = locationList.get(locationList.size() - 1);
+                LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
+                MarkerOptions options = new MarkerOptions();
+                options.position(latLng);
+                mMap.addMarker(options);
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
+              //  startIntentService();
+            }
+        }
+    };
+
+
     private void getDirection(){
-        currentPosition = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
         String requestAPI = null;
         try {
             requestAPI = "/json?"+
@@ -230,8 +222,10 @@ public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLoca
                     "transit_routing_preference=less_driving"+
                     "origin="+currentPosition.latitude+","+
                     currentPosition.longitude+"&"+
-                    "destination="+destination+
+                    "destination="+Constants.ntinda_lat+" , "+Constants.ntinda_lng+"&"+
                     "key"+getResources().getString(R.string.MAPS_KEY);
+
+            Log.i("API REQUEST", requestAPI);
 
             service.getDirection(requestAPI).enqueue(new Callback<String>() {
                 @Override
@@ -253,6 +247,7 @@ public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLoca
                             builder.include(latLng);
                             LatLngBounds bounds = builder.build();
                             CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds, 2);
+                            mMap.animateCamera(cameraUpdate);
 
                             polylineOptions = new PolylineOptions();
                             polylineOptions.color(Color.GRAY);
@@ -275,30 +270,7 @@ public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLoca
                             mMap.addMarker(new MarkerOptions().position(polyLineList.get(polyLineList.size() - 1))
                                     .title("PickupLocation"));
 
-                            ValueAnimator polyLineAnimator = ValueAnimator.ofInt(0,100);
-                            polyLineAnimator.setDuration(2000);
-                            polyLineAnimator.setInterpolator(new LinearInterpolator());
-                            polyLineAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                                @Override
-                                public void onAnimationUpdate(ValueAnimator animation) {
-                                    List<LatLng> points = greyPolyline.getPoints();
-                                    int percentage = (int) polyLineAnimator.getAnimatedValue();
-                                    int size = points.size();
-                                    int newPoints = (int) (size * percentage / 100);
-                                    List<LatLng> p = points.subList(0, newPoints);
-                                    blackPolyline.setPoints(p);
-                                }
-                            });
-                            polyLineAnimator.start();
-
-                            pickupPoint = mMap.addMarker(new MarkerOptions().position(currentPosition)
-                            .flat(true));
-
-                            handler = new Handler();
-                            index = -1;
-                            next = 1;
-                            handler.post(drawPathRunnable, 3000);
-
+                            pickupPoint = mMap.addMarker(new MarkerOptions().position(currentPosition));
                         }
                     }catch (JSONException e){
                         e.printStackTrace();
@@ -360,7 +332,7 @@ public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLoca
             }
             else {
                 // No explanation needed, request the permission
-                 requestPermissions(new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+                requestPermissions(new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
             }
         }
         else {
@@ -437,7 +409,7 @@ public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLoca
                         displayNeverAskAgainDialog();
                     }
                 }
-            }
+        }
     }
 
     private void displayNeverAskAgainDialog() {
@@ -457,10 +429,57 @@ public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLoca
         builder.setCancelable(false);
         builder.show();
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        //stop location updates when Activity is no longer active
+        if (fusedLocationProviderClient != null) {
+            fusedLocationProviderClient.removeLocationUpdates(mLocationCallback);
+        }
+    }
+
+    protected void startIntentService() {
+        Intent intent = new Intent(getContext(), FetchAddressIntentService.class);
+        intent.putExtra(Constants.RECEIVER, resultReceiver);
+        intent.putExtra(Constants.LOCATION_DATA_EXTRA, currentLocation);
+        Objects.requireNonNull(getActivity()).startService(intent);
+    }
+
+    class AddressReceiver extends ResultReceiver {
+        public AddressReceiver(Handler handler) {
+            super(handler);
+        }
+
+        @Override
+        protected void onReceiveResult(int resultCode, Bundle resultData) {
+            if (resultData == null) {
+                return;
+            }
+            // Display the address string
+            // or an error message sent from the intent service.
+            addressOutput = resultData.getString(Constants.RESULT_DATA_KEY);
+            if (addressOutput == null) {
+                addressOutput = "";
+            }
+            if (resultCode == Constants.SUCCESS_RESULT) {
+                Toast.makeText(getContext(), getString(R.string.address_found), Toast.LENGTH_SHORT).show();
+            }
+            updateUI(addressOutput);
+            // Show a toast message if an address was found.
+        }
+
+    }
+
+    private void updateUI(String addressText){
+        Objects.requireNonNull(getActivity()).runOnUiThread(() ->
+                placeText.setText(addressText));
+    }
+
     @Override
     public void onStop() {
         super.onStop();
     }
-
 }
 
