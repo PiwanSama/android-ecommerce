@@ -22,19 +22,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.cti.lifego.R;
 import com.cti.lifego.api.MapsRetrofitInstance;
 import com.cti.lifego.api.NetworkService;
 import com.cti.lifego.content.Constants;
+import com.cti.lifego.databinding.CheckoutLocationBinding;
 import com.cti.lifego.services.FetchAddressIntentService;
+import com.cti.lifego.viewmodels.CheckoutViewModel;
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationRequest;
@@ -74,6 +79,7 @@ import retrofit2.Response;
 
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
+import static com.cti.lifego.viewmodels.CheckoutViewModel.CheckoutState.CHECKOUT_LOCATION;
 
 public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLocationButtonClickListener, OnMapReadyCallback{
 
@@ -95,9 +101,13 @@ public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLoca
     private PolylineOptions routePolyLineOptions;
     private Polyline routePolyline;
 
-    private TextView placeText;
     private String addressOutput;
     private AddressReceiver resultReceiver;
+
+    private CheckoutLocationBinding binding;
+    private CheckoutViewModel viewModel;
+
+    private NavController navController;
 
     @Nullable
     @Override
@@ -106,18 +116,37 @@ public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLoca
         resultReceiver = new AddressReceiver(null);
         Places.initialize(getContext(), getResources().getString(R.string.MAPS_KEY));
         PlacesClient placesClient = Places.createClient(getContext());
-        return inflater.inflate(R.layout.checkout_location, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.checkout_location, container, false);
+        return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        placeText = view.findViewById(R.id.selected_place);
+        navController = Navigation.findNavController(view);
+
+        viewModel = new ViewModelProvider(this).get(CheckoutViewModel.class);
+        binding.setViewModel(viewModel);
+        binding.setLifecycleOwner(this);
+
         networkService = MapsRetrofitInstance.getRetrofitInstance().create(NetworkService.class);
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(Objects.requireNonNull(getActivity()));
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map_fragment);
         mapFragment.getMapAsync(this);
         mapView = mapFragment.getView();
+
+        binding.proceedToPayment.setOnClickListener(v ->
+                viewModel.delivery_fee.setValue("2000/="));
+                viewModel.checkout_state.setValue(CHECKOUT_LOCATION);
+
+        viewModel.getCheckout_state().observe(getViewLifecycleOwner(), checkoutState -> {
+            if (checkoutState == CHECKOUT_LOCATION) {
+                if (navController.getCurrentDestination().getId() == R.id.checkoutLocationFragment){
+                    navController.navigate(R.id.action_checkoutLocationFragment_to_checkoutPricingFragment);
+                }
+            }
+        });
+
     }
 
     @Override
@@ -166,7 +195,8 @@ public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLoca
                 mMap.addMarker(options);
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
                 //getDirection();
-                startIntentService();
+                final Handler handler = new Handler();
+                handler.postDelayed(this::startIntentService, 300);
             }
         });
     }
@@ -445,7 +475,7 @@ public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLoca
 
     private void updateUI(String addressText){
         Objects.requireNonNull(getActivity()).runOnUiThread(() ->
-                placeText.setText(addressText));
+                binding.selectedPlace.setText(addressText));
     }
 
     @Override

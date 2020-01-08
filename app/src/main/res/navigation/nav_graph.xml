@@ -18,9 +18,7 @@
             app:destination="@id/checkoutPricingFragment" />
     </fragment>
 
-    <action
-        android:id="@+id/action_checkoutLocationFragment_to_checkoutPricingFragment"
-        app:destination="@id/checkoutPricingFragment" />
+
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.cti.lifego.fragments.HomeFragment"
@@ -173,11 +171,15 @@
                 app:destination="@id/checkoutPricingFragment" />
         </fragment>
 
+        <action
+            android:id="@+id/action_checkoutLocationFragment_to_checkoutPricingFragment"
+            app:destination="@id/checkoutPricingFragment" />
+
         <fragment
             android:id="@+id/checkoutPricingFragment"
             android:name="com.cti.lifego.fragments.CheckoutPayment"
             android:label="Payment"
-            tools:layout="@layout/checkout_payment">
+            tools:layout="@layout/checkout_pricing">
             <action
                 android:id="@+id/action_checkoutPricingFragment_to_checkoutSuccessFragment"
                 app:destination="@id/checkoutSummaryFragment" />

@@ -2,79 +2,75 @@
 <!--
   ~ Copyright (c) 2019. Written by Samalie Piwan
   -->
-<FrameLayout
-    android:id="@+id/map_holder"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <fragment
-        android:id="@+id/map_fragment"
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.cti.lifego.viewmodels.CheckoutViewModel" />
+
+    </data>
+
+    <FrameLayout android:id="@+id/map_holder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_gravity="center_horizontal">
+        xmlns:android="http://schemas.android.com/apk/res/android">
 
-       <FrameLayout
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:background="@android:color/transparent">
+        <fragment
+            android:id="@+id/map_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_gravity="center_horizontal"/>
 
-           <androidx.cardview.widget.CardView
-               android:id="@+id/auto_complete_holder"
-               android:layout_width="match_parent"
-               android:layout_height="48dp"
-               android:layout_marginTop="20dp"
-               android:layout_marginLeft="10dp"
-               android:layout_marginRight="10dp"
-               android:layout_marginBottom="20dp"
-               app:cardCornerRadius="4dp"
-               app:cardElevation="4dp">
+        <LinearLayout
+            android:id="@+id/bottom_sheet"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:layout_gravity="bottom"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="@drawable/card_rounded">
 
-               <AutoCompleteTextView
-                   android:id="@+id/auto_complete_fragment"
-                   android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
-                   android:layout_width="match_parent"
-                   android:layout_height="match_parent"
-                   android:hint="@string/select_delivery_address"
-                   android:textColorHint="@color/mutedText"
-                   android:textSize="18sp"
-                   android:padding="10dp"
-                   android:background="@android:color/transparent"
-                   android:gravity="center"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:text="@string/deliver_to"/>
 
 
+            <TextView
+                android:id="@+id/selected_place"
+                android:textSize="16sp"
+                android:text="@={viewModel.delivery_address}"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"/>
 
-           </androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/delivery_price"
+                android:textSize="16sp"
+                android:text="@={viewModel.delivery_fee}"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"/>
 
-       </FrameLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/proceed_to_payment"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="@string/next"
+                android:layout_gravity="bottom"
+                app:backgroundTint="@color/colorAccent"/>
 
-    </fragment>
+        </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/bottom_sheet"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_gravity="bottom"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:background="@drawable/card_rounded">
+    </FrameLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:text="@string/deliver_to"/>
 
-        <TextView
-            android:id="@+id/selected_place"
-            android:textSize="16sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"/>
-    </LinearLayout>
-
-</FrameLayout>
+</layout>

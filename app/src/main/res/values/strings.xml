@@ -132,7 +132,7 @@
     <string name="fcm_message">LifeGo</string>
     <string name="default_notification_channel_id">fcm_user_channel</string>
     <string name="msg_token_fmt">InstanceID Token: %s</string>
-    <string name="you_ordered_txt">You Ordered</string>
     <string name="address_found">Found address</string>
+    <string name="delivery_fee_fmt">Delivery Fee: %s</string>
 
 </resources>

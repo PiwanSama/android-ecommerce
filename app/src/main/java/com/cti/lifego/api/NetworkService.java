@@ -46,16 +46,18 @@ public interface NetworkService {
     @GET("products/{id}")
     Call<Product>getProduct(@Path("id") String productID);
 
-    //Orders
+    //Get orders
     @GET("orders")
     Call<List<Order>> getOrders();
     @GET("order/{id}")
     Call<Order>getOrder(@Path("id") String OrderID);
 
-    //Prescription Image
+    //Make order
     @Multipart
     @POST("/upload")
     Call<ResponseBody> uploadImage(@Part MultipartBody.Part file, @Part("name") RequestBody requestBody);
+    @POST("/create_order")
+    Call<ResponseBody> createOrder(Order order);
 
     //Google Map API
     @GET
