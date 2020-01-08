@@ -14,39 +14,6 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_gravity="center_horizontal">
 
-       <FrameLayout
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:background="@android:color/transparent">
-
-           <androidx.cardview.widget.CardView
-               android:layout_width="match_parent"
-               android:layout_height="48dp"
-               android:layout_marginTop="20dp"
-               android:layout_marginLeft="10dp"
-               android:layout_marginRight="10dp"
-               android:layout_marginBottom="20dp"
-               app:cardCornerRadius="4dp"
-               app:cardElevation="4dp">
-
-               <AutoCompleteTextView
-                   android:id="@+id/auto_complete_fragment"
-                   android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
-                   android:layout_width="match_parent"
-                   android:layout_height="match_parent"
-                   android:hint="@string/select_delivery_address"
-                   android:textColorHint="@color/mutedText"
-                   android:textSize="16sp"
-                   android:padding="10dp"
-                   android:inputType="text"
-                   android:imeOptions="actionNext"
-                   android:background="@android:color/transparent"
-                   android:gravity="center"/>
-
-           </androidx.cardview.widget.CardView>
-
-       </FrameLayout>
-
     </fragment>
 
     <LinearLayout

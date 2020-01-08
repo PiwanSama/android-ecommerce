@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_graph"
     android:label="Main Graph"
-    app:startDestination="@id/checkoutLocationFragment">
+    app:startDestination="@id/checkoutSummaryFragment">
 
     <!-- Home Fragment and related -->
 
@@ -17,6 +17,12 @@
             android:id="@+id/actionToPricing"
             app:destination="@id/checkoutPricingFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/checkoutSummaryFragment"
+        android:name="com.cti.lifego.fragments.CheckoutSummary"
+        android:label="Success"
+        tools:layout="@layout/checkout_summary" />
 
     <fragment
         android:id="@+id/homeFragment"
@@ -164,15 +170,15 @@
             android:id="@+id/checkoutPricingFragment"
             android:name="com.cti.lifego.fragments.CheckoutPayment"
             android:label="Payment"
-            tools:layout="@layout/checkout_payment">
+            tools:layout="@layout/checkout_pricing">
             <action
                 android:id="@+id/actionCheckoutSuccess"
-                app:destination="@id/checkoutSuccessFragment" />
+                app:destination="@id/checkoutSummaryFragment" />
         </fragment>
 
 
         <fragment
-            android:id="@+id/checkoutSuccessFragment"
+            android:id="@+id/checkoutSummaryFragment"
             android:name="com.cti.lifego.fragments.CheckoutSummary"
             android:label="Success"
             tools:layout="@layout/checkout_summary" />

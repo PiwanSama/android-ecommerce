@@ -11,13 +11,11 @@ import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.ResultReceiver;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -38,11 +36,8 @@ import com.cti.lifego.api.NetworkService;
 import com.cti.lifego.content.Constants;
 import com.cti.lifego.services.FetchAddressIntentService;
 import com.google.android.gms.common.api.ResolvableApiException;
-import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResponse;
@@ -62,17 +57,14 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.maps.model.SquareCap;
 import com.google.android.gms.tasks.Task;
 import com.google.android.libraries.places.api.Places;
-import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.net.PlacesClient;
-import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
-import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
+import com.google.maps.android.SphericalUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -94,14 +86,14 @@ public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLoca
     private static final int PERMISSIONS_REQUEST_ENABLE_GPS = 2;
     private static final int PERMISSIONS_REQUEST_FROM_SETTINGS = 3;
 
-    private NetworkService service = MapsRetrofitInstance.getRetrofitInstance().create(NetworkService.class);
+    private NetworkService networkService;
 
     private List<LatLng> polyLineList;
-    private Marker pickupPoint;
-    private LatLng startPosition, endPosition, currentPosition;
+    private Marker userLocationMarker, storeLocationMarker;
+    private LatLng storePosition, currentPosition;
     private String destination;
-    private PolylineOptions polylineOptions, blackPolyLineOptions;
-    private Polyline greyPolyline, blackPolyline;
+    private PolylineOptions routePolyLineOptions;
+    private Polyline routePolyline;
 
     private TextView placeText;
     private String addressOutput;
@@ -120,30 +112,8 @@ public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLoca
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         placeText = view.findViewById(R.id.selected_place);
-
-        AutocompleteSupportFragment autoCompleteFragment = (AutocompleteSupportFragment) getChildFragmentManager().findFragmentById(R.id.auto_complete_fragment);
-        if (autoCompleteFragment !=null){
-            autoCompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
-            autoCompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
-                @Override
-                public void onPlaceSelected(@NonNull Place place) {
-                  // placeText.setText(place.getName());
-                    Log.i("LOC", "Place: " + place.getName() + ", " + place.getId());
-                }
-
-                @Override
-                public void onError(Status status) {
-
-                }
-            });
-        }
-        else {
-            //Place fragment returned null
-            Log.i("pls", "Fragment was null");
-        }
-
+        networkService = MapsRetrofitInstance.getRetrofitInstance().create(NetworkService.class);
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(Objects.requireNonNull(getActivity()));
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map_fragment);
         mapFragment.getMapAsync(this);
@@ -179,66 +149,69 @@ public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLoca
             layoutParams.setMargins(0,0,30,320);
         }
 
-        mLocationRequest = new LocationRequest();
-        mLocationRequest.setInterval(120000); // two minute interval
-        mLocationRequest.setFastestInterval(120000);
-        mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
-        fusedLocationProviderClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
-
+       // mLocationRequest = new LocationRequest();
+     //   mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+      //  fusedLocationProviderClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
         polyLineList = new ArrayList<>();
 
-        if (!Geocoder.isPresent()) {
-            Toast.makeText(getContext(),
-                    R.string.no_geocoder_available,
-                    Toast.LENGTH_LONG).show();
-            return;
-        }
-
-    }
-
-    private LocationCallback mLocationCallback = new LocationCallback(){
-        @Override
-        public void onLocationResult(LocationResult locationResult) {
-            List<Location> locationList = locationResult.getLocations();
-            if (locationList.size() > 0){
-                //The last location is the newest
-                currentLocation = locationList.get(locationList.size() - 1);
+        fusedLocationProviderClient.getLastLocation().addOnSuccessListener(location -> {
+            // Got last known location. In some rare situations this can be null.
+            if (location != null) {
+                currentLocation = location;
+                Log.i("Current lat", String.valueOf(currentLocation.getLatitude()));
+                Log.i("Current long", String.valueOf(currentLocation.getLongitude()));
                 LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
                 MarkerOptions options = new MarkerOptions();
                 options.position(latLng);
                 mMap.addMarker(options);
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
-              //  startIntentService();
+                //getDirection();
+                startIntentService();
             }
-        }
-    };
-
+        });
+    }
 
     private void getDirection(){
         String requestAPI = null;
         try {
-            requestAPI = "/json?"+
-                    "mode=driving"+
-                    "transit_routing_preference=less_driving"+
-                    "origin="+currentPosition.latitude+","+
-                    currentPosition.longitude+"&"+
-                    "destination="+Constants.ntinda_lat+" , "+Constants.ntinda_lng+"&"+
-                    "key"+getResources().getString(R.string.MAPS_KEY);
+            requestAPI = "json?"+
+                    "mode=driving&"+
+                    "origin="+currentLocation.getLatitude()+","+ currentLocation.getLongitude()+"&"+
+                    "destination=Ntinda&"+
+                    "key="+getResources().getString(R.string.MAPS_KEY);
 
             Log.i("API REQUEST", requestAPI);
 
-            service.getDirection(requestAPI).enqueue(new Callback<String>() {
+            networkService.getDirection(requestAPI).enqueue(new Callback<String>() {
                 @Override
                 public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
                     try{
                         assert response.body() != null;
                         JSONObject jsonObject = new JSONObject(response.body());
-                        JSONArray jsonArray = jsonObject.getJSONArray("routes");
-                        for (int i=0; i<jsonArray.length(); i++){
-                            JSONObject route = jsonArray.getJSONObject(i);
+                        JSONArray routes = jsonObject.getJSONArray("routes");
+                        for (int i=0; i<routes.length(); i++){
+                            JSONObject route = routes.getJSONObject(i);
                             JSONObject poly = route.getJSONObject("overview_polyline");
                             String polyline = poly.getString("points");
                             polyLineList = decodePolyline(polyline);
+
+
+                            JSONObject routesObject = routes.getJSONObject(0);
+                            JSONArray legs = routesObject.getJSONArray("legs");
+                            JSONObject legObject = legs.getJSONObject(0);
+
+                            //Get distance
+                            JSONObject distanceObject = legObject.getJSONObject("distance");
+                            String distance_text = distanceObject.getString("text");
+
+                            //Use regex to remove non-integers from string
+                            Double distance_value = Double.parseDouble(distance_text.replaceAll("[^0-9]////.]+", ""));
+
+                            //Get time
+                            JSONObject timeObject = legObject.getJSONObject("time");
+                            String time_text = timeObject.getString("text");
+                            Integer time_value = Integer.parseInt(time_text.replaceAll("\\D+", ""));
+                            Double total = Constants.getPrice(distance_value, time_value);
                         }
 
                     //Adjusting bounds
@@ -249,28 +222,19 @@ public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLoca
                             CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds, 2);
                             mMap.animateCamera(cameraUpdate);
 
-                            polylineOptions = new PolylineOptions();
-                            polylineOptions.color(Color.GRAY);
-                            polylineOptions.width(5);
-                            polylineOptions.startCap(new SquareCap());
-                            polylineOptions.endCap(new SquareCap());
-                            polylineOptions.jointType(JointType.ROUND);
-                            polylineOptions.addAll(polyLineList);
-                            greyPolyline = mMap.addPolyline(polylineOptions);
-
-                            blackPolyLineOptions = new PolylineOptions();
-                            blackPolyLineOptions.color(Color.GRAY);
-                            blackPolyLineOptions.width(5);
-                            blackPolyLineOptions.startCap(new SquareCap());
-                            blackPolyLineOptions.endCap(new SquareCap());
-                            blackPolyLineOptions.jointType(JointType.ROUND);
-                            blackPolyLineOptions.addAll(polyLineList);
-                            blackPolyline = mMap.addPolyline(blackPolyLineOptions);
+                            routePolyLineOptions = new PolylineOptions();
+                            routePolyLineOptions.color(Color.BLACK);
+                            routePolyLineOptions.width(5);
+                            routePolyLineOptions.startCap(new SquareCap());
+                            routePolyLineOptions.endCap(new SquareCap());
+                            routePolyLineOptions.jointType(JointType.ROUND);
+                            routePolyLineOptions.addAll(polyLineList);
+                            routePolyline = mMap.addPolyline(routePolyLineOptions);
 
                             mMap.addMarker(new MarkerOptions().position(polyLineList.get(polyLineList.size() - 1))
-                                    .title("PickupLocation"));
+                                    .title("Route"));
 
-                            pickupPoint = mMap.addMarker(new MarkerOptions().position(currentPosition));
+                            userLocationMarker = mMap.addMarker(new MarkerOptions().position(currentPosition));
                         }
                     }catch (JSONException e){
                         e.printStackTrace();
@@ -283,8 +247,26 @@ public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLoca
             });
         }
         catch (Exception e){
-
+            Log.i("Err", e.getLocalizedMessage());
         }
+    }
+
+    private void getDistance() {
+        double distance = SphericalUtil.computeDistanceBetween(userLocationMarker.getPosition(), storeLocationMarker.getPosition());
+        Log.i("Distance", formatNumber(distance) + " apart.");
+    }
+
+    private String formatNumber(double distance) {
+        String unit = "m";
+        if (distance < 1) {
+            distance *= 1000;
+            unit = "mm";
+        } else if (distance > 1000) {
+            distance /= 1000;
+            unit = "km";
+        }
+
+        return String.format("%4.3f%s", distance, unit);
     }
 
     private List<LatLng> decodePolyline(String encoded) {
@@ -361,8 +343,7 @@ public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLoca
         if (!gps_enabled){
             LocationRequest mLocationRequest = LocationRequest.create()
                     .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-                    .setInterval(1000)
-                    .setNumUpdates(2);
+                    .setNumUpdates(1);
 
             final LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
                     .addLocationRequest(mLocationRequest)
@@ -430,16 +411,6 @@ public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLoca
         builder.show();
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-
-        //stop location updates when Activity is no longer active
-        if (fusedLocationProviderClient != null) {
-            fusedLocationProviderClient.removeLocationUpdates(mLocationCallback);
-        }
-    }
-
     protected void startIntentService() {
         Intent intent = new Intent(getContext(), FetchAddressIntentService.class);
         intent.putExtra(Constants.RECEIVER, resultReceiver);
@@ -458,7 +429,7 @@ public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLoca
                 return;
             }
             // Display the address string
-            // or an error message sent from the intent service.
+            // or an error message sent from the intent networkService.
             addressOutput = resultData.getString(Constants.RESULT_DATA_KEY);
             if (addressOutput == null) {
                 addressOutput = "";

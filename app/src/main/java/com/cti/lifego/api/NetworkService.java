@@ -49,5 +49,6 @@ public interface NetworkService {
     Call<Order>getOrder(@Path("id") String OrderID);
 
     //Google Map API
+    @GET
     Call<String> getDirection(@Url String url);
 }

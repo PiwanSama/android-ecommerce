@@ -113,5 +113,8 @@
     <string name="no_address_found">Address not found</string>
     <string name="address_found">Found addresses</string>
     <string name="no_geocoder_available">No Geocoder</string>
+    <string name="default_notification_channel_id">fcm_user_channel</string>
+    <string name="msg_token_fmt">InstanceID Token: %s</string>
+    <string name="you_ordered_txt">You Ordered</string>
 
 </resources>

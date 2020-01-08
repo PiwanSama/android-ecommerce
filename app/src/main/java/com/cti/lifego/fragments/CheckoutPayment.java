@@ -25,7 +25,7 @@ public class CheckoutPayment extends BaseFragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final View view = inflater.inflate(R.layout.checkout_payment, container, false);
+        final View view = inflater.inflate(R.layout.checkout_pricing, container, false);
         return view;
     }
 
