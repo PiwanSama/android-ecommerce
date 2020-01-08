@@ -149,9 +149,9 @@ public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLoca
             layoutParams.setMargins(0,0,30,320);
         }
 
-       // mLocationRequest = new LocationRequest();
-     //   mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
-      //  fusedLocationProviderClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
+        // mLocationRequest = new LocationRequest();
+        //   mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+        //  fusedLocationProviderClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
         polyLineList = new ArrayList<>();
 
         fusedLocationProviderClient.getLastLocation().addOnSuccessListener(location -> {
@@ -214,7 +214,7 @@ public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLoca
                             Double total = Constants.getPrice(distance_value, time_value);
                         }
 
-                    //Adjusting bounds
+                        //Adjusting bounds
                         LatLngBounds.Builder builder = new LatLngBounds.Builder();
                         for (LatLng latLng : polyLineList){
                             builder.include(latLng);

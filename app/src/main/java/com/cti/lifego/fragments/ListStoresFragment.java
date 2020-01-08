@@ -73,7 +73,7 @@ public class ListStoresFragment extends BaseFragment{
                             @Override
                             public void getStoreId(Store store) {
                                 NavController navController = Navigation.findNavController(view);
-                                ListStoresFragmentDirections.ActionBrowseStore action = ListStoresFragmentDirections.actionBrowseStore(String.valueOf(store.getId()));
+                                ListStoresFragmentDirections.ActionStoresListFragmentToBrowseStoreFragment action = ListStoresFragmentDirections.actionStoresListFragmentToBrowseStoreFragment(String.valueOf(store.getId()));
                             }
                         });
                         if (stores != null) {
@@ -115,7 +115,6 @@ public class ListStoresFragment extends BaseFragment{
             SharedPreferences.Editor editor = preferences.edit();
             editor.remove(PreferenceKeys.selectedStore);
             navController.popBackStack(R.id.homeFragment, false);
-            navController.navigate(R.id.homeFragment);
         });
         builder.setNegativeButton("No thanks", (dialog, which) -> {
 

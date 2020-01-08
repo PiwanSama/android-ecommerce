@@ -28,7 +28,6 @@ import com.cti.lifego.viewmodels.LoginViewModel;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.FirebaseApp;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.util.HashSet;
@@ -59,8 +58,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void setUp(){
+        start = true;
         setTheme(R.style.AppTheme);
-        FirebaseApp.initializeApp(this);
         binding = DataBindingUtil.setContentView(this, R.layout.main_activity);
         NavHeaderBinding navHeaderBinding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.nav_header, binding.navigationView, false);
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
@@ -199,7 +198,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.user_profile:
                 if (navController.getCurrentDestination().getId() != R.id.user_profile) {
-                    navController.navigate(R.id.action_homeFragment_to_profileFragment);
+                    navController.navigate(R.id.action_homeFragment_to_userProfileFragment);
                 }
                 break;
         }

@@ -22,6 +22,12 @@ import com.esafirm.imagepicker.features.ReturnMode;
 import com.esafirm.imagepicker.model.Image;
 import com.google.android.material.button.MaterialButton;
 
+import java.io.File;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+
 import static android.app.Activity.RESULT_OK;
 
 public class UploadPrescriptionFragment extends BaseFragment {
@@ -30,6 +36,7 @@ public class UploadPrescriptionFragment extends BaseFragment {
     private int GALLERY_REQUEST_CODE = 553;
     private ImageView prescription;
     private MaterialButton camera, gallery;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -43,19 +50,9 @@ public class UploadPrescriptionFragment extends BaseFragment {
         camera = view.findViewById(R.id.upload_camera);
         gallery = view.findViewById(R.id.upload_gallery);
         prescription = view.findViewById(R.id.prescription_image);
-        camera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openCamera();
-            }
-        });
+        camera.setOnClickListener(v -> openCamera());
 
-        gallery.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openGallery();
-            }
-        });
+        gallery.setOnClickListener(v -> openGallery());
     }
 
     private void openCamera() {
@@ -80,14 +77,26 @@ public class UploadPrescriptionFragment extends BaseFragment {
                 //try {
                 if ((requestCode == GALLERY_REQUEST_CODE) || (requestCode == CAMERA_REQUEST_CODE)){
                     Image image = ImagePicker.getFirstImageOrNull(data);
+
                     String filePath = image.getPath();
                     Glide.with(this).load(filePath).into(prescription);
+                    uploadImage(filePath);
                 }
             }
             else {
                 Log.i("Error", String.valueOf(resultCode));
             }
         }
+    }
+
+    private void uploadImage(String filePath) {
+        // create RequestBody instance from file
+        File file = new File(filePath);
+        RequestBody fileBody =  RequestBody.create(file, MediaType.parse("image/*"));
+        MultipartBody.Part part = MultipartBody.Part.createFormData("upload", file.getName(), fileBody);
+        RequestBody description = RequestBody.create("image-type", MediaType.parse("text/plain"));
+
+
     }
 
 }

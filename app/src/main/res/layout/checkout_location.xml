@@ -2,7 +2,9 @@
 <!--
   ~ Copyright (c) 2019. Written by Samalie Piwan
   -->
-<FrameLayout android:layout_width="match_parent"
+<FrameLayout
+    android:id="@+id/map_holder"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
@@ -14,9 +16,44 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_gravity="center_horizontal">
 
+       <FrameLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:background="@android:color/transparent">
+
+           <androidx.cardview.widget.CardView
+               android:id="@+id/auto_complete_holder"
+               android:layout_width="match_parent"
+               android:layout_height="48dp"
+               android:layout_marginTop="20dp"
+               android:layout_marginLeft="10dp"
+               android:layout_marginRight="10dp"
+               android:layout_marginBottom="20dp"
+               app:cardCornerRadius="4dp"
+               app:cardElevation="4dp">
+
+               <AutoCompleteTextView
+                   android:id="@+id/auto_complete_fragment"
+                   android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:hint="@string/select_delivery_address"
+                   android:textColorHint="@color/mutedText"
+                   android:textSize="18sp"
+                   android:padding="10dp"
+                   android:background="@android:color/transparent"
+                   android:gravity="center"/>
+
+
+
+           </androidx.cardview.widget.CardView>
+
+       </FrameLayout>
+
     </fragment>
 
     <LinearLayout
+        android:id="@+id/bottom_sheet"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_gravity="bottom"
@@ -34,11 +71,10 @@
 
         <TextView
             android:id="@+id/selected_place"
+            android:textSize="16sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_gravity="center"/>
-
     </LinearLayout>
 
 </FrameLayout>

@@ -67,7 +67,7 @@ public class BrowseStoreFragment extends BaseFragment{
                             @Override
                             public void getProductId(Product product) {
                                 NavController controller = Navigation.findNavController(view);
-                                BrowseStoreFragmentDirections.ActionViewProductDetail action = BrowseStoreFragmentDirections.actionViewProductDetail(String.valueOf(product.getId()));
+                                BrowseStoreFragmentDirections.ActionShowProductDetail action = BrowseStoreFragmentDirections.actionShowProductDetail(String.valueOf(product.getId()));
                                 controller.navigate(action);
                             }
                         });

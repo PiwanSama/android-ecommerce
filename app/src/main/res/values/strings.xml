@@ -46,6 +46,7 @@
     <string name="male">Male</string>
     <string name="gender">Gender</string>
     <string name="fee_total">Delivery Fee</string>
+    <string name="save">Save</string>
     <string name="change_photo">Change Photo</string>
     <string name="pricing">Pricing</string>
     <string name="cart_total">Cart Total</string>
@@ -53,9 +54,11 @@
     <string name="skip">Skip this step</string>
     <string name="subtotal">Sub Total</string>
     <string name="password">Password (must be longer than 8 characters)</string>
+    <string name="contact1">Phone Number</string>
 
     <!--Samples-->
     <string name="product_name_desc">Product name</string>
+    <string name="product_sample_price">22,000/=</string>
     <string name="subtotal_price">92,780/=</string>
     <string name="product_sample_tax">2780/=</string>
     <string name="cart_total_price">44,000/=</string>
@@ -63,6 +66,9 @@
     <string name="product_sample_fee">6000/=</string>
 
     <!--Model Binding Strings-->
+    <string name="order_confirm">Your order has been placed!</string>
+    <string name="order_id">Order ID: </string>
+    <string name="order_date">12/06/2019</string>
     <string name="vendor">Vendor</string>
     <string name="make_payment">Make payment</string>
     <string name="prescriptions">Prescriptions</string>
@@ -71,10 +77,13 @@
     <string name="given_name">Given Name</string>
     <string name="surname">Surname</string>
     <string name="email_address">Email Address</string>
+    <string name="item_added">This item has been added to your cart</string>
     <string name="rating_review">Ratings and Reviews</string>
+    <string name="edit_profile">Edit Profile</string>
     <string name="sort_filter">Filter Search Results</string>
     <string name="select_delivery_address">Where should we deliver to?</string>
     <string name="delivery_location">Delivery Location</string>
+    <string name="order_details">Order details</string>
     <string name="upload">Upload Prescription</string>
     <string name="camera">Camera</string>
     <string name="gallery">Gallery</string>
@@ -85,6 +94,7 @@
     <string name="next_of_kin_phone_contact">Next of Kin Phone Contact</string>
     <string name="register_title">Register</string>
     <string name="dob">Date of Birth</string>
+    <string name="cart_empty">Your cart is empty!</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="no_internet">Sorry! We couldn\'t connect to the internet</string>
@@ -102,19 +112,27 @@
     <string name="orders_empty">You haven\'t made any orders yet!</string>
     <string name="estimated_time">Estimated Time</string>
     <string name="track_order">Track your order</string>
+    <string name="one">1 Hour</string>
+    <string name="ordered_on">Ordered on</string>
+    <string name="sample_order_id">763BTX</string>
+    <string name="pls">1x Azithromycin</string>
     <string name="next">Next</string>
+    <string name="order_date_title">Order Date</string>
+    <string name="order_total">34,000/=</string>
+    <string name="delivery_address">Delivery Address</string>
+    <string name="delivery_address_sample">Plot 41 Some Rd</string>
+    <string name="delivery_address_title">Delivery Address</string>
+    <string name="order_content">You ordered :</string>
+    <string name="az">1 x Azithromycin</string>
     <string name="view_details">View Details</string>
     <string name="view_order">View Order</string>
     <string name="personal_details">Your Personal Details</string>
     <string name="kin_details">Your Next of Kin Details</string>
     <string name="select">Select</string>
-    <string name="service_not_available">Sorry! Something went wrong</string>
-    <string name="invalid_lat_long_used">This location is invalid</string>
-    <string name="no_address_found">Address not found</string>
-    <string name="address_found">Found addresses</string>
-    <string name="no_geocoder_available">No Geocoder</string>
+    <string name="fcm_message">LifeGo</string>
     <string name="default_notification_channel_id">fcm_user_channel</string>
     <string name="msg_token_fmt">InstanceID Token: %s</string>
     <string name="you_ordered_txt">You Ordered</string>
+    <string name="address_found">Found address</string>
 
 </resources>
