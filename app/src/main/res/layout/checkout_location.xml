@@ -61,7 +61,7 @@
                 android:layout_gravity="center"/>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/proceed_to_payment"
+                android:id="@+id/navigate_to_payment"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:text="@string/next"

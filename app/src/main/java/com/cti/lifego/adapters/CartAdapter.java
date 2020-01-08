@@ -53,7 +53,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     @NonNull
     @Override
     public CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        CartListItemBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.cart_list_item,parent,false);
+        binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.cart_list_item,parent,false);
         return new CartViewHolder(binding);
     }
 

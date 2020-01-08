@@ -7,6 +7,9 @@ public class CartItem {
     private Product product;
     private BigDecimal totalCost;
 
+    public CartItem() {
+    }
+
     public CartItem(Product product, int quantity) {
         this.product = product;
         this.quantity = quantity;

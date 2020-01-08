@@ -1,15 +1,16 @@
 package com.cti.lifego.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.cti.lifego.R;
@@ -26,7 +27,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ProductDetailFragment extends BaseFragment {
     private ProductDetailBinding binding;
     private ProductViewModel productViewModel;
-    private Cart cart = CartHelper.getCart();
+    private Cart cart;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -44,23 +45,20 @@ public class ProductDetailFragment extends BaseFragment {
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-       // navHost.getChildFragmentManager().findFragmentById(R.id.)
+        cart = CartHelper.getCart();
 
         binding.productShimmer.startShimmer();
         productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
         binding.setLifecycleOwner(this);
         binding.setViewModel(productViewModel);
 
-        productViewModel.getSelected().observe(getViewLifecycleOwner(), new Observer<String>() {
-                    @Override
-                    public void onChanged(String s) {
-                        MutableLiveData<Product> productMutableLiveData = productViewModel.getProduct(s);
-                        Product product = productMutableLiveData.getValue();
-                        binding.setProduct(product);
-                        binding.productShimmer.stopShimmer();
-                        binding.productShimmer.setVisibility(View.GONE);
-                    }
-                });
+        productViewModel.getSelected().observe(getViewLifecycleOwner(), s -> {
+            MutableLiveData<Product> productMutableLiveData = productViewModel.getProduct(s);
+            Product product = productMutableLiveData.getValue();
+            binding.setProduct(product);
+            binding.productShimmer.stopShimmer();
+            binding.productShimmer.setVisibility(View.GONE);
+        });
 
         Product product = binding.getProduct();
         CircleImageView add =  binding.addToCart;
@@ -68,7 +66,16 @@ public class ProductDetailFragment extends BaseFragment {
             add.setEnabled(false);
             add.setCircleBackgroundColor(Objects.requireNonNull(getActivity()).getResources().getColor(R.color.colorAccent));
             //Add item to cart object
+            Log.d("Product Detail", "Adding product: " + product.getName());
             cart.add(product, 1);
+            getViewOrderFragment();
         });
+    }
+
+    void getViewOrderFragment(){
+        LinearLayout floating_order = binding.floatingCardHolder;
+        if (!cart.isEmpty()){
+            floating_order.setVisibility(View.VISIBLE);
+        }
     }
 }

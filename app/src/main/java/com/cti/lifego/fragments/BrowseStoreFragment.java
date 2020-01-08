@@ -1,14 +1,15 @@
 package com.cti.lifego.fragments;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -19,7 +20,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.cti.lifego.R;
 import com.cti.lifego.adapters.BrowseStoreAdapter;
 import com.cti.lifego.databinding.FragmentBrowseStoreBinding;
-import com.cti.lifego.models.Product;
+import com.cti.lifego.models.Cart;
+import com.cti.lifego.utils.CartHelper;
 import com.cti.lifego.viewmodels.ProductViewModel;
 
 public class BrowseStoreFragment extends BaseFragment{
@@ -29,6 +31,8 @@ public class BrowseStoreFragment extends BaseFragment{
     private ProductViewModel viewModel;
     private RecyclerView productRecyclerView;
     private String storeID;
+    private Cart cart;
+    private NavController navController;
 
     @Nullable
     @Override
@@ -50,7 +54,9 @@ public class BrowseStoreFragment extends BaseFragment{
         assert getArguments() != null;
         storeID = BrowseStoreFragmentArgs.fromBundle(getArguments()).getStoreID();
 
-        final NavController navController = Navigation.findNavController(view);
+        getViewOrderFragment();
+
+        navController = Navigation.findNavController(view);
         productRecyclerView = binding.browseStoreRecyclerView;
         productRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
@@ -63,13 +69,9 @@ public class BrowseStoreFragment extends BaseFragment{
                 case VIEW_ALL_PRODUCTS:
                     assert getArguments() != null;
                     viewModel.listProducts(storeID).observe(getViewLifecycleOwner(), products -> {
-                        adapter = new BrowseStoreAdapter(products, getContext(), new BrowseStoreAdapter.ProductClickListener() {
-                            @Override
-                            public void getProductId(Product product) {
-                                NavController controller = Navigation.findNavController(view);
-                                BrowseStoreFragmentDirections.ActionShowProductDetail action = BrowseStoreFragmentDirections.actionShowProductDetail(String.valueOf(product.getId()));
-                                controller.navigate(action);
-                            }
+                        adapter = new BrowseStoreAdapter(products, getContext(), product -> {
+                            BrowseStoreFragmentDirections.ActionShowProductDetail action = BrowseStoreFragmentDirections.actionShowProductDetail(String.valueOf(product.getId()));
+                            navController.navigate(action);
                         });
                         if (products!=null){
                             adapter.setProducts(products);
@@ -82,10 +84,41 @@ public class BrowseStoreFragment extends BaseFragment{
                     break;
             }
         });
+
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(),
+                new OnBackPressedCallback(true) {
+                    @Override
+                    public void handleOnBackPressed() {
+                        showWarningDialog(storeID);
+                    }
+                });
     }
 
-    private void setSelectedStore(String id){
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        SharedPreferences.Editor editor = preferences.edit();
+    void getViewOrderFragment(){
+        LinearLayout floating_order = binding.floatingCardHolder;
+        cart = CartHelper.getCart();
+        if (!cart.isEmpty()){
+            floating_order.setVisibility(View.VISIBLE);
+        }
     }
+
+
+    private void showWarningDialog(String storeName){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("You are leaving "+storeName);
+        builder.setMessage("Leaving this store will empty your cart");
+        builder.setPositiveButton("Yes, I'm sure", (dialog, which) -> {
+            dialog.dismiss();
+
+            cart.clear();
+
+            navController.popBackStack(R.id.homeFragment, false);
+        });
+        builder.setNegativeButton("No thanks", (dialog, which) -> {
+
+        });
+        builder.setCancelable(false);
+        builder.show();
+    }
+
 }

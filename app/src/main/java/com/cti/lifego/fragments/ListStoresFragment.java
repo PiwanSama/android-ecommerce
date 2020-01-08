@@ -8,10 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -89,14 +87,6 @@ public class ListStoresFragment extends BaseFragment{
                     break;
             }
         });
-
-        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(),
-                new OnBackPressedCallback(true) {
-                    @Override
-                    public void handleOnBackPressed() {
-                        showWarningDialog(String.valueOf(categoryID));
-                    }
-                });
     }
 
     private void getSelectedStore(){
@@ -105,21 +95,4 @@ public class ListStoresFragment extends BaseFragment{
         Log.i("Current Cat", category);
     }
 
-    private void showWarningDialog(String categoryName){
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("You are leaving "+categoryName);
-        builder.setMessage("Leaving this store will empty your cart");
-        builder.setPositiveButton("Yes, I'm sure", (dialog, which) -> {
-            dialog.dismiss();
-            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.remove(PreferenceKeys.selectedStore);
-            navController.popBackStack(R.id.homeFragment, false);
-        });
-        builder.setNegativeButton("No thanks", (dialog, which) -> {
-
-        });
-        builder.setCancelable(false);
-        builder.show();
-    }
 }

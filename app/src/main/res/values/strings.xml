@@ -52,7 +52,7 @@
     <string name="cart_total">Cart Total</string>
     <string name="tax_total">Tax</string>
     <string name="skip">Skip this step</string>
-    <string name="subtotal">Sub Total</string>
+    <string name="total">Total</string>
     <string name="password">Password (must be longer than 8 characters)</string>
     <string name="contact1">Phone Number</string>
 
@@ -134,5 +134,6 @@
     <string name="msg_token_fmt">InstanceID Token: %s</string>
     <string name="address_found">Found address</string>
     <string name="delivery_fee_fmt">Delivery Fee: %s</string>
+    <string name="proceed_payment">Proceed to Payment</string>
 
 </resources>

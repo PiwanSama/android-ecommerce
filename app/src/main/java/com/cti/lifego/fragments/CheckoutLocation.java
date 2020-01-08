@@ -135,7 +135,7 @@ public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLoca
         mapFragment.getMapAsync(this);
         mapView = mapFragment.getView();
 
-        binding.proceedToPayment.setOnClickListener(v ->
+        binding.navigateToPayment.setOnClickListener(v ->
                 viewModel.delivery_fee.setValue("2000/="));
                 viewModel.checkout_state.setValue(CHECKOUT_LOCATION);
 
