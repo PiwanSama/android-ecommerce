@@ -1,63 +1,34 @@
 {
   "project_info": {
-    "project_number": "1051316925388",
-    "firebase_url": "https://lifegomap.firebaseio.com",
-    "project_id": "lifegomap",
-    "storage_bucket": "lifegomap.appspot.com"
+    "project_number": "459845793408",
+    "firebase_url": "https://lifego-8c8e3.firebaseio.com",
+    "project_id": "lifego-8c8e3",
+    "storage_bucket": "lifego-8c8e3.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1051316925388:android:acb0c021912a9d51c7e369",
+        "mobilesdk_app_id": "1:459845793408:android:ffbd8b6e89957e9075d865",
         "android_client_info": {
           "package_name": "com.cti.lifego"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1051316925388-fh2n3o42cion5v0mva0n7tki10st34i2.apps.googleusercontent.com",
+          "client_id": "459845793408-fd3uk00klvu2d1oj2ktnlq7uc2sghf4a.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyANbNmQEpFm7QdQ0h9qblys2Aip0o7kUBE"
+          "current_key": "AIzaSyAUQD9CocOWgsgKbivyvHUtY4HHqlj4nDg"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1051316925388-fh2n3o42cion5v0mva0n7tki10st34i2.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:1051316925388:android:dd12d70c86aad8bbc7e369",
-        "android_client_info": {
-          "package_name": "com.cti.lifegorider"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "1051316925388-fh2n3o42cion5v0mva0n7tki10st34i2.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyANbNmQEpFm7QdQ0h9qblys2Aip0o7kUBE"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "1051316925388-fh2n3o42cion5v0mva0n7tki10st34i2.apps.googleusercontent.com",
+              "client_id": "459845793408-fd3uk00klvu2d1oj2ktnlq7uc2sghf4a.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

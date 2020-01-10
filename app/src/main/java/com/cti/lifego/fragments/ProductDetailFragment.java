@@ -10,24 +10,29 @@ import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.cti.lifego.R;
+import com.cti.lifego.content.Groceries;
+import com.cti.lifego.content.Medicals;
 import com.cti.lifego.databinding.ProductDetailBinding;
 import com.cti.lifego.models.Cart;
 import com.cti.lifego.models.Product;
 import com.cti.lifego.utils.CartHelper;
-import com.cti.lifego.viewmodels.ProductViewModel;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProductDetailFragment extends BaseFragment {
     private ProductDetailBinding binding;
-    private ProductViewModel productViewModel;
     private Cart cart;
+    private int productID;
+    private String catName;
+    private NavController navController;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -36,6 +41,7 @@ public class ProductDetailFragment extends BaseFragment {
             binding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.no_internet, container, false);
         }
         else {
+            getViewOrderFragment();
             binding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.product_detail, container, false);
         }
         return binding.getRoot();
@@ -47,35 +53,49 @@ public class ProductDetailFragment extends BaseFragment {
 
         cart = CartHelper.getCart();
 
-        binding.productShimmer.startShimmer();
-        productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
-        binding.setLifecycleOwner(this);
-        binding.setViewModel(productViewModel);
+        navController = Navigation.findNavController(view);
 
-        productViewModel.getSelected().observe(getViewLifecycleOwner(), s -> {
-            MutableLiveData<Product> productMutableLiveData = productViewModel.getProduct(s);
-            Product product = productMutableLiveData.getValue();
+        Product product = new Product();
+
+        assert getArguments() != null;
+
+        productID = ProductDetailFragmentArgs.fromBundle(getArguments()).getProductID();
+        catName = ProductDetailFragmentArgs.fromBundle(getArguments()).getCatName();
+
+        Log.i("CAT", catName);
+        Log.i("ID", String.valueOf(productID));
+
+        Groceries mGroceries = new Groceries();
+        ArrayList<Product> grocArrayList = new ArrayList<>(Arrays.asList(mGroceries.PHARMS));
+
+        Medicals mMeds = new Medicals();
+        ArrayList<Product> medArrayList = new ArrayList<>(Arrays.asList(mMeds.MEDS));
+
+        if (catName.equals("grocery")){
+            product = grocArrayList.get(productID);
             binding.setProduct(product);
-            binding.productShimmer.stopShimmer();
-            binding.productShimmer.setVisibility(View.GONE);
-        });
-
-        Product product = binding.getProduct();
+        }else if (catName.equals("pharmacy")){
+            product = medArrayList.get(productID);
+            binding.setProduct(product);
+        }
         CircleImageView add =  binding.addToCart;
+        Product finalProduct = product;
         add.setOnClickListener(v -> {
             add.setEnabled(false);
-            add.setCircleBackgroundColor(Objects.requireNonNull(getActivity()).getResources().getColor(R.color.colorAccent));
+            add.setCircleBackgroundColor(Objects.requireNonNull(getActivity()).getResources().getColor(R.color.lightGrey));
             //Add item to cart object
-            Log.d("Product Detail", "Adding product: " + product.getName());
-            cart.add(product, 1);
+            Log.d("Product Detail", "Adding product: " + finalProduct.getName());
+            cart.add(finalProduct, 1);
+            Log.i("CART", cart.toString());
             getViewOrderFragment();
         });
     }
 
-    void getViewOrderFragment(){
+    private void getViewOrderFragment(){
         LinearLayout floating_order = binding.floatingCardHolder;
         if (!cart.isEmpty()){
             floating_order.setVisibility(View.VISIBLE);
         }
+        floating_order.setOnClickListener(v -> navController.navigate(R.id.action_open_cart));
     }
 }

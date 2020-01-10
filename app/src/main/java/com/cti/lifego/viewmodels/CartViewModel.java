@@ -17,6 +17,7 @@ public class CartViewModel extends ViewModel {
     private MutableLiveData<String> cartItemCount = new MutableLiveData<>();
     private MutableLiveData<String> cartItemCost = new MutableLiveData<>();
     private List<CartItem> cartList = new ArrayList<>();
+    private MutableLiveData<String> productQty;
 
     public List<CartItem> getCartList() {
         return cartList;
@@ -40,5 +41,17 @@ public class CartViewModel extends ViewModel {
 
     public void setCartItemCost(MutableLiveData<String> cartItemCost) {
         this.cartItemCost = cartItemCost;
+    }
+
+    public void setCartItemCount(MutableLiveData<String> cartItemCount) {
+        this.cartItemCount = cartItemCount;
+    }
+
+    public MutableLiveData<String> getProductQty() {
+        return productQty;
+    }
+
+    public void setProductQty(MutableLiveData<String> productQty) {
+        this.productQty = productQty;
     }
 }

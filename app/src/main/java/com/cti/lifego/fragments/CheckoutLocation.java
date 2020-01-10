@@ -139,13 +139,7 @@ public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLoca
                 viewModel.delivery_fee.setValue("2000/="));
                 viewModel.checkout_state.setValue(CHECKOUT_LOCATION);
 
-        viewModel.getCheckout_state().observe(getViewLifecycleOwner(), checkoutState -> {
-            if (checkoutState == CHECKOUT_LOCATION) {
-                if (navController.getCurrentDestination().getId() == R.id.checkoutLocationFragment){
-                    navController.navigate(R.id.action_checkoutLocationFragment_to_checkoutPricingFragment);
-                }
-            }
-        });
+
 
     }
 

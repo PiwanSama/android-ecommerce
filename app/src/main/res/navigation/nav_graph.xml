@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_graph"
     android:label="Main Graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/checkoutLocationFragment">
 
     <!-- Home Fragment and related -->
 
@@ -13,10 +13,26 @@
         android:name="com.cti.lifego.fragments.CheckoutLocation"
         android:label="@string/delivery_location"
         tools:layout="@layout/checkout_location">
-        <action
-            android:id="@+id/action_checkoutLocationFragment_to_checkoutPricingFragment"
-            app:destination="@id/checkoutPricingFragment" />
+
     </fragment>
+
+    <fragment
+        android:id="@+id/checkoutSummaryFragment"
+        android:name="com.cti.lifego.fragments.CheckoutSummary"
+        android:label="Summary"
+        tools:layout="@layout/checkout_summary">
+        <action
+            android:id="@+id/action_checkoutSummaryFragment_to_checkoutPricingFragment"
+            app:destination="@id/checkoutPricingFragment" />
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/checkoutPricingFragment"
+        android:name="com.cti.lifego.fragments.CheckoutPricing"
+        android:label="Payment"
+        tools:layout="@layout/checkout_pricing"/>
 
 
     <fragment
@@ -37,6 +53,9 @@
         <action
             android:id="@+id/action_homeFragment_to_storesListFragment"
             app:destination="@id/storesListFragment">
+            <argument
+                android:name="CategoryID"
+                 app:argType="integer"/>
         </action>
 
     </fragment>
@@ -68,18 +87,6 @@
         tools:layout="@layout/single_order_details" />
 
     <fragment
-        android:id="@+id/cartFragment"
-        android:name="com.cti.lifego.fragments.CartFragment"
-        android:label="Cart"
-        tools:layout="@layout/cart_fragment">
-
-        <action
-            android:id="@+id/mainGraphToCheckoutGraph"
-            app:destination="@id/checkout_graph" />
-
-    </fragment>
-
-    <fragment
         android:id="@+id/userProfileFragment"
         android:name="com.cti.lifego.fragments.UserDetailsFragment"
         android:label="My Profile"
@@ -94,13 +101,12 @@
         <action
             android:id="@+id/action_storesListFragment_to_browseStoreFragment"
             app:destination="@id/browseStoreFragment"
-            app:enterAnim="@anim/fade_in"
-            app:popUpTo="@+id/homeFragment"
-            app:popUpToInclusive="false"/>
+            app:enterAnim="@anim/fade_in"/>
 
         <argument
-            android:name="categoryID"
-            app:argType="integer"/>
+            android:name="CategoryID"
+            app:argType="integer"
+            android:defaultValue="1" />
 
     </fragment>
 
@@ -109,12 +115,6 @@
         android:name="com.cti.lifego.fragments.BrowseStoreFragment"
         android:label="Browse"
         tools:layout="@layout/fragment_browse_store">
-
-        <action
-            android:id="@+id/action_showProductDetail"
-            app:destination="@id/productDetailFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"/>
 
         <argument
             android:name="StoreID"
@@ -127,16 +127,13 @@
         android:name="com.cti.lifego.fragments.ProductDetailFragment"
         android:label="Product"
         tools:layout="@layout/product_detail">
-
+        <argument
+            android:name="catName"
+            app:argType="string" />
         <argument
             android:name="productID"
-            app:argType="string" />
+            app:argType="integer" />
     </fragment>
-
-    <fragment
-        android:id="@+id/floatingOrderFragment"
-        android:name="com.cti.lifego.fragments.FloatingCardOrderFragment"
-        tools:layout="@layout/floating_card_order" />
 
     <fragment
         android:id="@+id/loginFragment"
@@ -150,10 +147,27 @@
         app:enterAnim="@anim/nav_default_enter_anim"
         app:exitAnim="@anim/nav_default_exit_anim"/>
 
+    <fragment
+        android:id="@+id/floatingOrderFragment"
+        android:name="com.cti.lifego.fragments.FloatingCardOrderFragment"
+        tools:layout="@layout/floating_card_order">
+
+        <action
+            android:id="@+id/action_checkout_graph"
+            app:destination="@id/checkout_graph"/>
+
+    </fragment>
+
     <navigation
         android:id="@+id/checkout_graph"
         android:label="Checkout Graph"
-        app:startDestination="@id/checkoutLocationFragment">
+        app:startDestination="@id/cartFragment">
+
+        <fragment
+            android:id="@+id/cartFragment"
+            android:name="com.cti.lifego.fragments.CartFragment"
+            android:label="Cart"
+            tools:layout="@layout/cart_fragment"/>
 
         <fragment
             android:id="@+id/uploadPrescriptionFragment"
@@ -161,32 +175,10 @@
             android:label="Upload Prescription"
             tools:layout="@layout/upload_prescription" />
 
-        <fragment
-            android:id="@+id/checkoutLocationFragment"
-            android:name="com.cti.lifego.fragments.CheckoutLocation"
-            android:label="@string/delivery_location"
-            tools:layout="@layout/checkout_location">
-            <action
-                android:id="@+id/action_checkoutLocationFragment_to_checkoutSummaryFragment"
-                app:destination="@id/checkoutSummaryFragment" />
-        </fragment>
 
-        <fragment
-            android:id="@+id/checkoutPricingFragment"
-            android:name="com.cti.lifego.fragments.CheckoutPricing"
-            android:label="Payment"
-            tools:layout="@layout/checkout_pricing"/>
 
-        <fragment
-            android:id="@+id/checkoutSummaryFragment"
-            android:name="com.cti.lifego.fragments.CheckoutSummary"
-            android:label="Summary"
-            tools:layout="@layout/checkout_summary">
-            <action
-                android:id="@+id/action_checkoutSummaryFragment_to_checkoutPricingFragment"
-                app:destination="@id/checkoutPricingFragment" />
 
-        </fragment>
+
 
     </navigation>
 

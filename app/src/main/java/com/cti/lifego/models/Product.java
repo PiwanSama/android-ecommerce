@@ -15,6 +15,19 @@ public class Product implements Saleable, Serializable {
     private String description;
     private int rating;
 
+    public Product() {
+    }
+
+    public Product(int id, String name, int image, BigDecimal price, String description, int rating) {
+        this.id = id;
+        this.name = name;
+        this.image = image;
+        this.price = price;
+        this.vendor = vendor;
+        this.description = description;
+        this.rating = rating;
+    }
+
     public int getId() {
         return id;
     }
@@ -29,7 +42,7 @@ public class Product implements Saleable, Serializable {
 
     @Override
     public int getID() {
-        return 0;
+        return id;
     }
 
     public void setName(String name) {

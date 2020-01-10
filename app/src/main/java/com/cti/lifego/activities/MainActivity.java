@@ -186,7 +186,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem){
-        menuItem.setChecked(true);
+        menuItem.setChecked(false);
         drawerLayout.closeDrawers();
         int id = menuItem.getItemId();
         switch (id){

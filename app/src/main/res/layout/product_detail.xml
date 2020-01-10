@@ -7,27 +7,12 @@
             name="product"
             type="com.cti.lifego.models.Product" />
 
-        <variable
-            name="viewModel"
-            type="com.cti.lifego.viewmodels.ProductViewModel" />
-
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:weightSum="2">
-
-        <com.facebook.shimmer.ShimmerFrameLayout
-            android:id="@+id/product_shimmer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone">
-
-            <include layout="@layout/product_detail_skeleton"/>
-
-        </com.facebook.shimmer.ShimmerFrameLayout>
+        android:orientation="vertical">
 
         <ScrollView
             xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -46,7 +31,7 @@
                     android:maxHeight="0dp"
                     android:padding="50dp"
                     android:scaleType="fitCenter"
-                    android:src="@{product.image}" />
+                    android:imageUrl="@{product.image}" />
 
                 <View style="@style/Divider.Horizontal"/>
 
@@ -93,26 +78,6 @@
                         app:layout_constraintTop_toBottomOf="@id/name" />
 
                     <TextView
-                        android:id="@+id/vendor_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="@string/vendor"
-                        android:textAppearance="@style/AllCapsTitle"
-                        android:textColor="@null"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/price" />
-
-                    <TextView
-                        android:id="@+id/vendor"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="@{product.vendor}"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/vendor_title" />
-
-                    <TextView
                         android:id="@+id/product_info_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -121,7 +86,7 @@
                         android:textColor="@null"
                         android:textAppearance="@style/AllCapsTitle"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/vendor" />
+                        app:layout_constraintTop_toBottomOf="@id/price" />
 
                     <TextView
                         android:id="@+id/product_info"

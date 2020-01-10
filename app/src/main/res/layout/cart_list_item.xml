@@ -6,11 +6,13 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
 
         <import type="com.cti.lifego.utils.StringUtils"/>
+
         <variable
-            name="cartItemView"
+            name="cartView"
             type="com.cti.lifego.viewmodels.CartItemViewModel" />
 
         <variable
@@ -21,7 +23,7 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp"
         android:layout_margin="10dp"
         app:elevation="4dp">
 
@@ -32,17 +34,15 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="2"
-                >
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="120dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:contentDescription="@string/product_name_desc"
                     android:scaleType="fitCenter"
-                    android:src="@{cartItem.product.image}"
+                    android:imageUrl="@{cartItem.product.image}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -58,6 +58,7 @@
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
                         android:text="@{cartItem.product.name}"
+                        android:layout_marginTop="20dp"
                         android:layout_marginStart="8dp"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -71,12 +72,11 @@
                         android:layout_marginStart="8dp"
                         android:text="@{StringUtils.bigDecimalToString(cartItem.product.price)}"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/product_name"
-                        />
+                        app:layout_constraintTop_toBottomOf="@id/product_name" />
 
                     <LinearLayout
                         android:id="@id/textinput_counter"
-                        android:layout_width="120dp"
+                        android:layout_width="250dp"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         app:layout_constraintStart_toStartOf="parent"
@@ -84,28 +84,30 @@
                         android:weightSum="3">
 
                         <ImageView
-                            android:id="@+id/increase_count"
+                            android:id="@+id/decrease_count"
                             android:layout_width="0dp"
                             android:layout_height="20dp"
+                            android:clickable="true"
+                            android:focusable="true"
                             android:src="@drawable/ic_minus"
                             android:layout_weight="1"
-                            android:onClick="@{()-> cartItemView.increaseQuantity(context)}"/>
+                            android:onClick="@{() -> cartView.decreaseQuantity(cartView.saleable)}"/>
 
                         <TextView
                             android:id="@+id/product_quantity"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_width="0dp"
-                            android:gravity="center"
-                            android:text="@{cartItemView.cartItem.quantity}"
-                            android:layout_weight="1"/>
+                            android:text="@{cartView.quantity}"/>
 
                         <ImageView
-                            android:id="@+id/decrease_count"
+                            android:id="@+id/increase_count"
+                            android:clickable="true"
+                            android:focusable="true"
                             android:layout_width="0dp"
                             android:layout_height="20dp"
                             android:src="@drawable/ic_plus"
                             android:layout_weight="1"
-                            android:onClick="@{()-> cartItemView.decreaseQuantity(context)}"/>
+                            android:onClick="@{() -> cartView.increaseQuantity(cartView.saleable)}"/>
 
                     </LinearLayout>
 
@@ -123,8 +125,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_height="48dp"
                 android:layout_marginStart="10dp">
 
                 <TextView
@@ -132,20 +133,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="@{StringUtils.bigDecimalToString(cartItem.totalCost)}"
+                    android:text="@{cartView.total}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     />
 
                 <ImageView
+                    android:id="@+id/delete_cart_item"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_marginTop="8dp"
                     android:src="@drawable/ic_trash"
-                    android:onClick="@{()-> cartItemView.deleteItem(context)}"/>
+                    android:onClick="@{() -> cartView.deleteItem(cartView.saleable)}"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

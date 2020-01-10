@@ -135,5 +135,6 @@
     <string name="address_found">Found address</string>
     <string name="delivery_fee_fmt">Delivery Fee: %s</string>
     <string name="proceed_payment">Proceed to Payment</string>
+    <string name="add_cart">Add to Cart</string>
 
 </resources>

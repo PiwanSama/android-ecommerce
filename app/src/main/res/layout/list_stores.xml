@@ -3,30 +3,14 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-        <variable
-            name="viewModel"
-            type="com.cti.lifego.viewmodels.StoreViewModel" />
-    </data>
-
    <LinearLayout
        android:layout_width="match_parent"
        android:layout_height="match_parent"
        android:orientation="vertical">
 
-       <com.facebook.shimmer.ShimmerFrameLayout
-           android:id="@+id/store_shimmer"
-           android:layout_width="match_parent"
-           android:layout_height="match_parent">
-
-           <include layout="@layout/store_skeleton_view"/>
-
-       </com.facebook.shimmer.ShimmerFrameLayout>
-
        <ScrollView
            android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:fillViewport="true"
+           android:layout_height="match_parent"
            android:background="@color/colorLightGrey"
            tools:context=".fragments.ListStoresFragment">
 
