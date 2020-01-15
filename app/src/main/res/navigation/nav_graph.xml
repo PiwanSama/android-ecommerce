@@ -20,7 +20,7 @@
         android:id="@+id/checkoutSummaryFragment"
         android:name="com.cti.lifego.fragments.CheckoutSummary"
         android:label="Summary"
-        tools:layout="@layout/checkout_summary">
+        tools:layout="@layout/fragment_checkout_summary">
         <action
             android:id="@+id/action_checkoutSummaryFragment_to_checkoutPricingFragment"
             app:destination="@id/checkoutPricingFragment" />
@@ -32,7 +32,7 @@
         android:id="@+id/checkoutPricingFragment"
         android:name="com.cti.lifego.fragments.CheckoutPricing"
         android:label="Payment"
-        tools:layout="@layout/checkout_pricing"/>
+        tools:layout="@layout/fragment_checkout_pricing"/>
 
 
     <fragment
@@ -50,9 +50,7 @@
             app:popUpTo="@+id/homeFragment"
             app:popUpToInclusive="false" />
 
-        <action
-            android:id="@+id/action_homeFragment_to_storesListFragment"
-            app:destination="@id/storesListFragment">
+        <action app:destination="@id/storesListFragment">
             <argument
                 android:name="CategoryID"
                  app:argType="integer"/>
@@ -84,13 +82,13 @@
         android:id="@+id/orderDetailFragment"
         android:name="com.cti.lifego.fragments.OrderDetailFragment"
         android:label="@string/order"
-        tools:layout="@layout/single_order_details" />
+        tools:layout="@layout/fragment_order_details" />
 
     <fragment
         android:id="@+id/userProfileFragment"
         android:name="com.cti.lifego.fragments.UserDetailsFragment"
         android:label="My Profile"
-        tools:layout="@layout/user_details" />
+        tools:layout="@layout/fragment_user_profile" />
 
     <fragment
         android:id="@+id/storesListFragment"
@@ -99,7 +97,6 @@
         tools:layout="@layout/list_stores">
 
         <action
-            android:id="@+id/action_storesListFragment_to_browseStoreFragment"
             app:destination="@id/browseStoreFragment"
             app:enterAnim="@anim/fade_in"/>
 
@@ -142,7 +139,6 @@
         tools:layout="@layout/login_fragment"/>
 
     <action
-        android:id="@+id/action_homeFragment_to_LoginFragment"
         app:destination="@id/loginFragment"
         app:enterAnim="@anim/nav_default_enter_anim"
         app:exitAnim="@anim/nav_default_exit_anim"/>
@@ -152,9 +148,7 @@
         android:name="com.cti.lifego.fragments.FloatingCardOrderFragment"
         tools:layout="@layout/floating_card_order">
 
-        <action
-            android:id="@+id/action_checkout_graph"
-            app:destination="@id/checkout_graph"/>
+        <action app:destination="@id/checkout_graph"/>
 
     </fragment>
 
@@ -190,7 +184,7 @@
             android:id="@+id/personalDetailsFragment"
             android:name="com.cti.lifego.fragments.PersonalDetailsFragment"
             android:label="Your Details"
-            tools:layout="@layout/personal_details_fragment">
+            tools:layout="@layout/fragment_personal_details">
             <action
                 android:id="@+id/personalDetailsFragment_to_kinDetailsFragment"
                 app:destination="@id/kinDetailsFragment"/>

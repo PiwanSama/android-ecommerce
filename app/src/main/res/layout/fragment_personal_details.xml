@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2020. Written by Samalie Piwan
+  -->
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="com.cti.lifego.utils.StringUtils" />
+
+        <import type="com.cti.lifego.viewmodels.RegistrationViewModel.PersonalFormErrors"/>
+
+        <variable
+            name="viewModel"
+            type="com.cti.lifego.viewmodels.RegistrationViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:textStyle="bold"
+                android:text="@string/personal_details"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:hint="@string/given_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_marginTop="20dp"
+                android:errorText='@{viewModel.personalFormErrors.contains(PersonalFormErrors.MISSING_GIVEN_NAME) ? "Required" : ""}'
+                style="@style/Widget.Design.TextInputLayout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/user_given_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                    android:inputType="textPersonName|textCapWords"
+                    android:textColor="@color/fontColor"
+                    android:textColorHint="@color/mutedText"
+                    android:text="@={viewModel.given_name}"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:hint="@string/surname"
+                android:errorText='@{viewModel.personalFormErrors.contains(PersonalFormErrors.MISSING_SURNAME) ? "Required" : ""}'
+                style="@style/Widget.Design.TextInputLayout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/user_surname"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                    android:inputType="textPersonName|textCapWords"
+                    android:textColor="@color/fontColor"
+                    android:textColorHint="@color/mutedText"
+                    android:text="@={viewModel.surname}"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:hint="@string/email_address"
+                android:errorText='@{viewModel.personalFormErrors.contains(PersonalFormErrors.MISSING_EMAIL) ? "Required" : ""}'
+                style="@style/Widget.Design.TextInputLayout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/user_email"
+                    android:ems="10"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/fontColor"
+                    android:textColorHint="@color/mutedText"
+                    android:text="@={viewModel.email}"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:hint="@string/password"
+                android:clickable="false"
+                android:focusable="false"
+                android:errorText='@{viewModel.personalFormErrors.contains(PersonalFormErrors.MISSING_PASSWORD) ? "Required" : ""}'
+                style="@style/Widget.Design.TextInputLayout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/user_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:ems="10"
+                    android:inputType="textPassword"
+                    android:textColorHint="@color/mutedText"
+                    android:text="@={viewModel.password}"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+           <LinearLayout
+               android:orientation="horizontal"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_margin="8dp">
+
+               <com.google.android.material.textfield.TextInputLayout
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1"
+                   android:hint="@string/dob"
+                   android:errorText='@{viewModel.personalFormErrors.contains(PersonalFormErrors.MISSING_DOB) ? "Required" : ""}'
+                   style="@style/Widget.Design.TextInputLayout">
+
+                   <com.google.android.material.textfield.TextInputEditText
+                       android:id="@+id/user_dob"
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:clickable="false"
+                       android:focusable="false"
+                       android:enabled="false"
+                       android:ems="10"
+                       android:inputType="none"
+                       android:textColorHint="@color/mutedText"
+                       android:text="@={viewModel.dob}"/>
+
+               </com.google.android.material.textfield.TextInputLayout>
+
+               <com.google.android.material.button.MaterialButton
+                   android:id="@+id/select_date"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="@string/select"
+                   android:layout_gravity="end"
+                   app:backgroundTint="@color/colorAccent"
+                   app:cornerRadius="0dp"
+                   app:elevation="2dp"/>
+
+           </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/phone_contact"
+                android:layout_margin="8dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="8dp">
+
+                <Spinner
+                    android:id="@+id/user_country_code"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:errorText='@{viewModel.personalFormErrors.contains(PersonalFormErrors.MISSING_PHONE) ? "Required" : ""}'
+                    style="@style/Widget.Design.TextInputLayout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/user_phone_number"
+                        android:textColorHint="@color/mutedText"
+                        android:hint="@string/phone_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:maxLength="9"
+                        android:digits="0123456789"
+                        android:inputType="phone"
+                        android:importantForAutofill="no"
+                        android:singleLine="true"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="5dp"
+                        android:text="@={viewModel.phone_string}"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/gender" />
+
+            <RadioGroup
+                android:id="@+id/user_gender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="2dp">
+
+                <RadioButton
+                    android:id="@+id/female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/female" />
+
+                <RadioButton
+                    android:id="@+id/male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/male"/>
+
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/opt_in" />
+
+            <RadioGroup
+                android:id="@+id/user_opt_in"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="2dp">
+
+                <RadioButton
+                    android:id="@+id/yes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/yes"/>
+
+                <RadioButton
+                    android:id="@+id/no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no"/>
+
+            </RadioGroup>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/next_button"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="@string/next"
+                android:layout_marginTop="30dp"
+                app:elevation="4dp"
+                app:backgroundTint="@color/colorAccent"
+                app:cornerRadius="0dp"
+                style="?android:attr/buttonBarButtonStyle"
+                />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</layout>

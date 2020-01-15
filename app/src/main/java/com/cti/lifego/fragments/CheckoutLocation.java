@@ -10,7 +10,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
@@ -21,6 +20,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -37,10 +37,12 @@ import com.cti.lifego.R;
 import com.cti.lifego.api.MapsRetrofitInstance;
 import com.cti.lifego.api.NetworkService;
 import com.cti.lifego.content.Constants;
-import com.cti.lifego.databinding.CheckoutLocationBinding;
+import com.cti.lifego.databinding.FragmentCheckoutLocationBinding;
 import com.cti.lifego.services.FetchAddressIntentService;
 import com.cti.lifego.viewmodels.CheckoutViewModel;
+import com.cti.lifego.viewmodels.LocationViewModel;
 import com.google.android.gms.common.api.ResolvableApiException;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
@@ -52,95 +54,103 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.JointType;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
-import com.google.android.gms.maps.model.PolylineOptions;
-import com.google.android.gms.maps.model.SquareCap;
 import com.google.android.gms.tasks.Task;
 import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.net.PlacesClient;
-import com.google.maps.android.SphericalUtil;
+import com.google.android.libraries.places.widget.Autocomplete;
+import com.google.android.libraries.places.widget.AutocompleteActivity;
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
-import static com.cti.lifego.viewmodels.CheckoutViewModel.CheckoutState.CHECKOUT_LOCATION;
 
 public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLocationButtonClickListener, OnMapReadyCallback{
 
     private FusedLocationProviderClient fusedLocationProviderClient;
     private Location currentLocation;
-    private LocationRequest mLocationRequest;
     private GoogleMap mMap;
     private View mapView;
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
     private static final int PERMISSIONS_REQUEST_ENABLE_GPS = 2;
     private static final int PERMISSIONS_REQUEST_FROM_SETTINGS = 3;
+    private static final int AUTOCOMPLETE_REQUEST_CODE = 4;
 
-    private NetworkService networkService;
-
-    private List<LatLng> polyLineList;
     private Marker userLocationMarker, storeLocationMarker;
-    private LatLng storePosition, currentPosition;
-    private String destination;
-    private PolylineOptions routePolyLineOptions;
+    private Marker destinationMarker;
     private Polyline routePolyline;
 
     private String addressOutput;
+    LinearLayout search;
     private AddressReceiver resultReceiver;
 
-    private CheckoutLocationBinding binding;
+    private FragmentCheckoutLocationBinding binding;
     private CheckoutViewModel viewModel;
-
+    private LocationViewModel locationViewModel;
+    private PlacesClient placesClient;
     private NavController navController;
+
+    private NetworkService service = MapsRetrofitInstance.getRetrofitInstance().create(NetworkService.class);
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
+
         resultReceiver = new AddressReceiver(null);
-        Places.initialize(getContext(), getResources().getString(R.string.MAPS_KEY));
-        PlacesClient placesClient = Places.createClient(getContext());
-        binding = DataBindingUtil.inflate(inflater, R.layout.checkout_location, container, false);
+        Places.initialize(Objects.requireNonNull(getContext()), getResources().getString(R.string.MAPS_KEY));
+        placesClient = Places.createClient(getContext());
+
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_checkout_location, container, false);
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map_fragment);
+        assert mapFragment != null;
+        mapFragment.getMapAsync(this);
+        mapView = mapFragment.getView();
+
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         navController = Navigation.findNavController(view);
 
         viewModel = new ViewModelProvider(this).get(CheckoutViewModel.class);
+        locationViewModel = new ViewModelProvider(this).get(LocationViewModel.class);
+
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
 
-        networkService = MapsRetrofitInstance.getRetrofitInstance().create(NetworkService.class);
+        search = view.findViewById(R.id.map_search_button);
+        search.setOnClickListener(v -> setUpPlace());
+
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(Objects.requireNonNull(getActivity()));
-        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map_fragment);
-        mapFragment.getMapAsync(this);
-        mapView = mapFragment.getView();
 
-        binding.navigateToPayment.setOnClickListener(v ->
-                viewModel.delivery_fee.setValue("2000/="));
-                viewModel.checkout_state.setValue(CHECKOUT_LOCATION);
+        binding.navigateToPayment.setOnClickListener(v -> {
+            viewModel.delivery_fee.setValue("2000/=");
+        });
+       // viewModel.checkout_state.setValue(CHECKOUT_LOCATION);
 
+      //  getSelectedPlace();
+    }
 
-
+    private void setUpPlace() {
+        List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG);
+        Intent intent = new Autocomplete.IntentBuilder(
+                AutocompleteActivityMode.OVERLAY, fields)
+                .setCountry("UG")
+                .build(getContext());
+        startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE);
     }
 
     @Override
@@ -162,122 +172,51 @@ public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLoca
 
     private void setUpMap() {
         mMap.setMyLocationEnabled(true);
-        mMap.setMinZoomPreference(16);
+        mMap.setMinZoomPreference(14);
 
         if (mapView!=null && mapView.findViewById(Integer.parseInt("1"))!=null){
             View locationButton = ((View) mapView.findViewById(Integer.parseInt("1")).getParent()).findViewById(Integer.parseInt("2"));
             RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) locationButton.getLayoutParams();
             layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP, 0);
             layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
-            layoutParams.setMargins(0,0,30,320);
+            layoutParams.setMargins(0,0,30,640);
         }
-
-        // mLocationRequest = new LocationRequest();
-        //   mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
-        //  fusedLocationProviderClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
-        polyLineList = new ArrayList<>();
-
-        fusedLocationProviderClient.getLastLocation().addOnSuccessListener(location -> {
+        
+        fusedLocationProviderClient.getLastLocation().addOnSuccessListener((Location location) -> {
             // Got last known location. In some rare situations this can be null.
             if (location != null) {
                 currentLocation = location;
-                Log.i("Current lat", String.valueOf(currentLocation.getLatitude()));
-                Log.i("Current long", String.valueOf(currentLocation.getLongitude()));
                 LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
                 MarkerOptions options = new MarkerOptions();
                 options.position(latLng);
                 mMap.addMarker(options);
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
-                //getDirection();
-                final Handler handler = new Handler();
-                handler.postDelayed(this::startIntentService, 300);
             }
         });
     }
 
-    private void getDirection(){
+    private void getDirection(Double destinationLat, Double destinationLong){
         String requestAPI = null;
-        try {
-            requestAPI = "json?"+
-                    "mode=driving&"+
-                    "origin="+currentLocation.getLatitude()+","+ currentLocation.getLongitude()+"&"+
-                    "destination=Ntinda&"+
-                    "key="+getResources().getString(R.string.MAPS_KEY);
 
-            Log.i("API REQUEST", requestAPI);
-
-            networkService.getDirection(requestAPI).enqueue(new Callback<String>() {
-                @Override
-                public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
-                    try{
-                        assert response.body() != null;
-                        JSONObject jsonObject = new JSONObject(response.body());
-                        JSONArray routes = jsonObject.getJSONArray("routes");
-                        for (int i=0; i<routes.length(); i++){
-                            JSONObject route = routes.getJSONObject(i);
-                            JSONObject poly = route.getJSONObject("overview_polyline");
-                            String polyline = poly.getString("points");
-                            polyLineList = decodePolyline(polyline);
-
-
-                            JSONObject routesObject = routes.getJSONObject(0);
-                            JSONArray legs = routesObject.getJSONArray("legs");
-                            JSONObject legObject = legs.getJSONObject(0);
-
-                            //Get distance
-                            JSONObject distanceObject = legObject.getJSONObject("distance");
-                            String distance_text = distanceObject.getString("text");
-
-                            //Use regex to remove non-integers from string
-                            Double distance_value = Double.parseDouble(distance_text.replaceAll("[^0-9]////.]+", ""));
-
-                            //Get time
-                            JSONObject timeObject = legObject.getJSONObject("time");
-                            String time_text = timeObject.getString("text");
-                            Integer time_value = Integer.parseInt(time_text.replaceAll("\\D+", ""));
-                            Double total = Constants.getPrice(distance_value, time_value);
-                        }
-
-                        //Adjusting bounds
-                        LatLngBounds.Builder builder = new LatLngBounds.Builder();
-                        for (LatLng latLng : polyLineList){
-                            builder.include(latLng);
-                            LatLngBounds bounds = builder.build();
-                            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds, 2);
-                            mMap.animateCamera(cameraUpdate);
-
-                            routePolyLineOptions = new PolylineOptions();
-                            routePolyLineOptions.color(Color.BLACK);
-                            routePolyLineOptions.width(5);
-                            routePolyLineOptions.startCap(new SquareCap());
-                            routePolyLineOptions.endCap(new SquareCap());
-                            routePolyLineOptions.jointType(JointType.ROUND);
-                            routePolyLineOptions.addAll(polyLineList);
-                            routePolyline = mMap.addPolyline(routePolyLineOptions);
-
-                            mMap.addMarker(new MarkerOptions().position(polyLineList.get(polyLineList.size() - 1))
-                                    .title("Route"));
-
-                            userLocationMarker = mMap.addMarker(new MarkerOptions().position(currentPosition));
-                        }
-                    }catch (JSONException e){
-                        e.printStackTrace();
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<String> call, Throwable t) {
-                }
-            });
+        requestAPI = "json?"+
+                "mode=driving&"+
+                "origin="+currentLocation.getLatitude()+","+ currentLocation.getLongitude()+"&"+
+                "destination="+destinationLat+","+ destinationLong+"&"+
+                "key="+getResources().getString(R.string.MAPS_KEY);
+        Log.i("API REQUEST", requestAPI);
+        locationViewModel.getPolyLine(requestAPI).observe(getViewLifecycleOwner(), polylineOptions -> {
+            if (routePolyline!=null){
+                routePolyline.remove();
+                routePolyline = mMap.addPolyline(polylineOptions);
+            }
+            else{ routePolyline = mMap.addPolyline(polylineOptions); }
         }
-        catch (Exception e){
-            Log.i("Err", e.getLocalizedMessage());
-        }
+        );
     }
 
     private void getDistance() {
-        double distance = SphericalUtil.computeDistanceBetween(userLocationMarker.getPosition(), storeLocationMarker.getPosition());
-        Log.i("Distance", formatNumber(distance) + " apart.");
+//        double distance = SphericalUtil.computeDistanceBetween(userLocationMarker.getPosition(), storeLocationMarker.getPosition());
+        //Log.i("Distance", formatNumber(distance) + " apart.");
     }
 
     private String formatNumber(double distance) {
@@ -291,37 +230,6 @@ public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLoca
         }
 
         return String.format("%4.3f%s", distance, unit);
-    }
-
-    private List<LatLng> decodePolyline(String encoded) {
-
-        List<LatLng> poly = new ArrayList<LatLng>();
-        int index = 0, len = encoded.length();
-        int lat = 0, lng = 0;
-
-        while (index < len) {
-            int b, shift = 0, result = 0;
-            do {
-                b = encoded.charAt(index++) - 63;
-                result |= (b & 0x1f) << shift;
-                shift += 5;
-            } while (b >= 0x20);
-            int dlat = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
-            lat += dlat;
-
-            shift = 0;
-            result = 0;
-            do {
-                b = encoded.charAt(index++) - 63;
-                result |= (b & 0x1f) << shift;
-                shift += 5;
-            } while (b >= 0x20);
-            int dlng = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
-            lng += dlng;
-            poly.add(new LatLng((double) lat / 1E5, (double) lng / 1E5));
-        }
-
-        return poly;
     }
 
     @Override
@@ -414,7 +322,35 @@ public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLoca
                         displayNeverAskAgainDialog();
                     }
                 }
+            case AUTOCOMPLETE_REQUEST_CODE:
+                if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
+                    if (resultCode == RESULT_OK) {
+                        Place place = Autocomplete.getPlaceFromIntent(data);
+                        getPlaceRoute(place);
+                    } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
+                        // TODO: Handle the error.
+                        Status status = Autocomplete.getStatusFromIntent(data);
+                    } else if (resultCode == RESULT_CANCELED) {
+                        // The user canceled the operation.
+                    }
+                }
         }
+    }
+
+    private void getPlaceRoute(Place place){
+        LatLng placeLatLng = place.getLatLng();
+        assert placeLatLng != null;
+        getDirection(placeLatLng.latitude, placeLatLng.longitude);
+        MarkerOptions options = new MarkerOptions().draggable(false).position(placeLatLng);
+        if (destinationMarker!=null){
+            destinationMarker.remove();
+            destinationMarker = mMap.addMarker(options);
+        }else{
+            destinationMarker = mMap.addMarker(options);
+        }
+        CameraUpdate destinationLocation = CameraUpdateFactory.newLatLngZoom(placeLatLng, 8);
+        mMap.animateCamera(destinationLocation);
+        getDistance();
     }
 
     private void displayNeverAskAgainDialog() {
@@ -468,13 +404,10 @@ public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLoca
     }
 
     private void updateUI(String addressText){
-        Objects.requireNonNull(getActivity()).runOnUiThread(() ->
-                binding.selectedPlace.setText(addressText));
-    }
+        /*Objects.requireNonNull(getActivity()).runOnUiThread(() ->
+                binding.selectedPlace.setText(addressText));*/
 
-    @Override
-    public void onStop() {
-        super.onStop();
+        binding.selectedPlace.setText(addressText);
     }
 }
 

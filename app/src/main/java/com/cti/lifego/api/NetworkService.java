@@ -4,6 +4,7 @@
 
 package com.cti.lifego.api;
 
+import com.cti.lifego.models.MapsModels.DirectionResults;
 import com.cti.lifego.models.Order;
 import com.cti.lifego.models.Product;
 import com.cti.lifego.models.Store;
@@ -61,5 +62,5 @@ public interface NetworkService {
 
     //Google Map API
     @GET
-    Call<String> getDirection(@Url String url);
+    Call<DirectionResults> getDirection(@Url String url);
 }

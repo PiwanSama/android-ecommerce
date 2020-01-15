@@ -6,7 +6,6 @@
             <group android:checkableBehavior="none">
 
                 <item
-                    android:id="@+id/prescriptions"
                     android:icon="@drawable/ic_prescription"
                     android:title="@string/prescriptions" />
 

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. Written by Samalie Piwan
+  -->
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="order"
+            type="com.cti.lifego.models.Order" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/progress"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:text="@string/estimated_time"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"/>
+
+            <com.app.progresviews.ProgressWheel
+                android:id="@+id/orderProgress"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:barWidth="10dp"
+                app:marginBtwText= "15dp"
+                app:countText="15 min"
+                app:definitionText="To Arrival"
+                app:countTextColor="@color/fontColor"
+                app:defTextColor="@color/fontColor"
+                app:progressColor="@color/colorAccent"
+                app:defTextSize="12sp"
+                app:countTextSize="20sp"
+                app:percentage="90"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/track"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/track_order"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"
+                android:layout_gravity="center"
+                android:textSize="13sp"/>
+
+            <com.liefery.android.vertical_stepper_view.VerticalStepperView
+                android:id="@+id/vertical_stepper"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp" />
+
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="@string/view_details"
+            android:textColor="@color/white"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:cornerRadius="0dp"
+            app:backgroundTint="@color/colorAccent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

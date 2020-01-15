@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. Written by Samalie Piwan
+  -->
+
+<layout>
+
+    <data>
+        <variable
+            name="option"
+            type="com.cti.lifego.models.PaymentOption" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/payment_card_item"
+        android:layout_width="100dp"
+        android:layout_height="110dp"
+        android:layout_margin="5dp"
+        app:cardElevation="4dp"
+        app:cardCornerRadius="0dp"
+        app:contentPadding="4dp"
+        app:checkedIconTint="@color/colorAccentTransparent"
+        android:checkable="true"
+        android:clickable="true"
+        android:focusable="true"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/payment_item_image"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@{option.image}"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/payment_item_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/mutedText"
+                android:textSize="12sp"
+                android:layout_gravity="center"
+                android:text="@{option.name}"/>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>
