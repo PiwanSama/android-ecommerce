@@ -84,7 +84,7 @@ public class Cart implements Serializable{
      *
      * @return Total price of all products in this shopping cart
      */
-    public BigDecimal getTotalPrice() {
+    public BigDecimal getCartTotal() {
         return totalPrice;
     }
 
@@ -93,7 +93,7 @@ public class Cart implements Serializable{
      *
      * @return Total quantity of all products in this shopping cart
      */
-    public int getTotalQuantity() {
+    public int getCartTotalQuantity() {
         return totalQuantity;
     }
 
@@ -118,10 +118,7 @@ public class Cart implements Serializable{
     }
 
     public boolean isEmpty(){
-        if (cartItemMap.isEmpty()){
-            return true;
-        }
-        return false;
+        return !cartItemMap.isEmpty();
     }
 
     @Override

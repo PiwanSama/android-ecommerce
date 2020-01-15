@@ -13,19 +13,19 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.cti.lifego.R;
-import com.cti.lifego.databinding.UserDetailsBinding;
+import com.cti.lifego.databinding.FragmentUserProfileBinding;
 import com.cti.lifego.viewmodels.LoginViewModel;
 
 public class UserDetailsFragment extends Fragment {
 
-    UserDetailsBinding binding;
+    FragmentUserProfileBinding binding;
     ProgressBar loadingUser;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         NavController navController = Navigation.findNavController(container);
-        binding = DataBindingUtil.inflate(inflater, R.layout.user_details, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_user_profile, container, false);
         loadingUser = binding.loadingUser;
         loadingUser.setVisibility(View.VISIBLE);
         LoginViewModel viewModel = new ViewModelProvider(this).get(LoginViewModel.class);

@@ -18,7 +18,6 @@ import com.cti.lifego.databinding.CartListItemBinding;
 import com.cti.lifego.models.CartItem;
 import com.cti.lifego.viewmodels.CartItemViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -26,7 +25,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.Bindin
 
     private static final String TAG = "CartItemAdapter";
 
-    private List<CartItem> mCartItems = new ArrayList<>();
+    private List<CartItem> mCartItems;
     private Context mContext;
 
     public CartItemAdapter(Context context, List<CartItem> cartItems) {
@@ -38,7 +37,6 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.Bindin
     public BindingHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         CartListItemBinding binding = DataBindingUtil.inflate(
                 LayoutInflater.from(mContext), R.layout.cart_list_item, parent, false);
-        Log.i("BIND", "Set Item");
         return new CartItemAdapter.BindingHolder(binding.getRoot());
     }
 
@@ -48,6 +46,9 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.Bindin
         CartItemViewModel viewModel = new CartItemViewModel();
         viewModel.setCartItem(cartItem);
         holder.binding.setCartView(viewModel);
+        holder.binding.increaseCount.setOnClickListener(v -> viewModel.increaseQuantity(cartItem));
+        holder.binding.decreaseCount.setOnClickListener(v -> viewModel.decreaseQuantity(cartItem));
+        holder.binding.deleteCartItem.setOnClickListener(v -> viewModel.deleteItem(cartItem));
         holder.binding.executePendingBindings();
         Log.i("ITEM", cartItem.getProduct().getName());
     }

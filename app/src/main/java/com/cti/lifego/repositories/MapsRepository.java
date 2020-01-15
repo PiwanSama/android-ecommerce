@@ -34,16 +34,11 @@ public class MapsRepository {
     private Steps steps;
     private Location location;
     private String polyline;
-    private Duration duration;
-    private Distance distance;
     private PolylineOptions rectLine;
 
-    private int totalDistance = 0;
-    private int totalDuration = 0;
-
     private MutableLiveData<PolylineOptions> mutableLiveDataOptions = new MutableLiveData<>();
-    public MutableLiveData<Integer> distanceLiveData = new MutableLiveData<>();
-    public MutableLiveData<Integer> durationLiveData = new MutableLiveData<>();
+    private MutableLiveData<Integer> durationLiveData = new MutableLiveData<>();
+    private MutableLiveData<Integer> distanceLiveData = new MutableLiveData<>();
 
     public static MapsRepository getInstance() {
         if (instance == null) {
@@ -64,11 +59,15 @@ public class MapsRepository {
                 ArrayList<LatLng> decodelist;
 
                 Route routeA = directionResults.getRoutes().get(0);
-                Log.i("Legs", "Legs count " + routeA.getLegs().size());
 
                 if (routeA.getLegs().size() > 0) {
                     List<Steps> stepsList = routeA.getLegs().get(0).getSteps();
-                    Log.i("Steps", "Steps are " + stepsList.size());
+
+                    Duration duration = routeA.getLegs().get(0).getDuration();
+                    durationLiveData.setValue(Integer.parseInt(duration.getValue()));
+
+                    Distance distance = routeA.getLegs().get(0).getDistance();
+                    distanceLiveData.setValue(Integer.parseInt(distance.getValue()));
 
                     for (int i = 0; i < stepsList.size(); i++) {
                         steps = stepsList.get(i);
@@ -79,11 +78,6 @@ public class MapsRepository {
                         routelist.addAll(decodelist);
                         location = steps.getEnd_location();
                         routelist.add(new LatLng(location.getLat(), location.getLng()));
-                        duration = steps.getDuration();
-                        distance = steps.getDistance();
-
-                        totalDistance += Integer.parseInt(distance.getValue());
-                        totalDuration += Integer.parseInt(duration.getValue());
                     }
                 }
                 if (routelist.size() > 0) {
@@ -94,8 +88,6 @@ public class MapsRepository {
                     }
                 }
                 mutableLiveDataOptions.setValue(rectLine);
-                distanceLiveData.setValue(totalDistance);
-                durationLiveData.setValue(totalDuration);
             }
 
             @Override
@@ -104,7 +96,14 @@ public class MapsRepository {
             }
         });
         return mutableLiveDataOptions;
+    }
 
+    public MutableLiveData<Integer> getDurationLiveData() {
+        return durationLiveData;
+    }
+
+    public MutableLiveData<Integer> getDistanceLiveData() {
+        return distanceLiveData;
     }
 }
 

@@ -108,6 +108,7 @@
     <string name="airtel_money">Airtel Money</string>
     <string name="momo">MTM Momo</string>
     <string name="no_orders">You haven\'t made any orders yet!</string>
-    <string name="select_place">Search for a place or choose your current location</string>
+    <string name="select_place">Search for a place or use your current location</string>
+    <string name="delivery_fee">Delivery Fee:</string>
 
 </resources>

@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.cti.lifego.R;
 import com.cti.lifego.adapters.CategoryAdapter;
 import com.cti.lifego.content.Categories;
-import com.cti.lifego.databinding.HomeFragmentBinding;
+import com.cti.lifego.databinding.FragmentHomeBinding;
 import com.cti.lifego.models.Category;
 
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ import java.util.Arrays;
 
 public class HomeFragment extends BaseFragment{
 
-    HomeFragmentBinding binding;
+    FragmentHomeBinding binding;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
@@ -31,7 +31,7 @@ public class HomeFragment extends BaseFragment{
         if (!isNetworkConnected()) {
             binding = DataBindingUtil.inflate(inflater, R.layout.no_internet, container, false);
         } else {
-            binding = DataBindingUtil.inflate(inflater, R.layout.home_fragment, container, false);
+            binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
         }
         return binding.getRoot();
     }
@@ -46,7 +46,7 @@ public class HomeFragment extends BaseFragment{
             @Override
             public void getCategoryId(Category category) {
                 NavController controller = Navigation.findNavController(view);
-                HomeFragmentDirections.ActionHomeFragmentToStoresListFragment action = HomeFragmentDirections.actionHomeFragmentToStoresListFragment(category.getId());
+                HomeFragmentDirections.ActionListStores action = HomeFragmentDirections.actionListStores(category.getId());
                 controller.navigate(action);
             }
         });

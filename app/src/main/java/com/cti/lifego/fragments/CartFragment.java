@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,6 +21,7 @@ import com.cti.lifego.models.CartItem;
 import com.cti.lifego.models.Product;
 import com.cti.lifego.utils.CartHelper;
 import com.cti.lifego.viewmodels.CartViewModel;
+import com.cti.lifego.viewmodels.ProductViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,43 +31,48 @@ public class CartFragment extends BaseFragment{
 
     private CartFragmentBinding binding;
     private CartViewModel cartViewModel;
+    private ProductViewModel productViewModel;
+    private List<CartItem> cartItems;
     private RecyclerView cartRecyclerView;
     private CartItemAdapter adapter;
     private Cart cart;
-    private TextView product_qty;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         binding = DataBindingUtil.inflate(LayoutInflater.from(getContext()),R.layout.cart_fragment, container, false);
+
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        cart = CartHelper.getCart();
+
         cartRecyclerView = binding.cartRecyclerView;
         cartViewModel = new ViewModelProvider(this).get(CartViewModel.class);
-        cart = CartHelper.getCart();
-        binding.setCartView(cartViewModel);
-        cartViewModel.setCartList(getCartItems(cart));
+        productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
+        adapter = new CartItemAdapter(getContext(), cartItems);
+        adapter.updateCartItems(getCartItems(cart));
     }
 
-
-    private List<CartItem> getCartItems(Cart cart) {
-        List<CartItem> cartItems = new ArrayList<CartItem>();
-        Log.d("Here", "Current shopping cart: " + cart);
+    private List<CartItem> getCartItems(Cart cart){
+        cartItems = new ArrayList<CartItem>();
 
         Map<Saleable, Integer> itemMap = cart.getItemWithQuantity();
-
-        for (Map.Entry<Saleable, Integer> entry : itemMap.entrySet()) {
-            CartItem cartItem = new CartItem();
+        for (Map.Entry<Saleable, Integer> entry : itemMap.entrySet()){
+            CartItem cartItem= new CartItem();
             cartItem.setProduct((Product) entry.getKey());
             cartItem.setQuantity(entry.getValue());
             cartItems.add(cartItem);
         }
-        //Log.d("Here", "Cart item list: " + cartItems);
+
+        Log.d("CART", "Cart item list: " + cartItems);
         return cartItems;
     }
+
 }
 

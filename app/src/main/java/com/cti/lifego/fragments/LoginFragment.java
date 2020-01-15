@@ -13,15 +13,15 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.cti.lifego.R;
-import com.cti.lifego.databinding.LoginFragmentBinding;
+import com.cti.lifego.databinding.FragmentLoginBinding;
 import com.cti.lifego.viewmodels.LoginViewModel;
 
 public class LoginFragment extends BaseFragment implements AdapterView.OnItemSelectedListener {
-    private LoginFragmentBinding binding;
+    private FragmentLoginBinding binding;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.inflate(inflater, R.layout.login_fragment, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false);
         return binding.getRoot();
     }
 

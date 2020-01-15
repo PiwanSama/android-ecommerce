@@ -34,8 +34,6 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.cti.lifego.R;
-import com.cti.lifego.api.MapsRetrofitInstance;
-import com.cti.lifego.api.NetworkService;
 import com.cti.lifego.content.Constants;
 import com.cti.lifego.databinding.FragmentCheckoutLocationBinding;
 import com.cti.lifego.services.FetchAddressIntentService;
@@ -84,12 +82,11 @@ public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLoca
     private static final int PERMISSIONS_REQUEST_FROM_SETTINGS = 3;
     private static final int AUTOCOMPLETE_REQUEST_CODE = 4;
 
-    private Marker userLocationMarker, storeLocationMarker;
-    private Marker destinationMarker;
+    private Marker userLocationMarker, destinationMarker;
     private Polyline routePolyline;
 
     private String addressOutput;
-    LinearLayout search;
+    private LinearLayout search;
     private AddressReceiver resultReceiver;
 
     private FragmentCheckoutLocationBinding binding;
@@ -97,8 +94,6 @@ public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLoca
     private LocationViewModel locationViewModel;
     private PlacesClient placesClient;
     private NavController navController;
-
-    private NetworkService service = MapsRetrofitInstance.getRetrofitInstance().create(NetworkService.class);
 
     @Nullable
     @Override
@@ -127,6 +122,7 @@ public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLoca
 
         viewModel = new ViewModelProvider(this).get(CheckoutViewModel.class);
         locationViewModel = new ViewModelProvider(this).get(LocationViewModel.class);
+        locationViewModel.init();
 
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
@@ -137,19 +133,13 @@ public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLoca
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(Objects.requireNonNull(getActivity()));
 
         binding.navigateToPayment.setOnClickListener(v -> {
-            viewModel.delivery_fee.setValue("2000/=");
+            // viewModel.checkout_state.setValue(CHECKOUT_LOCATION);
         });
-       // viewModel.checkout_state.setValue(CHECKOUT_LOCATION);
-
-      //  getSelectedPlace();
     }
 
     private void setUpPlace() {
         List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG);
-        Intent intent = new Autocomplete.IntentBuilder(
-                AutocompleteActivityMode.OVERLAY, fields)
-                .setCountry("UG")
-                .build(getContext());
+        Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fields).setCountry("UG").build(getContext());
         startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE);
     }
 
@@ -179,7 +169,7 @@ public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLoca
             RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) locationButton.getLayoutParams();
             layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP, 0);
             layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
-            layoutParams.setMargins(0,0,30,640);
+            layoutParams.setMargins(0,0,30,700);
         }
         
         fusedLocationProviderClient.getLastLocation().addOnSuccessListener((Location location) -> {
@@ -189,47 +179,28 @@ public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLoca
                 LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
                 MarkerOptions options = new MarkerOptions();
                 options.position(latLng);
-                mMap.addMarker(options);
+                userLocationMarker = mMap.addMarker(options);
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
             }
         });
     }
 
-    private void getDirection(Double destinationLat, Double destinationLong){
+    private void getDirection(Double destinationLat, Double destinationLong) {
         String requestAPI = null;
-
-        requestAPI = "json?"+
-                "mode=driving&"+
-                "origin="+currentLocation.getLatitude()+","+ currentLocation.getLongitude()+"&"+
-                "destination="+destinationLat+","+ destinationLong+"&"+
-                "key="+getResources().getString(R.string.MAPS_KEY);
+        requestAPI = "json?" +
+                "mode=driving&" +
+                "origin=" + currentLocation.getLatitude() + "," + currentLocation.getLongitude() + "&" +
+                "destination=" + destinationLat + "," + destinationLong + "&" +
+                "key=" + getResources().getString(R.string.MAPS_KEY);
         Log.i("API REQUEST", requestAPI);
         locationViewModel.getPolyLine(requestAPI).observe(getViewLifecycleOwner(), polylineOptions -> {
-            if (routePolyline!=null){
-                routePolyline.remove();
-                routePolyline = mMap.addPolyline(polylineOptions);
-            }
-            else{ routePolyline = mMap.addPolyline(polylineOptions); }
-        }
-        );
-    }
-
-    private void getDistance() {
-//        double distance = SphericalUtil.computeDistanceBetween(userLocationMarker.getPosition(), storeLocationMarker.getPosition());
-        //Log.i("Distance", formatNumber(distance) + " apart.");
-    }
-
-    private String formatNumber(double distance) {
-        String unit = "m";
-        if (distance < 1) {
-            distance *= 1000;
-            unit = "mm";
-        } else if (distance > 1000) {
-            distance /= 1000;
-            unit = "km";
-        }
-
-        return String.format("%4.3f%s", distance, unit);
+                    if (routePolyline != null) {
+                        routePolyline.remove();
+                        routePolyline = mMap.addPolyline(polylineOptions);
+                    } else {
+                        routePolyline = mMap.addPolyline(polylineOptions);
+                    }
+                });
     }
 
     @Override
@@ -350,7 +321,8 @@ public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLoca
         }
         CameraUpdate destinationLocation = CameraUpdateFactory.newLatLngZoom(placeLatLng, 8);
         mMap.animateCamera(destinationLocation);
-        getDistance();
+
+        //updateUI(place.getName(), getTripFee(tripDistance, tripDuration));
     }
 
     private void displayNeverAskAgainDialog() {
@@ -397,17 +369,13 @@ public class CheckoutLocation extends BaseFragment implements GoogleMap.OnMyLoca
             if (resultCode == Constants.SUCCESS_RESULT) {
                 Toast.makeText(getContext(), getString(R.string.address_found), Toast.LENGTH_SHORT).show();
             }
-            updateUI(addressOutput);
-            // Show a toast message if an address was found.
         }
 
     }
 
-    private void updateUI(String addressText){
-        /*Objects.requireNonNull(getActivity()).runOnUiThread(() ->
-                binding.selectedPlace.setText(addressText));*/
-
-        binding.selectedPlace.setText(addressText);
+    private void updateUI(String deliveryAddress, String deliveryFee){
+        binding.deliveryAddress.setText(deliveryAddress);
+        binding.deliveryFee.setText(deliveryFee);
     }
 }
 

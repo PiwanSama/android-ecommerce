@@ -23,7 +23,7 @@ public class FloatingOrderViewModel extends ViewModel {
     }
 
     public BigDecimal getTotalPrice() {
-        return cart.getTotalPrice();
+        return cart.getCartTotal();
     }
 
     public void setTotalPrice(BigDecimal totalPrice) {
@@ -39,7 +39,7 @@ public class FloatingOrderViewModel extends ViewModel {
     }
 
     public String getCartItemCount(){
-        return String.valueOf(cart.getTotalQuantity());
+        return String.valueOf(cart.getCartTotalQuantity());
     }
 
 }

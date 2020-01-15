@@ -17,10 +17,10 @@ public final class Constants {
 
     private static double BASE_FARE = 500;
     private static double TIME_RATE = 0.35;
-    private static double DISTANCE_RATE = 1.75;
+    private static double DISTANCE_RATE = 0.75;
 
-    public static double getPrice(double km, int time){
-        return (BASE_FARE + (TIME_RATE * time) + (DISTANCE_RATE * km));
+    public static double getPrice(int meters, int minutes){
+        return (BASE_FARE + (TIME_RATE * meters) + (DISTANCE_RATE * minutes));
     }
 
 }

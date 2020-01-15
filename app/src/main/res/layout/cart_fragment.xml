@@ -7,9 +7,6 @@
         <variable
             name="cartView"
             type="com.cti.lifego.viewmodels.CartViewModel" />
-        <variable
-            name="iCartFragment"
-            type="com.cti.lifego.intefaces.ICartFragment"/>
     </data>
 
     <ScrollView

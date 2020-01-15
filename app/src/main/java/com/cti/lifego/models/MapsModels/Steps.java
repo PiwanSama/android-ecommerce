@@ -8,8 +8,6 @@ public class Steps {
     private Location start_location;
     private Location end_location;
     private OverviewPolyline polyline;
-    private Duration duration;
-    private Distance distance;
 
     public Location getStart_location() {
         return start_location;
@@ -22,8 +20,4 @@ public class Steps {
     public OverviewPolyline getPolyline() {
         return polyline;
     }
-
-    public Duration getDuration() { return duration; }
-
-    public Distance getDistance() { return distance; }
 }

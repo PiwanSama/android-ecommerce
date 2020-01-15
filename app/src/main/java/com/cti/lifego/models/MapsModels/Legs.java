@@ -8,8 +8,14 @@ import java.util.List;
 
 public class Legs {
     private List<Steps> steps;
+    private Duration duration;
+    private Distance distance;
 
     public List<Steps> getSteps() {
         return steps;
     }
+
+    public Duration getDuration() { return duration; }
+
+    public Distance getDistance() { return distance; }
 }
